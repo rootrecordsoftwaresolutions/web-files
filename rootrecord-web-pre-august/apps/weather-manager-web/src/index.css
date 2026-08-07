@@ -1,0 +1,79 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html, body, #root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: 'Outfit', ui-sans-serif, system-ui, -apple-system, sans-serif;
+  background: #060d14;
+  color: #e8f4ef;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overscroll-behavior-y: contain;
+  text-rendering: optimizeLegibility;
+}
+
+/* Hide scrollbars on horizontal scrollers */
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { scrollbar-width: none; -ms-overflow-style: none; }
+
+/* Custom selection */
+::selection { background: #5ee9b0; color: #04120a; }
+
+/* Tab focus ring used by buttons */
+.focus-ring:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px #060d14, 0 0 0 4px #5ee9b0;
+}
+
+/* Leaflet dark tweaks */
+.leaflet-container {
+  background: #060d14;
+}
+.leaflet-control-attribution {
+  background: rgba(0,0,0,0.6) !important;
+  color: #a3a3a3 !important;
+}
+.leaflet-control-attribution a { color: #cbd5e1 !important; }
+
+/* Pull to refresh spinner indicator */
+.ptr-indicator {
+  display: flex;
+  justify-content: center;
+  height: 0;
+  overflow: hidden;
+  transition: height .15s ease;
+  color: #a3a3a3;
+}
+
+@keyframes shimmer {
+  0% { background-position: -400px 0; }
+  100% { background-position: 400px 0; }
+}
+.skeleton {
+  background: linear-gradient(90deg, #1e1e1e 0%, #262626 50%, #1e1e1e 100%);
+  background-size: 800px 100%;
+  animation: shimmer 1.6s infinite linear;
+  border-radius: 6px;
+}
+
+/* Tap highlight off */
+* { -webkit-tap-highlight-color: transparent; }
+
+/* Desktop web: main column reads as a browser app, not a phone slab. */
+@media (min-width: 1024px) {
+  .weather-web-main {
+    background:
+      radial-gradient(900px 420px at 70% 0%, rgba(94, 233, 176, 0.07), transparent 55%),
+      #060d14;
+  }
+}
+
+.weather-web-main {
+  padding-top: max(var(--rr-native-ad-banner-height, 0px), env(safe-area-inset-top, 0px));
+  scroll-padding-top: max(var(--rr-native-ad-banner-height, 0px), env(safe-area-inset-top, 0px));
+}

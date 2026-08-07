@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RootMC — Minecraft economy SMP</title>
+  <meta name="description" content="RootMC survival multiplayer — Towny nations, player-run gold economy, live chest-shop market, Discord community, and weekly activity awards.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..700&family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon-180.png">
+  <meta name="theme-color" content="#0a0f10">
+  <link rel="canonical" href="https://rootmc.net/">
+  <link rel="stylesheet" href="/styles/rootmc.css">
+</head>
+<body class="home-page">
+  <div class="rmc-market-tape" id="home-price-tape-wrap" hidden aria-label="Live shop price changes">
+    <span class="rmc-market-tape-badge">Market</span>
+    <div class="rmc-market-tape-viewport">
+      <div class="rmc-market-tape-inner" id="home-price-tape"></div>
+    </div>
+  </div>
+  <header class="rmc-header">
+    <div class="container rmc-header-inner">
+      <a class="rmc-brand" href="/">
+        <span class="rmc-brand-mark" aria-hidden="true">R</span>
+        RootMC
+        <span class="rmc-brand-tag">SMP</span>
+      </a>
+      <nav class="rmc-nav" aria-label="Main">
+        <a href="/" aria-current="page">Home</a>
+        <a href="/market/">Market</a>
+        <a href="/leaderboard/">Leaderboard</a>
+        <a href="/economy/">Economy</a>
+        <a href="/player/">Players</a>
+        <a href="/wiki/">Wiki</a>
+        <a href="https://map.rootmc.net" target="_blank" rel="noopener">Live map</a>
+        <a href="/verify/" class="rmc-nav-cta">Link account</a>
+      </nav>
+      <button class="rmc-nav-toggle" type="button" aria-label="Open menu" data-nav-toggle>
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <section class="rmc-hero container">
+      <div class="rmc-hero-grid">
+        <div>
+          <p class="rmc-hero-eyebrow"><span class="dot"></span>Live · play.rootmc.net</p>
+          <h1>Player-run <span class="gold">gold economy</span><br>on a survival SMP.</h1>
+          <p class="rmc-lead">Towny towns &amp; nations, McMMO skills, chest-shop trading and a live in-game stock market — synced to this site every few minutes while the server is online.</p>
+          <div class="rmc-actions">
+            <a class="rmc-btn rmc-btn-primary" href="https://play.rootmc.net">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 3l14 9-14 9V3z"/></svg>
+              play.rootmc.net
+            </a>
+            <a class="rmc-btn rmc-btn-secondary" href="/economy/">Economy overview</a>
+            <a class="rmc-btn rmc-btn-ghost" href="/market/">View market</a>
+            <a class="rmc-btn rmc-btn-ghost" href="https://discord.gg/rFFQYrNaqS" target="_blank" rel="noopener">Discord</a>
+          </div>
+        </div>
+        <aside class="rmc-hero-aside" aria-label="Market preview">
+          <div class="rmc-hero-aside-head">
+            <span>ROOTMC · Top tickers</span>
+            <span class="live" id="home-ticker-live">LIVE</span>
+          </div>
+          <div class="rmc-hero-ticker" id="home-hero-ticker">
+            <p class="rmc-muted rmc-hero-ticker-loading">Loading market…</p>
+          </div>
+          <p class="rmc-hero-ticker-meta" id="home-hero-ticker-meta"></p>
+        </aside>
+      </div>
+    </section>
+
+    <section class="rmc-section container rmc-vote-section" aria-labelledby="vote-heading">
+      <p class="market-badge">Support the server</p>
+      <h2 id="vote-heading" class="rmc-section-title">Vote &amp; earn 1–20 G</h2>
+      <p class="rmc-lead">Vote on listing sites once every 24h per site — gold rewards land in-game. Use <code>/vote</code> for the same links.</p>
+      <div class="rmc-vote-grid">
+        <a class="rmc-vote-card" href="https://minecraft-mp.com/server/359724/vote/" target="_blank" rel="noopener noreferrer">Minecraft-MP</a>
+        <a class="rmc-vote-card" href="https://minecraftservers.org/vote/689134" target="_blank" rel="noopener noreferrer">MinecraftServers.org</a>
+        <a class="rmc-vote-card" href="https://minecraft-server-list.com/server/521165/vote/" target="_blank" rel="noopener noreferrer">Minecraft Server List</a>
+        <a class="rmc-vote-card" href="https://minecraft.buzz/vote/21857" target="_blank" rel="noopener noreferrer">Minecraft.Buzz</a>
+        <a class="rmc-vote-card" href="https://topminecraftservers.org/vote/43816" target="_blank" rel="noopener noreferrer">TopMinecraftServers</a>
+        <a class="rmc-vote-card" href="https://www.minerank.com/rootmc-top-tier-economy-server/vote" target="_blank" rel="noopener noreferrer">MineRank</a>
+        <a class="rmc-vote-card" href="https://minecraftlist.org/vote/34144" target="_blank" rel="noopener noreferrer">MinecraftList.org</a>
+        <a class="rmc-vote-card" href="https://www.planetminecraft.com/server/rootmc/vote/" target="_blank" rel="noopener noreferrer">Planet Minecraft</a>
+      </div>
+    </section>
+
+    <section class="rmc-section container" aria-labelledby="about-heading">
+      <div class="rmc-home-split">
+        <article class="rmc-about rmc-card">
+          <p class="market-badge">About RootMC</p>
+          <h2 id="about-heading">A community-first survival realm</h2>
+          <p class="rmc-muted">RootMC is a long-form Minecraft survival server built around cooperation, trade, and territory — not pay-to-win shortcuts. You earn gold through play, list items in player shops, found Towny towns, and grow skills with mcMMO while the world evolves with the people who live in it.</p>
+
+          <h3>What makes it different</h3>
+          <ul class="rmc-about-list">
+            <li><strong>Closed-loop economy</strong> — Gold (G) from minting, shops, and trade. Rules in the <a href="/wiki/constitution/">Constitution</a>; how-to in the <a href="/wiki/economy/">economy guide</a> · <a href="/market/">stock market</a>.</li>
+            <li><strong>Towny &amp; nations</strong> — Claim plots, elect mayors, form nations, and get dedicated Discord channels as your settlement grows.</li>
+            <li><strong>McMMO progression</strong> — Classic skill grinding with public stats once you <a href="/verify/">link your account</a>.</li>
+            <li><strong>Live map</strong> — Explore builds at <a href="https://map.rootmc.net" target="_blank" rel="noopener">map.rootmc.net</a> while you plan your next base.</li>
+            <li><strong>Discord bridge</strong> — In-game chat mirrors to Discord; community votes and weekly awards keep both sides connected.</li>
+          </ul>
+
+          <h3>Fair play &amp; linking</h3>
+          <p class="rmc-muted">We expect respect, no cheating (x-ray, dupes, unfair clients), and honest trade. Linking your Minecraft account to RootRecord unlocks the linked-player Discord role, public stats pages, and the RootMC Android companion app. Rules: <a href="/wiki/constitution/">Constitution</a> · commands: <a href="/wiki/player/">player wiki</a>.</p>
+
+          <h3>Weekly recognition</h3>
+          <p class="rmc-muted">Every Sunday at 08:00 HST we post <strong>Top Participator</strong> (Discord messages, votes, and reactions) and <strong>Top Active Player</strong> (linked in-game playtime). Roles reset each week — when awards are posted, the leaders appear in Discord and on this page.</p>
+
+          <div class="rmc-about-cta">
+            <a class="rmc-btn rmc-btn-secondary" href="/wiki/constitution/">Constitution</a>
+            <a class="rmc-btn rmc-btn-secondary" href="/wiki/economy/">Economy guide</a>
+            <a class="rmc-btn rmc-btn-secondary" href="/wiki/">Read the wiki</a>
+            <a class="rmc-btn rmc-btn-secondary" href="/market/">Browse the market</a>
+          </div>
+        </article>
+
+        <aside class="rmc-home-aside">
+          <div class="rmc-card rmc-discord-card">
+            <p class="market-badge">Community</p>
+            <h2>Discord</h2>
+            <p class="rmc-muted">Chat, announcements, Towny channels, and in-game bridge traffic.</p>
+            <div class="rmc-discord-widget">
+              <iframe src="https://discord.com/widget?id=1516108585740800042&theme=dark" width="350" height="500" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts" title="RootMC Discord"></iframe>
+            </div>
+            <p style="margin: 0.75rem 0 0;"><a href="https://discord.gg/rFFQYrNaqS" target="_blank" rel="noopener">Open Discord invite →</a></p>
+            <p style="margin: 0.5rem 0 0; display:flex; flex-wrap:wrap; gap:0.5rem;">
+              <a class="rmc-btn rmc-btn-secondary" href="https://disboard.org/server/bump/1516108585740800042" target="_blank" rel="noopener noreferrer" style="display:inline-flex;margin-top:0.25rem">Bump on Disboard</a>
+              <a class="rmc-btn rmc-btn-secondary" href="https://disboard.org/review/create/1516108585740800042" target="_blank" rel="noopener noreferrer" style="display:inline-flex;margin-top:0.25rem">Review on Disboard</a>
+            </p>
+          </div>
+
+          <div class="rmc-card rmc-leaders-card" id="weekly-leaders" hidden>
+            <p class="market-badge">Weekly awards</p>
+            <h2>This week&rsquo;s leaders</h2>
+            <p class="rmc-muted" id="weekly-leaders-week">Posted after Sunday 08:00 HST awards.</p>
+
+            <h3 class="rmc-leaders-sub">Top Participator</h3>
+            <p class="rmc-muted rmc-leaders-note">Discord activity — messages, community votes, and reactions.</p>
+            <ol class="rmc-leader-list" id="weekly-participators"></ol>
+
+            <h3 class="rmc-leaders-sub">Top Active Player</h3>
+            <div id="weekly-top-player" hidden></div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="rmc-section container">
+      <p class="market-badge">Explore the realm</p>
+      <h2 class="rmc-section-title">Where to go next</h2>
+      <div class="rmc-grid">
+        <a class="rmc-card rmc-card-hover" href="/market/" style="text-decoration:none;color:inherit">
+          <h2>Stock market</h2>
+          <p class="rmc-muted">Filter shop listings by item, price and stock. Charts show price history per item.</p>
+          <p style="color: var(--rmc-gold); margin-top:1rem;">Browse the market →</p>
+        </a>
+        <a class="rmc-card rmc-card-hover" href="/leaderboard/" style="text-decoration:none;color:inherit">
+          <h2>Leaderboards</h2>
+          <p class="rmc-muted">Net worth, wallet balances, playtime, and McMMO power — synced from the live server.</p>
+          <p style="color: var(--rmc-gold); margin-top:1rem;">View rankings →</p>
+        </a>
+        <a class="rmc-card rmc-card-hover" href="/wiki/economy/" style="text-decoration:none;color:inherit">
+          <h2>Economy guide</h2>
+          <p class="rmc-muted">Treasury, Server Reserve, minting, shops, tax, PvP death recycling, Towny costs, and loans — the full G reference.</p>
+          <p style="color: var(--rmc-gold); margin-top:1rem;">Read economy guide →</p>
+        </a>
+        <a class="rmc-card rmc-card-hover" href="/wiki/" style="text-decoration:none;color:inherit">
+          <h2>Wiki</h2>
+          <p class="rmc-muted">Join steps, linking, Towny, commands, and web tools — everything you need on day one.</p>
+          <p style="color: var(--rmc-gold); margin-top:1rem;">Read the wiki →</p>
+        </a>
+        <a class="rmc-card rmc-card-hover" href="/verify/" style="text-decoration:none;color:inherit">
+          <h2>Link &amp; stats</h2>
+          <p class="rmc-muted">Link in-game with Discord for the linked-player role, public stats, and the mobile app.</p>
+          <p style="color: var(--rmc-gold); margin-top:1rem;">Link account →</p>
+        </a>
+        <a class="rmc-card rmc-card-hover" href="/player/" style="text-decoration:none;color:inherit">
+          <h2>Player search</h2>
+          <p class="rmc-muted">Find a player by username and view McMMO, playtime, and net worth.</p>
+          <p style="color: var(--rmc-gold); margin-top:1rem;">Search players →</p>
+        </a>
+        <article class="rmc-card">
+          <h2>Android app</h2>
+          <p class="rmc-muted">RootMC companion on Android — stats, shops, stock market, notes, and waypoints. Sign in with your RootRecord account.</p>
+          <p style="margin-top:1rem;"><code>RootMC Android companion app</code></p>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="rmc-footer">
+    <div class="container rmc-footer-meta">
+      <p><a href="https://discord.gg/rFFQYrNaqS">Discord</a> · <a href="/wiki/">Wiki</a> · <a href="https://map.rootmc.net" target="_blank" rel="noopener">Live map</a></p>
+      <p class="rmc-footer-mono">play.rootmc.net · synced ~5 min</p>
+    </div>
+  </footer>
+
+  <nav class="rmc-bottomnav" aria-label="Mobile">
+    <div class="rmc-bottomnav-inner">
+      <a href="/" aria-current="page">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-7 9 7v9a2 2 0 0 1-2 2h-4v-7H9v7H5a2 2 0 0 1-2-2z"/></svg>
+        Home
+      </a>
+      <a href="/market/">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8"/><path d="M14 7h7v7"/></svg>
+        Market
+      </a>
+      <a href="/leaderboard/">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 21h8M12 17v4M7 4h10l1 7H6l1-7zM6 11h12v6H6z"/></svg>
+        Ranks
+      </a>
+      <a href="/player/">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg>
+        Players
+      </a>
+      <a href="/wiki/">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19V5a2 2 0 0 1 2-2h12v18H6a2 2 0 0 1-2-2z"/><path d="M8 7h7M8 11h7M8 15h5"/></svg>
+        Wiki
+      </a>
+    </div>
+  </nav>
+
+  <script>
+    (function(){
+      var t = document.querySelector('[data-nav-toggle]');
+      if (!t) return;
+      var h = document.querySelector('.rmc-header');
+      t.addEventListener('click', function(){ h.classList.toggle('is-open'); });
+    })();
+  </script>
+  <script src="/scripts/item-keys.js" defer></script>
+  <script src="/home.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Data — RootMC</title>
+  <meta name="description" content="Per-server live data from LIVE_DB (Hyperdrive MySQL mirrors) — Towny, Claims, and connected hosts.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..700&family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <meta name="theme-color" content="#0a0f10">
+  <link rel="canonical" href="https://rootmc.net/data/">
+  <link rel="stylesheet" href="/styles/rootmc.css?v=20260727data">
+  <link rel="stylesheet" href="/styles/data-hub.css?v=20260727data">
+</head>
+<body>
+  <header class="rmc-header">
+    <div class="container rmc-header-inner">
+      <a class="rmc-brand" href="/">
+        <span class="rmc-brand-mark" aria-hidden="true">R</span>
+        RootMC
+        <span class="rmc-brand-tag">Network</span>
+      </a>
+      <nav class="rmc-nav" aria-label="Main" data-site-nav="player" data-site-nav-current="data"></nav>
+      <button class="rmc-nav-toggle" type="button" aria-label="Open menu" data-nav-toggle>
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <main class="container data-hub-main">
+    <p class="wiki-breadcrumb"><a href="/">Home</a> / Data</p>
+    <h1 class="wiki-page-title"><span class="gold">Data</span></h1>
+    <p class="page-lead">Live per-server datasets from <strong>LIVE_DB</strong> (Hyperdrive → rootmc-live). Archive of the previous site: <a href="/old/">/old/</a>.</p>
+
+    <nav class="economy-scope-nav" aria-label="Data scopes" style="margin-top:1.5rem">
+      <a class="economy-scope-card" href="/data/towny/">
+        <span class="economy-scope-mark" aria-hidden="true">T</span>
+        <span class="economy-scope-label">Towny</span>
+        <span class="economy-scope-desc">Official Towny host — balances, playtime, gold found, shops, times.</span>
+      </a>
+      <a class="economy-scope-card" href="/data/claims/">
+        <span class="economy-scope-mark economy-scope-mark--claims" aria-hidden="true">C</span>
+        <span class="economy-scope-label">Claims</span>
+        <span class="economy-scope-desc">Official Claims host — same LIVE_DB mirror sets.</span>
+      </a>
+      <a class="economy-scope-card" href="/data/official/">
+        <span class="economy-scope-mark economy-scope-mark--official" aria-hidden="true">Σ</span>
+        <span class="economy-scope-label">Official combined</span>
+        <span class="economy-scope-desc">Towny + Claims rollup where mirrors allow.</span>
+      </a>
+      <a class="economy-scope-card" href="/data/servers/">
+        <span class="economy-scope-mark economy-scope-mark--all" aria-hidden="true">◇</span>
+        <span class="economy-scope-label">All servers</span>
+        <span class="economy-scope-desc">Every host in LIVE_DB server_connections.</span>
+      </a>
+    </nav>
+  </main>
+
+  <footer class="rmc-footer">
+    <div class="container rmc-footer-meta">
+      <p>RootMC · Data · LIVE_DB</p>
+    </div>
+  </footer>
+  <script src="/scripts/site-nav.js?v=20260727data" defer></script>
+</body>
+</html>

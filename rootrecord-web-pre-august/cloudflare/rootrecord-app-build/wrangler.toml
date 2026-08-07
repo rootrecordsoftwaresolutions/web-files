@@ -1,0 +1,16 @@
+# Dedicated Worker for marketing-site "app build request" form submissions (Discord webhook / optional DM).
+# Secrets (set via deploy or `wrangler secret put`):
+#   APP_BUILD_REQUEST_WEBHOOK_URL
+#   APP_BUILD_REQUEST_WEBHOOK_BEARER   (optional, generic webhooks only)
+#   APP_BUILD_DISCORD_BOT_TOKEN        (optional)
+#   APP_BUILD_DISCORD_DM_USER_ID       (optional)
+#   APP_BUILD_IOS_WAITLIST_CHANNEL_ID  (optional; defaults to 1509812977069592676)
+#
+# Public URL: https://rootrecord-app-build.rootrecord.workers.dev
+# The rootrecord-website Pages function proxies same-origin /api/app-build-request → this Worker so browsers are not blocked on *.workers.dev.
+name = "rootrecord-app-build"
+main = "src/index.ts"
+compatibility_date = "2024-11-01"
+
+[vars]
+APP_BUILD_IOS_WAITLIST_CHANNEL_ID = "1509812977069592676"

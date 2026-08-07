@@ -1,0 +1,7 @@
+# Cloudflare Pages — CRA output in build/ (same bundle as Capacitor).
+# First deploy: Dashboard → Workers & Pages → Create project → name must match, or:
+#   npx wrangler pages project create rootrecord-weather-web
+# Then: pnpm run pages:deploy (from this directory).
+name = "rootrecord-weather-web"
+compatibility_date = "2024-11-01"
+pages_build_output_dir = "build"

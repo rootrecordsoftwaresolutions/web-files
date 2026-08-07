@@ -1,0 +1,29 @@
+# Root Goals API Worker — goals CRUD, onboarding drafts, Grok plans, public share by custodial address.
+#
+# Secrets: JWT_SECRET (deploy.ps1). Grok chat: GROK_API_BEARER_TOKEN (deploy.ps1 from GROK_API_BEARER_TOKEN, GROK_API_KEY, or GROK_X_BEARER_TOKEN in credentials.env).
+#
+name = "rootrecord-api-goals"
+main = "src/index.ts"
+compatibility_date = "2024-11-01"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "root-record"
+database_id = "0b49c598-1f91-4a09-84a8-6ba8241c6df3"
+
+[vars]
+WORKER_SHARD = "goals"
+SITE_URL = "https://rootrecord.info"
+GROK_MODEL = "grok-3-latest"
+GROK_API_URL = "https://api.x.ai/v1/chat/completions"
+DISCORD_GUILD_ID = "1497039564345442406"
+DISCORD_DEVELOPER_ROLE_ID = "1497040541559558175"
+# App session starts → Discord #app-sessions (RootMC bot secret + channel id, same as BlockNotes).
+DISCORD_APP_SESSION_CHANNEL_ID = "1506162141223194754"
+# Root Goals AI report copies (embed) and raw JSON archive (same raw channel as Kīlauea AI).
+DISCORD_ROOTGOALS_AI_COPY_CHANNEL_ID = "1511923750776606780"
+DISCORD_ROOTGOALS_AI_RAW_ARCHIVE_CHANNEL_ID = "1507597139465867364"
+
+[[routes]]
+pattern = "api-goals.rootrecord.info/*"
+zone_name = "rootrecord.info"

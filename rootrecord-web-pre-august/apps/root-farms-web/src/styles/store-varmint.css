@@ -1,0 +1,112 @@
+.store-notice-muted {
+  color: var(--muted);
+  font-weight: 400;
+}
+
+.store-notice--live strong {
+  color: var(--cyan);
+  font-family: var(--mono);
+}
+
+.store-card--active {
+  border-color: rgba(52, 211, 153, 0.35);
+}
+
+.store-card-badge--on {
+  color: var(--green);
+}
+
+.store-notifications {
+  margin: 0 0 1rem;
+  padding: 0.75rem;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: rgba(251, 191, 36, 0.06);
+}
+
+.store-notifications-title {
+  margin: 0 0 0.5rem;
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--amber);
+}
+
+.store-notifications-list {
+  margin: 0;
+  padding-left: 1.1rem;
+  font-size: 0.82rem;
+  color: var(--muted);
+  line-height: 1.45;
+}
+
+.varmint-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: grid;
+  place-items: center;
+  padding: 1rem;
+  background: rgba(4, 8, 16, 0.72);
+}
+
+.varmint-card {
+  width: min(22rem, 100%);
+  padding: 1.1rem;
+  border-radius: 14px;
+  border: 1px solid var(--border);
+  background: var(--panel);
+}
+
+.varmint-card--attack {
+  border-color: rgba(248, 113, 113, 0.45);
+}
+
+.varmint-card--advisory {
+  border-color: #3d5a80;
+}
+
+.varmint-card-hint {
+  margin: 0 0 1rem;
+  font-size: 0.88rem;
+  color: var(--muted, #9eb0c8);
+}
+
+.varmint-card--block {
+  border-color: rgba(52, 211, 153, 0.45);
+}
+
+.varmint-card-title {
+  margin: 0 0 0.5rem;
+  font-size: 1.1rem;
+}
+
+.varmint-card-msg {
+  margin: 0 0 1rem;
+  color: var(--muted);
+  line-height: 1.45;
+}
+
+.welcome-back-varmint {
+  margin: 0.75rem 0;
+  text-align: left;
+}
+
+.welcome-back-events {
+  margin: 0.35rem 0 0;
+  padding-left: 1.1rem;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+.welcome-event--attack {
+  color: #fca5a5;
+}
+
+.welcome-event--block {
+  color: #86efac;
+}
+
+.btn-block {
+  width: 100%;
+}

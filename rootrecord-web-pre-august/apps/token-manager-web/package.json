@@ -1,0 +1,52 @@
+{
+  "name": "rootrecord-token-web",
+  "version": "0.1.2",
+  "private": true,
+  "homepage": ".",
+  "dependencies": {
+    "@capacitor/android": "^6.2.0",
+    "@capacitor/app": "^6.0.2",
+    "@capacitor/browser": "^6.0.3",
+    "@capacitor/clipboard": "^6.0.2",
+    "@capacitor/core": "^6.2.0",
+    "@solana/spl-token": "^0.4.9",
+    "@solana/web3.js": "^1.95.8",
+    "axios": "^1.7.7",
+    "bs58": "^6.0.0",
+    "buffer": "^6.0.3",
+    "clsx": "^2.1.1",
+    "lucide-react": "^0.446.0",
+    "qrcode.react": "^4.1.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^6.26.2",
+    "react-scripts": "5.0.1",
+    "tweetnacl": "^1.0.3"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "test:ci": "react-scripts test --watchAll=false",
+    "eject": "react-scripts eject",
+    "pages:deploy": "powershell -NoProfile -ExecutionPolicy Bypass -File ../../scripts/deploy-product-web-to-pages.ps1 -ProjectName rootrecord-token-web",
+    "pages:deploy:only": "powershell -NoProfile -ExecutionPolicy Bypass -File ../../scripts/deploy-product-web-to-pages.ps1 -ProjectName rootrecord-token-web -SkipBuild"
+  },
+  "eslintConfig": {
+    "extends": ["react-app"]
+  },
+  "browserslist": {
+    "production": [">0.2%", "not dead", "not op_mini all"],
+    "development": ["last 1 chrome version", "last 1 firefox version", "last 1 safari version"]
+  },
+  "overrides": {
+    "fork-ts-checker-webpack-plugin": "6.5.3"
+  },
+  "devDependencies": {
+    "typescript": "4.9.5",
+    "autoprefixer": "^10.4.20",
+    "postcss": "^8.4.47",
+    "tailwindcss": "^3.4.13",
+    "wrangler": "^3.114.0"
+  }
+}

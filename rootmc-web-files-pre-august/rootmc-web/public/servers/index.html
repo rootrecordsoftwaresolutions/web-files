@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Server setup — RootMC</title>
+  <meta name="description" content="RootMC server plugin configuration for operators.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..700&family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <meta name="theme-color" content="#0a0f10">
+  <link rel="canonical" href="https://rootmc.net/servers/">
+  <link rel="stylesheet" href="/styles/rootmc.css">
+</head>
+<body>
+  <header class="rmc-header">
+    <div class="container rmc-header-inner">
+      <a class="rmc-brand" href="/">
+        <span class="rmc-brand-mark" aria-hidden="true">R</span>
+        RootMC
+        <span class="rmc-brand-tag">SMP</span>
+      </a>
+      <nav class="rmc-nav" aria-label="Main">
+        <a href="/">Home</a>
+        <a href="/wiki/">Wiki</a>
+        <a href="https://discord.gg/rFFQYrNaqS" target="_blank" rel="noopener">Discord</a>
+      </nav>
+      <button class="rmc-nav-toggle" type="button" aria-label="Open menu" data-nav-toggle>
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <main class="container verify-main">
+    <header class="verify-hero">
+      <p class="market-badge">Operators</p>
+      <h1>Server <span style="background:linear-gradient(135deg,var(--rmc-gold-bright),var(--rmc-copper));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;">setup</span></h1>
+      <p class="rmc-muted">The public RootMC server is already connected. This page is for staff configuring the Paper plugins on the host.</p>
+    </header>
+
+    <section class="rmc-card verify-card">
+      <h2 style="margin-top:0">Plugin configuration</h2>
+      <p class="rmc-muted">On the game host, set cloud credentials in <code>plugins/RootMC/cloud.yml</code> and tune <code>plugins/RootMC/rootmc.yml</code>. Jars are deployed to the host directly — not published on this site yet.</p>
+      <ul class="rmc-muted" style="padding-left:1.2rem;line-height:1.85; margin-top: 1rem;">
+        <li><code>cloud.server-id</code> and <code>cloud.server-secret</code> — from the RootMC API (staff only)</li>
+        <li><code>cloud.stats-url-base</code> — <code>https://rootmc.net/player</code></li>
+        <li><code>server.map-url</code> — <code>https://map.rootmc.net/</code></li>
+      </ul>
+      <p class="rmc-muted" style="margin-top:1.25rem">Need help? Ask in <a href="https://discord.gg/rFFQYrNaqS" target="_blank" rel="noopener">RootMC Discord</a>.</p>
+    </section>
+  </main>
+
+  <footer class="rmc-footer">
+    <div class="container rmc-footer-meta">
+      <p><a href="/">RootMC home</a> · <a href="/wiki/player/">Player guide</a></p>
+      <p class="rmc-footer-mono">staff only · paper plugins</p>
+    </div>
+  </footer>
+
+  <script>
+    (function(){
+      var t = document.querySelector('[data-nav-toggle]');
+      if (!t) return;
+      var h = document.querySelector('.rmc-header');
+      t.addEventListener('click', function(){ h.classList.toggle('is-open'); });
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,60 @@
+# RootMC API Gen 2 - api2.rootmc.net (clean D1, snapshot sync only).
+#
+# Deploy: powershell -File deploy.ps1
+# D1:     powershell -File d1-apply-g2.ps1
+# Seed:   powershell -File scripts\seed-g2-realm.ps1
+name = "rootmc-api-g2"
+main = "src/index.ts"
+compatibility_date = "2024-11-01"
+compatibility_flags = ["nodejs_compat"]
+account_id = "f3372b30093435bacc35b69972abeb2e"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "rootmc-g2"
+database_id = "0855eb7d-0a22-4696-ac7b-74070278b66d"
+
+[[routes]]
+pattern = "api2.rootmc.net"
+custom_domain = true
+
+[vars]
+WORKER_SHARD = "rootmc-api-g2"
+SITE_URL = "https://rootmc.net"
+ROOTMC_MYSQL_TABLE_PREFIX = "g2_"
+DISCORD_ROOTMC_OAUTH_REDIRECT_URI = "https://api2.rootmc.net/v1/discord/rootmc/callback"
+DISCORD_ROOTMC_CLIENT_ID = "1511794429986345020"
+DISCORD_ROOTMC_PUBLIC_KEY = "ca0e363025aefa97cc3906031152395cd0b915efe7283a49aa46fb96360158e3"
+DISCORD_ROOTMC_GUILD_ID = "1516108585740800042"
+DISCORD_ROOTMC_LINKED_ROLE_ID = "1516396491973984256"
+DISCORD_ROOTMC_MINECRAFT_SYNC_ROLE_ID = "1516467759842857225"
+DISCORD_ROOTMC_COUNCIL_VOTERS_ROLE_ID = "1522410660418551910"
+# Gen 2: single isolated Discord channel for all bot dumps (no Gen 1 channel migration).
+# Posts are silent (SUPPRESS_NOTIFICATIONS). Do not point these at Gen 1 report channels.
+DISCORD_ROOTMC_GEN2_CHANNEL_ID = "1527451269252382890"
+DISCORD_ROOTMC_GENERAL_CHAT_CHANNEL_ID = "1527451269252382890"
+DISCORD_ROOTMC_UPDATES_CHANNEL_ID = "1527451269252382890"
+DISCORD_ROOTMC_ADMINS_CHANNEL_ID = "1527451269252382890"
+DISCORD_ROOTMC_INGAME_CHAT_CHANNEL_ID = "1527451269252382890"
+DISCORD_ROOTMC_INGAME_FEEDBACK_CHANNEL_ID = "1527451269252382890"
+DISCORD_ROOTMC_TOWN_INFO_CHANNEL_ID = "1527451269252382890"
+DISCORD_ROOTMC_NATION_INFO_CHANNEL_ID = "1527451269252382890"
+DISCORD_ROOTMC_DAILY_REPORT_CHANNEL_ID = "1527451269252382890"
+DISCORD_ROOTMC_AUTOMATED_REPORTS_CHANNEL_ID = "1527451269252382890"
+DISCORD_ROOTMC_AI_RAW_ARCHIVE_CHANNEL_ID = "1527451269252382890"
+DISCORD_ROOTMC_AI_ARCHIVE_CHANNEL_ID = "1527451269252382890"
+DISCORD_ROOTMC_ECONOMY_ANNOUNCE_CHANNEL_ID = "1527451269252382890"
+DISCORD_ROOTMC_BOT_SPAM_CHANNEL_ID = "1527451269252382890"
+DISCORD_FEEDBACK_CHANNEL_ID = "1527451269252382890"
+DISCORD_ROOTMC_OPERATIONS_FORUM_CHANNEL_ID = "1527451269252382890"
+DISCORD_ROOTMC_APPEALS_FORUM_CHANNEL_ID = "1527451269252382890"
+
+[[hyperdrive]]
+binding = "ROOTMC_MYSQL"
+id = "7b46ebebc7df48349cc14a35b8151537"
+
+# Cron slots: account plan limit is 5 triggers — Gen 1 rootmc-api already uses all 5.
+# Gen 2 hourly snapshot text is invoked from Gen 1's `0 * * * *` → POST /api/v2/cron/hourly-discord
+# (returns section markdown; Gen 1 posts Gen1+Gen2 together to the hourly snapshots channel).
+[triggers]
+crons = []

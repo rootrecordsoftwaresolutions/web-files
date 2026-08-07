@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Economy Guide — RootMC Wiki</title>
+  <meta name="description" content="Complete RootMC economy guide — gold-backed G, minting, shops, closed-loop Server Reserve, full taxes &amp; fees reference, inactivity tax, service fees, transaction tax, PvP death recycling, Towny costs, loans, and web tools.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..700&family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <meta name="theme-color" content="#0a0f10">
+  <link rel="canonical" href="https://rootmc.net/wiki/economy/">
+  <link rel="stylesheet" href="/styles/rootmc.css">
+</head>
+<body>
+  <header class="rmc-header">
+    <div class="container rmc-header-inner">
+      <a class="rmc-brand" href="/">
+        <span class="rmc-brand-mark" aria-hidden="true">R</span>
+        RootMC
+        <span class="rmc-brand-tag">SMP</span>
+      </a>
+      <nav class="rmc-nav" aria-label="Main">
+        <a href="/">Home</a>
+        <a href="/market/">Market</a>
+        <a href="/leaderboard/">Leaderboard</a>
+        <a href="/player/">Players</a>
+        <a href="/wiki/" aria-current="page">Wiki</a>
+        <a href="https://map.rootmc.net" target="_blank" rel="noopener">Live map</a>
+        <a href="/verify/" class="rmc-nav-cta">Link account</a>
+      </nav>
+      <button class="rmc-nav-toggle" type="button" aria-label="Open menu" data-nav-toggle>
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <main class="container rmc-section">
+    <p class="wiki-breadcrumb"><a href="/">Home</a> / <a href="/wiki/">Wiki</a> / Economy</p>
+    <p class="market-badge">Economy</p>
+    <h1 class="wiki-page-title">RootMC <em>economy</em></h1>
+    <p class="page-lead">RootMC runs a <strong>closed, gold-backed player economy</strong>. You earn <strong>G</strong> by playing, minting physical gold, trading, and running shops. <strong>Rules and rates:</strong> <a href="/wiki/constitution/">RootMC Constitution</a>. This page is the practical how-to guide.</p>
+    <div class="wiki-badge-row">
+      <span class="wiki-badge wiki-badge-server">Closed loop</span>
+      <span class="wiki-badge wiki-badge-player">Gold-backed G</span>
+      <span class="wiki-badge">0.1% transaction tax</span>
+    </div>
+
+    <div class="wiki-shell" style="margin-top:1.5rem">
+      <aside class="wiki-sidebar" aria-label="Wiki navigation">
+        <h2>On this page</h2>
+        <nav>
+          <ul>
+            <li><a href="#overview">Overview</a></li>
+            <li><a href="/wiki/constitution/">Constitution (rules)</a></li>
+            <li><a href="#what-is-g">What is G?</a></li>
+            <li><a href="#earning">Earning G</a></li>
+            <li><a href="#spending">Spending G</a></li>
+            <li><a href="#treasury">Server Reserve treasury</a></li>
+            <li><a href="#server-reserve">Server Reserve &amp; /reserve</a></li>
+            <li><a href="#taxes-fees-reference">Taxes &amp; fees reference</a></li>
+            <li><a href="#taxes">Transaction tax</a></li>
+            <li><a href="#death">PvP death recycling</a></li>
+            <li><a href="#votes">Vote rewards</a></li>
+            <li><a href="#playtime-milestones">Playtime milestones</a></li>
+            <li><a href="#service-fees">Service fees</a></li>
+            <li><a href="#shops">Player shops &amp; market</a></li>
+            <li><a href="#towny">Towny costs &amp; town taxes</a></li>
+            <li><a href="#inactivity-tax">Inactivity tax</a></li>
+            <li><a href="#loans">Personal loans</a></li>
+            <li><a href="#net-worth">Net worth &amp; tracking</a></li>
+            <li><a href="#discord-web">Discord &amp; web tools</a></li>
+            <li><a href="#commands">Commands</a></li>
+            <li><a href="#faq">FAQ</a></li>
+          </ul>
+        </nav>
+        <div class="wiki-switch">
+          <h2>Wiki</h2>
+          <nav>
+            <ul>
+              <li><a href="/wiki/">Wiki home</a></li>
+              <li><a href="/wiki/constitution/">Constitution</a></li>
+              <li><a href="/wiki/player/">Player guide</a></li>
+              <li><a href="/wiki/territories/">Territory influence</a></li>
+              <li><a href="/wiki/token/">$ROOTMC disclaimer</a></li>
+              <li><a href="/wiki/weekly-awards/">Weekly activity awards</a></li>
+            </ul>
+          </nav>
+        </div>
+      </aside>
+
+      <div class="wiki-content">
+        <article id="overview">
+          <h2>Overview</h2>
+          <div class="wiki-callout wiki-callout-warn">
+            <p><strong>G is not $ROOTMC.</strong> In-game gold (<strong>G</strong>) is the server economy. <strong>$ROOTMC</strong> is an optional Solana memecoin on pump.fun — separate, speculative, not required to play. <a href="/wiki/token/">Full token disclaimer →</a></p>
+          </div>
+          <p>RootMC’s economy is built on <strong>Root-Essentials</strong> (Vault balances in MySQL), <strong>rootmc-shops</strong> (player chest shops), <strong>Towny</strong> (land and founding costs), and <strong>Root-Loans</strong> (optional personal credit). The <strong>RootMC</strong> plugin syncs balances, shops, treasury data, and playtime to the cloud for the <a href="/market/">stock market</a>, <a href="/leaderboard/">leaderboards</a>, and your <a href="/player/">public stats page</a>.</p>
+          <p>Design principles:</p>
+          <ul>
+            <li><strong>No money faucet</strong> — starting balance is <strong>0 G</strong>. New gold enters when players mint ore, sell items, or receive transfers from other players.</li>
+            <li><strong>Closed-loop treasury</strong> — taxes, fees, votes, and part of PvP death fees flow into the <strong>Server Reserve</strong> for grants, loans, and vote payouts.</li>
+            <li><strong>Onboarding from the reserve</strong> — playtime milestone rewards pay to your wallet but debit the <strong>Server Reserve</strong> (same pool as loans and votes).</li>
+            <li><strong>Fair shops</strong> — listing prices are capped at <strong>10% above</strong> the rolling market average when an average exists.</li>
+          </ul>
+          <div class="wiki-callout">
+            <strong><a href="/wiki/constitution/">RootMC Constitution</a></strong> is the authoritative source for all rules, reserve policy, taxes, and rates. Live totals and charts: <a href="/economy/">economy page</a>. Daily AI economy briefs post in Discord at midnight HST. This guide explains how to play the economy.
+          </div>
+        </article>
+
+        <article id="what-is-g">
+          <h2>What is G?</h2>
+          <p><strong>G</strong> is your spendable balance — shown in chat, shops, Towny, and on the web as gold. It is stored in the server economy database (not items in your inventory until you mint or buy).</p>
+          <h3>Physical gold → balance (minting)</h3>
+          <table class="wiki-table">
+            <thead><tr><th>Item</th><th>Value when minted</th></tr></thead>
+            <tbody>
+              <tr><td>Gold nugget</td><td><strong>¹⁄₉ G</strong> each (~0.11 G)</td></tr>
+              <tr><td>Gold ingot</td><td><strong>1 G</strong> each</td></tr>
+              <tr><td>Gold block</td><td><strong>9 G</strong> each</td></tr>
+            </tbody>
+          </table>
+          <p>Use <code>/mint hand</code> (held stack) or <code>/mint all</code> (all gold items in inventory). Minting <strong>consumes</strong> the items and credits your balance.</p>
+          <p><code>/sell hand</code>, <code>/sell all</code>, and <code>/sell blocks</code> sell non-gold items using live shop averages when available, otherwise the server worth table (e.g. diamond, iron, cobblestone defaults in config).</p>
+        </article>
+
+        <article id="earning">
+          <h2>Earning G</h2>
+          <ul>
+            <li><strong>Mine &amp; mint</strong> — gold ore → ingots → <code>/mint</code>. Primary income loop for new players.</li>
+            <li><strong>Sell items</strong> — <code>/sell</code> commands price against market averages or the worth table.</li>
+            <li><strong>Player shops</strong> — stock a rootmc-shops chest; buyers pay your balance when they purchase. See <a href="#shops">Player shops</a>.</li>
+            <li><strong>Services &amp; trade</strong> — <code>/pay</code>, player contracts (<code>/contract</code>), barter, jobs. Other players are the source of funds.</li>
+            <li><strong>Playtime milestones</strong> — small gold grants at logged playtime tiers; paid to your wallet from the Server Reserve (see <a href="#playtime-milestones">below</a>).</li>
+            <li><strong>Vote sites</strong> — <code>/vote</code> links; <strong>1–20 G</strong> per confirmed vote to your wallet from the Server Reserve (<a href="#votes">Vote rewards</a>).</li>
+            <li><strong>PvP</strong> — in player-vs-player kills, you may receive a share of the victim’s death fee (see <a href="#death">PvP death recycling</a>).</li>
+          </ul>
+          <p>Votes pay <strong>you</strong> directly from the Server Reserve. Taxes, PvP death fees, and loan repayments refill the reserve over time.</p>
+        </article>
+
+        <article id="spending">
+          <h2>Spending G</h2>
+          <ul>
+            <li><strong>Player shops</strong> — right-click a shop chest or <code>/buy &lt;item&gt; [qty]</code> (quote + confirm; cheapest in-stock listing, up to 2304).</li>
+            <li><strong>Service fees</strong> — <code>/survey</code>, <code>/shop stock</code>, <code>/warp create</code>, <code>/rank buy</code> (see <a href="#service-fees">Service fees</a>).</li>
+            <li><strong>Towny</strong> — founding towns/nations, claiming chunks, town bank deposits. See <a href="#towny">Towny costs</a>.</li>
+            <li><strong>Pay players</strong> — <code>/pay &lt;player&gt; &lt;amount&gt;</code> (you send the full amount; the recipient receives it minus the <a href="#taxes">0.1% transaction tax</a>).</li>
+            <li><strong>Loan repayment</strong> — while in debt, incoming income pays the loan first (<a href="#loans">Root-Loans</a>).</li>
+            <li><strong>Contracts</strong> — escrow held until work is approved (<code>/contract offer</code>).</li>
+          </ul>
+          <p>There is <strong>no NPC server shop</strong> — all item purchases come from other players’ listings.</p>
+        </article>
+
+        <article id="treasury">
+          <h2>Server Reserve treasury</h2>
+          <p class="rmc-muted" style="margin-top:0">Full reserve rules: <a href="/wiki/constitution/#server-reserve">Constitution — Server Reserve</a> · <a href="/wiki/constitution/#reserve-inflows">inflows</a> · <a href="/wiki/constitution/#reserve-outflows">outflows</a></p>
+          <p>RootMC maintains a hidden server treasury account (<strong>towny-server</strong>) that collects gold from economic activity. It is the <strong>Server Reserve</strong> — shown on <code>/baltop</code> (no args) and in full on <code>/reserve</code>. It does <strong>not</strong> appear on player, town, or nation leaderboards. Staff can audit the ledger; players see summary stats in-game with <code>/reserve</code> and on their <a href="/player/">public profile</a> after linking.</p>
+          <h3>Money in (treasury inflows)</h3>
+          <table class="wiki-table">
+            <thead><tr><th>Source</th><th>What happens</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Transaction tax</strong></td><td><strong>0.1%</strong> withheld from shop payouts, <code>/pay</code> receipts, and <code>/mint</code> wallet credit → Server Reserve</td></tr>
+              <tr><td><strong>PvP death fee</strong></td><td><strong>40%</strong> of the death fee on PvP kills → pool</td></tr>
+              <tr><td><strong>Towny sinks</strong></td><td>Founding towns (<strong>400 G</strong>), nations (<strong>2,000 G</strong>), claims, and other Towny fees routed to the Server Reserve (ledger: <code>TOWNY_SINK</code>)</td></tr>
+              <tr><td><strong>Inactivity tax</strong></td><td>Daily tax on idle player wallets and inactive town/nation banks — <a href="#inactivity-tax">see below</a></td></tr>
+              <tr><td><strong>Loan repayments</strong></td><td>Principal and interest from <a href="#loans">Root-Loans</a> repayments → reserve</td></tr>
+              <tr><td><strong>Service fees</strong></td><td><a href="#service-fees">Survey</a>, <a href="#shops">shop stocking</a>, <a href="#service-fees">rank purchases</a>, warp registration, and similar paid commands → reserve</td></tr>
+            </tbody>
+          </table>
+          <h3>Money out (treasury outflows)</h3>
+          <table class="wiki-table">
+            <thead><tr><th>Use</th><th>Who</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Staff grants</strong></td><td><code>/grant &lt;player&gt; &lt;amount&gt;</code> (permission <code>rootmc.grant</code>) for events, compensation, etc.</td></tr>
+              <tr><td><strong>Loan disbursements</strong></td><td><code>/loan take</code> borrows G from the reserve (not minted)</td></tr>
+              <tr><td><strong>Playtime milestones</strong></td><td>Root-Rewards tier payouts (wallet credit, reserve debit)</td></tr>
+              <tr><td><strong>Vote rewards</strong></td><td><strong>1–20 G</strong> per listing site → voter wallet (reserve debit)</td></tr>
+            </tbody>
+          </table>
+          <div class="wiki-callout">
+            The treasury is <strong>redistribution only</strong> — it does not create gold from nothing. Outflows debit <strong>towny-server</strong> from the reserve ledger. See <a href="/wiki/constitution/#note-supply">Gold-backed Notes</a> for backing and dynamic tax.
+          </div>
+        </article>
+
+        <article id="server-reserve">
+          <h2>Server Reserve &amp; <code>/reserve</code></h2>
+          <p>The in-game <strong>Server Reserve</strong> is the same closed-loop treasury as <strong>towny-server</strong>. Use these commands anytime:</p>
+          <table class="wiki-table">
+            <thead><tr><th>Command</th><th>What you see</th></tr></thead>
+            <tbody>
+              <tr><td><code>/baltop</code></td><td>Leaderboard types (<code>players</code>, <code>towns</code>, <code>nations</code>) and current <strong>Server Reserve</strong> balance</td></tr>
+              <tr><td><code>/baltop players</code></td><td>Top <strong>10</strong> player wallets (names only); line 11 = your rank and balance</td></tr>
+              <tr><td><code>/baltop towns</code></td><td>Top <strong>10</strong> town banks (town name only, no <code>town-</code> prefix); line 11 = your town’s rank and balance</td></tr>
+              <tr><td><code>/baltop nations</code></td><td>Top <strong>10</strong> nation banks (nation name only); line 11 = your nation’s rank and balance</td></tr>
+              <tr><td><code>/reserve</code></td><td>Reserve balance, this month’s inflows/outflows, post-reset ledger net, and your playtime / tax paid MTD</td></tr>
+            </tbody>
+          </table>
+          <p>Alias: <code>/balancetop</code> works the same as <code>/baltop</code>.</p>
+          <p><code>/reserve</code> shows server-wide ledger breakdown and your month-to-date playtime and transaction tax. Full charts: <a href="/economy/#server-reserve">economy page</a> (gold backing, wallets + physical gold, reserve ledger).</p>
+        </article>
+
+        <article id="taxes-fees-reference">
+          <h2>Taxes &amp; fees reference</h2>
+          <p>RootMC uses a <strong>closed-loop</strong> economy: most charges move gold into the <strong>Server Reserve</strong> for redistribution. <strong>Authoritative rate sheet:</strong> <a href="/wiki/constitution/#taxes-fees-reference">Constitution — Taxes &amp; fees</a>. Summary below for quick reference while playing.</p>
+
+          <h3>At a glance — every rate</h3>
+          <table class="wiki-table">
+            <thead>
+              <tr><th>Category</th><th>Rate / amount</th><th>Paid by</th><th>Destination</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><strong>Transaction tax</strong></td><td><strong>0.1%</strong> (<code>0.001</code>)</td><td>Withheld from receiver on <code>/pay</code>, shop payouts, and <code>/mint</code> credit — payer/buyer pays the quoted amount only</td><td>Server Reserve</td></tr>
+              <tr><td><strong>PvP death fee</strong></td><td><strong>10%</strong> of victim balance</td><td>Victim (PvP only)</td><td><strong>40%</strong> reserve · <strong>60%</strong> killer</td></tr>
+              <tr><td><strong>Towny death fee</strong></td><td><strong>0</strong> (disabled)</td><td>—</td><td>RootMC uses custom PvP fee above instead</td></tr>
+              <tr><td><strong>Inactivity tax</strong></td><td><strong>0.01% → 1%</strong> daily by idle week (after <strong>7-day</strong> grace)</td><td>Idle wallets; inactive town/nation banks</td><td>Server Reserve</td></tr>
+              <tr><td><strong>Survey</strong></td><td><strong>25 G</strong> flat</td><td><code>/survey confirm</code></td><td>Server Reserve</td></tr>
+              <tr><td><strong>Shop bulk stock</strong></td><td><strong>5 G</strong> flat</td><td><code>/shop stock confirm</code> (only if items stocked)</td><td>Server Reserve</td></tr>
+              <tr><td><strong>Public warp</strong></td><td><strong>500 G</strong> flat</td><td><code>/warp create</code></td><td>Server Reserve</td></tr>
+              <tr><td><strong>Rank purchase</strong></td><td><strong>500 – 150,000 G</strong> per tier</td><td><code>/rank buy</code></td><td>Server Reserve</td></tr>
+              <tr><td><strong>New town</strong></td><td><strong>400 G</strong></td><td><code>/town new</code></td><td>Server Reserve (<code>TOWNY_SINK</code>)</td></tr>
+              <tr><td><strong>New nation</strong></td><td><strong>2,000 G</strong> split across agreeing town banks</td><td><code>/nationfounding</code> + <code>/nation new</code></td><td>Server Reserve</td></tr>
+              <tr><td><strong>Chunk claim</strong></td><td><strong>12 G</strong> base, ×<strong>1.12</strong> per existing plot (no cap)</td><td>Town bank / mayor</td><td>Server Reserve</td></tr>
+              <tr><td><strong>Bonus plot purchase</strong></td><td><strong>500 G</strong> base, ×<strong>1.12</strong> per bonus bought (no cap)</td><td>Town bank / mayor</td><td>Server Reserve</td></tr>
+              <tr><td><strong>Towny daily upkeep</strong></td><td><strong>0 G</strong> (disabled)</td><td>—</td><td>No server plot rent</td></tr>
+              <tr><td><strong>Town peaceful/neutral</strong></td><td><strong>25 G</strong> / day</td><td>Town bank</td><td>Towny (not reserve)</td></tr>
+              <tr><td><strong>Nation peaceful/neutral</strong></td><td><strong>100 G</strong> / day</td><td>Nation bank</td><td>Towny (not reserve)</td></tr>
+              <tr><td><strong>Spawn travel (nation)</strong></td><td><strong>3 G</strong></td><td>Traveler</td><td>Towny</td></tr>
+              <tr><td><strong>Spawn travel (ally)</strong></td><td><strong>8 G</strong></td><td>Traveler</td><td>Towny</td></tr>
+              <tr><td><strong>Spawn travel (public)</strong></td><td><strong>12 G</strong> max</td><td>Traveler</td><td>Towny / mayor override</td></tr>
+              <tr><td><strong>Mayor resident tax</strong></td><td><strong>0% – 8%</strong> of balance (max <strong>500 G</strong>/day)</td><td>Residents</td><td><strong>Town bank</strong> (not reserve)</td></tr>
+              <tr><td><strong>Nation tax on towns</strong></td><td><strong>0% – 10%</strong> (max <strong>800 G</strong>/day)</td><td>Town banks</td><td><strong>Nation bank</strong></td></tr>
+              <tr><td><strong>Loan interest</strong></td><td><strong>10%</strong> on principal</td><td>Borrower at take</td><td>Owed balance (repay → reserve)</td></tr>
+              <tr><td><strong>Loan borrow limit</strong></td><td><strong>100 G</strong> default · matches <code>/rank buy</code> tier price (up to <strong>150,000 G</strong>)</td><td>Borrower</td><td>Max principal per <code>/loan take</code></td></tr>
+              <tr><td><strong>Loan income sweep</strong></td><td><strong>100%</strong> of incoming gold while in debt</td><td>Borrower</td><td>Loan balance first</td></tr>
+              <tr><td><strong>Paper ROOTMC trade</strong></td><td><strong>0.5%</strong> on buy/sell</td><td>Trader</td><td>Token market sink</td></tr>
+              <tr><td><strong>Vote reward</strong></td><td><strong>1 – 20 G</strong> random per site</td><td>—</td><td>Voter wallet (reserve debit)</td></tr>
+            </tbody>
+          </table>
+
+          <h3>Percentage taxes &amp; withholdings</h3>
+          <h4>Transaction tax — 0.1%</h4>
+          <p>Configured in <code>root-essentials.yml</code> as <code>transaction-tax-rate: 0.001</code>. The customer or payer always pays the <strong>quoted or entered amount</strong> — never an extra tax line on top. <strong>0.1%</strong> is withheld automatically from what the <strong>receiver</strong> gets and credited to the Server Reserve.</p>
+          <table class="wiki-table">
+            <thead><tr><th>Activity</th><th>Who pays the quoted amount</th><th>Who has tax withheld</th><th>Example (100 G)</th></tr></thead>
+            <tbody>
+              <tr><td><code>/pay &lt;player&gt; &lt;amount&gt;</code></td><td>Sender (100 G leaves wallet)</td><td>Recipient</td><td>Recipient gets <strong>99.9 G</strong>; pool gets <strong>0.1 G</strong></td></tr>
+              <tr><td>Shop buy (<code>/buy</code>, sign click)</td><td>Buyer (listed price)</td><td>Shop seller</td><td>Buyer pays <strong>100 G</strong>; seller receives <strong>99.9 G</strong></td></tr>
+              <tr><td>Shop sell to buy-shop</td><td>Buy-shop owner (listed price)</td><td>Item seller</td><td>Seller receives <strong>99.9 G</strong> net from a <strong>100 G</strong> quote</td></tr>
+              <tr><td><code>/mint</code> (physical gold → G)</td><td>— (deposit items)</td><td>Minter (wallet credit)</td><td><strong>100 G</strong> mint value → <strong>99.9 G</strong> credited</td></tr>
+            </tbody>
+          </table>
+          <p>You are never charged tax twice on the same transfer. If you have an active loan, income sweeps apply to your <em>net</em> receipt after tax where configured. Details: <a href="#taxes">Transaction tax</a>, <a href="#loans">Personal loans</a>.</p>
+
+          <h4>PvP death fee — 10% of balance</h4>
+          <p>From <code>rootmc.yml</code> treasury.death: <code>victim-balance-percent: 0.10</code>, <code>treasury-share-of-fee: 0.4</code>, <code>pvp-only: true</code>. Towny <code>price_death</code> is <strong>0</strong> so you are never double-charged.</p>
+          <table class="wiki-table">
+            <thead><tr><th>Split</th><th>Share</th><th>On 1,000 G victim</th></tr></thead>
+            <tbody>
+              <tr><td>Total fee</td><td><strong>10%</strong></td><td><strong>100 G</strong></td></tr>
+              <tr><td>→ Server Reserve</td><td><strong>40%</strong> of fee</td><td><strong>40 G</strong></td></tr>
+              <tr><td>→ Killer</td><td><strong>60%</strong> of fee</td><td><strong>60 G</strong></td></tr>
+            </tbody>
+          </table>
+          <p>Mob, fall, lava, and environmental deaths: <strong>no</strong> balance fee. Full rules: <a href="#death">PvP death recycling</a>.</p>
+
+          <h4>Inactivity tax — daily % after grace</h4>
+          <p><strong>Root-Upkeep</strong> runs at <strong>midnight HST</strong>. Grace: <strong>7 days</strong> without login. Tax = <strong>% of current balance</strong> (min balance <strong>0.01 G</strong>, min tax <strong>0.01 G</strong>).</p>
+          <table class="wiki-table">
+            <thead><tr><th>Days idle (after grace)</th><th>Daily rate</th><th>On 10,000 G wallet</th></tr></thead>
+            <tbody>
+              <tr><td>0–7 (grace)</td><td><strong>0%</strong></td><td><strong>0 G</strong></td></tr>
+              <tr><td>8–14 (week 1)</td><td><strong>0.01%</strong></td><td><strong>1 G</strong>/day</td></tr>
+              <tr><td>15–21 (week 2)</td><td><strong>0.05%</strong></td><td><strong>5 G</strong>/day</td></tr>
+              <tr><td>22–28 (week 3)</td><td><strong>0.1%</strong></td><td><strong>10 G</strong>/day</td></tr>
+              <tr><td>29+ (week 4+)</td><td><strong>1.0%</strong></td><td><strong>100 G</strong>/day</td></tr>
+            </tbody>
+          </table>
+          <p>Same rate tiers apply to <strong>town banks</strong> and <strong>nation banks</strong> when no member has logged in within the grace window. One active member resets the group clock. Full rules: <a href="#inactivity-tax">Inactivity tax</a>.</p>
+
+          <h4>Loan interest &amp; income sweep</h4>
+          <table class="wiki-table">
+            <thead><tr><th>Charge</th><th>Rate</th><th>Notes</th></tr></thead>
+            <tbody>
+              <tr><td>Interest on borrow</td><td><strong>10%</strong></td><td>Borrow <strong>100 G</strong> → owe <strong>110 G</strong></td></tr>
+              <tr><td>Income sweep while in debt</td><td><strong>100%</strong></td><td>Shop sales, mint, <code>/pay</code> received, etc. pay loan first</td></tr>
+              <tr><td>Gold ore while in debt</td><td>Swept to loan</td><td>Smelting/mining ore can auto-apply to balance owed</td></tr>
+            </tbody>
+          </table>
+          <p>Limits: <strong>100 G</strong> with no purchased player rank; otherwise equals your highest <code>/rank buy</code> tier price (staff/donor groups ignored). <strong>3</strong> takes per 24h. Details: <a href="#loans">Personal loans</a>.</p>
+
+          <h4>Paper ROOTMC trading fee — 0.5%</h4>
+          <p><code>/token buy</code> and <code>/token sell</code> charge <strong>0.5%</strong> on the trade (cosmetic paper units tracking off-chain price — not wallet crypto). See <a href="/wiki/token/">$ROOTMC disclaimer</a>.</p>
+
+          <h3>Flat service fees (Server Reserve)</h3>
+          <p>From <code>root-essentials.yml</code> <code>fees.*</code> and <code>root-ranks.yml</code>. Most commands show <strong>[Confirm]</strong> before charging.</p>
+          <table class="wiki-table">
+            <thead><tr><th>Command</th><th>Fee</th><th>Notes</th></tr></thead>
+            <tbody>
+              <tr><td><code>/survey confirm</code></td><td><strong>25 G</strong></td><td>Chunk biome / slime / structure report</td></tr>
+              <tr><td><code>/shop stock confirm</code></td><td><strong>5 G</strong></td><td>Only when items actually move into sell chests</td></tr>
+              <tr><td><code>/warp create &lt;name&gt;</code></td><td><strong>500 G</strong></td><td>Register a public warp at your location</td></tr>
+            </tbody>
+          </table>
+
+          <h4>Rank purchases (<code>/rank buy</code>)</h4>
+          <p>Buy LuckPerms player ranks <strong>one tier at a time</strong>, in order. Gold sinks to Server Reserve on success.</p>
+          <table class="wiki-table">
+            <thead><tr><th>Order</th><th>Rank</th><th>Price</th></tr></thead>
+            <tbody>
+              <tr><td>1</td><td>Wanderer</td><td><strong>500 G</strong></td></tr>
+              <tr><td>2</td><td>Settler</td><td><strong>1,500 G</strong></td></tr>
+              <tr><td>3</td><td>Pioneer</td><td><strong>4,000 G</strong></td></tr>
+              <tr><td>4</td><td>Citizen</td><td><strong>10,000 G</strong></td></tr>
+              <tr><td>5</td><td>Veteran</td><td><strong>25,000 G</strong></td></tr>
+              <tr><td>6</td><td>Elite</td><td><strong>60,000 G</strong></td></tr>
+              <tr><td>7</td><td>Champion</td><td><strong>150,000 G</strong></td></tr>
+            </tbody>
+          </table>
+          <p>List prices: <code>/ranks</code> or <code>/rank</code>. More: <a href="#service-fees">Service fees</a>, <a href="/wiki/player/#ranks">Player guide — ranks</a>.</p>
+
+          <h3>Towny &amp; land costs</h3>
+          <p>One-time founding and claim costs route to the <strong>Server Reserve</strong>. RootMC has <strong>no daily Towny plot upkeep</strong> (<code>price_town_upkeep: 0</code>, <code>price_nation_upkeep: 0</code>). New towns start with <strong>0</strong> bonus claims until purchased.</p>
+
+          <h4>Founding &amp; claims</h4>
+          <table class="wiki-table">
+            <thead><tr><th>Action</th><th>Cost formula</th><th>Examples</th></tr></thead>
+            <tbody>
+              <tr><td>Found town</td><td><strong>400 G</strong> flat</td><td>—</td></tr>
+              <tr><td>Found nation</td><td><strong>2,000 G</strong> flat</td><td>—</td></tr>
+              <tr><td>Claim chunk</td><td><strong>12 × 1.12<sup>n</sup> G</strong> where <em>n</em> = plots already owned</td><td>1st <strong>12 G</strong> · 2nd <strong>13.44 G</strong> · 5th <strong>18.5 G</strong> · 10th <strong>32.5 G</strong></td></tr>
+              <tr><td>Buy bonus plot</td><td><strong>500 × 1.12<sup>b</sup> G</strong> where <em>b</em> = bonus blocks already bought</td><td>1st <strong>500 G</strong> · 2nd <strong>560 G</strong> · 5th <strong>788 G</strong></td></tr>
+              <tr><td>Claim refund on unclaim</td><td><strong>100% of marginal claim cost</strong></td><td>Same formula as the last plot claimed — paid from Server Reserve to town bank</td></tr>
+            </tbody>
+          </table>
+          <p>Claim and bonus costs have <strong>no price cap</strong> — each additional plot costs 12% more than the previous tier. Use <code>/town buy bonus</code> (mayor) for extra claims beyond level limits.</p>
+
+          <h4>Other Towny charges (not Server Reserve)</h4>
+          <table class="wiki-table">
+            <thead><tr><th>Feature</th><th>Cost</th></tr></thead>
+            <tbody>
+              <tr><td>Town peaceful / neutral status</td><td><strong>25 G</strong> per Towny day from town bank</td></tr>
+              <tr><td>Nation peaceful / neutral status</td><td><strong>100 G</strong> per Towny day from nation bank</td></tr>
+              <tr><td>Spawn travel to nation town</td><td><strong>3 G</strong></td></tr>
+              <tr><td>Spawn travel to allied town</td><td><strong>8 G</strong></td></tr>
+              <tr><td>Spawn travel to public town</td><td>Up to <strong>12 G</strong> (mayor may set lower public spawn cost)</td></tr>
+            </tbody>
+          </table>
+
+          <h3>Mayor-set taxes (town &amp; nation banks)</h3>
+          <p>Separate from server taxes. Mayors and kings set rates inside Towny — gold moves between <strong>player wallets and town/nation banks</strong>, not the Server Reserve.</p>
+          <table class="wiki-table">
+            <thead><tr><th>Tax type</th><th>Server maximum</th><th>Default on new towns/nations</th></tr></thead>
+            <tbody>
+              <tr><td>Resident tax (% of balance)</td><td><strong>8%</strong> per day, max <strong>500 G</strong>/resident/day</td><td><strong>0%</strong></td></tr>
+              <tr><td>Plot tax, shop tax, embassy tax</td><td>Towny per-plot caps apply</td><td><strong>0</strong></td></tr>
+              <tr><td>Nation tax on member towns</td><td><strong>10%</strong>, max <strong>800 G</strong>/town/day</td><td><strong>0</strong> (flat mode)</td></tr>
+            </tbody>
+          </table>
+          <p>Town tax rates sync to the cloud for comparison when choosing where to live. Compare on the web or ask in Discord.</p>
+
+          <h3>Shop pricing cap (not a tax)</h3>
+          <p>Player shop listings cannot exceed <strong>110%</strong> of the rolling market average (<code>/shop avg &lt;item&gt;</code>). This is a price ceiling, not a fee — excess listings are blocked at create/edit time.</p>
+
+          <h3>What is not taxed by the server</h3>
+          <ul>
+            <li><strong>Receiving</strong> <code>/pay</code> or shop payouts (tax is on sender/seller side only)</li>
+            <li><strong>Daily Towny plot rent</strong> — disabled (<strong>0 G</strong> server upkeep)</li>
+            <li><strong>Towny environmental death</strong> — no balance fee (PvP uses RootMC fee instead)</li>
+            <li><strong>Playtime milestones</strong> and <strong>vote rewards</strong> — these pay out <em>from</em> the reserve, not into it</li>
+            <li><strong>Vote rewards</strong> — monthly payout from reserve, not a charge</li>
+            <li><strong>Staff grants</strong> — treasury outflow, not player tax</li>
+            <li><strong>Creating a shop</strong> — free; only trades and bulk stock incur fees</li>
+          </ul>
+
+          <div class="wiki-callout">
+            <strong>Quick check in-game:</strong> <code>/reserve</code> shows your month-to-date transaction tax. <code>/loan info</code> shows sweep status. Town costs appear in Towny confirm prompts before you pay.
+          </div>
+        </article>
+
+        <article id="taxes">
+          <h2>Transaction tax (0.1%)</h2>
+          <p>A <strong>0.1%</strong> tax (<code>0.001</code> rate) applies to:</p>
+          <ul>
+            <li><code>/pay &lt;player&gt; &lt;amount&gt;</code></li>
+            <li>Player shop purchases (<code>/buy</code> and chest clicks)</li>
+            <li>Player shop sales to buy-shops (<code>/sell</code>)</li>
+            <li><code>/mint</code> wallet credit</li>
+          </ul>
+          <p>The payer or buyer always pays the <strong>quoted amount only</strong>. Tax is withheld from the <strong>receiver’s</strong> side — shop seller, <code>/pay</code> recipient, or minter — and credited to the Server Reserve. Loan income sweeps still apply to the <em>net</em> amount you receive where configured.</p>
+          <p>Example: you buy from a shop for <strong>100 G</strong> — you pay <strong>100 G</strong>; the seller receives <strong>99.9 G</strong> and the pool gets <strong>0.1 G</strong>.</p>
+        </article>
+
+        <article id="death">
+          <h2>PvP death recycling</h2>
+          <p>RootMC uses a <strong>custom death fee</strong> instead of Towny’s default death cost (<code>price_death</code> is set to <strong>0</strong> to avoid double charging).</p>
+          <table class="wiki-table">
+            <thead><tr><th>Rule</th><th>Value</th></tr></thead>
+            <tbody>
+              <tr><td>Applies when</td><td><strong>PvP only</strong> (another player gets kill credit)</td></tr>
+              <tr><td>Fee size</td><td><strong>10%</strong> of victim’s current balance</td></tr>
+              <tr><td>To treasury</td><td><strong>40%</strong> of the fee → Server Reserve</td></tr>
+              <tr><td>To killer</td><td><strong>60%</strong> of the fee → killer’s balance</td></tr>
+              <tr><td>Environmental / mob deaths</td><td>No balance fee</td></tr>
+            </tbody>
+          </table>
+          <p>Example: victim has <strong>1,000 G</strong> → fee <strong>100 G</strong> → treasury <strong>40 G</strong>, killer <strong>60 G</strong>.</p>
+        </article>
+
+        <article id="votes">
+          <h2>Vote rewards</h2>
+          <p>Run <code>/vote</code> in-game for links to listing sites. When a site confirms your vote (via Votifier), the server rolls <strong>1–20 G</strong> and pays it to <strong>your wallet</strong> from the <strong>Server Reserve</strong> (not minted).</p>
+          <p>Chat message: <em>“…paid from the Server Reserve.”</em> Each listing site enforces its own cooldown; RootMC does not add an extra plugin cooldown.</p>
+          <p>Vote sites include Minecraft-MP, MinecraftServers.org, Planet Minecraft, MineRank, TopMinecraftServers, and others (see <code>/vote</code> output).</p>
+        </article>
+
+        <article id="playtime-milestones">
+          <h2>Playtime milestones (direct gold)</h2>
+          <p><strong>Root-Rewards</strong> grants small amounts of gold to your wallet at playtime tiers. Each payout is debited from the <strong>Server Reserve</strong> (logged like staff grants) — not minted.</p>
+          <table class="wiki-table">
+            <thead><tr><th>Tier</th><th>Playtime</th><th>Reward</th></tr></thead>
+            <tbody>
+              <tr><td>1</td><td>15 minutes</td><td><strong>1 G</strong></td></tr>
+              <tr><td>2</td><td>1 hour</td><td><strong>2 G</strong></td></tr>
+              <tr><td>3+</td><td>Each tier doubles time &amp; gold</td><td>4 G @ 2h, 8 G @ 4h, … up to tier 18</td></tr>
+            </tbody>
+          </table>
+          <p>Check progress with <code>/rewards</code> (aliases: <code>/playtimerewards</code>, <code>/playrewards</code>).</p>
+        </article>
+
+        <article id="service-fees">
+          <h2>Service fees (paid commands)</h2>
+          <p>Some convenience commands charge a flat fee from your wallet. Fees credit the <strong>Server Reserve</strong> (same treasury as the 0.1% transaction tax). Most use a <strong>[Confirm]</strong> / <strong>[Cancel]</strong> step before gold is taken. <strong>Full rate sheet:</strong> <a href="#taxes-fees-reference">Taxes &amp; fees reference</a>.</p>
+          <table class="wiki-table">
+            <thead><tr><th>Command</th><th>Fee</th><th>What you get</th></tr></thead>
+            <tbody>
+              <tr><td><code>/survey confirm</code></td><td><strong>25 G</strong></td><td>One-shot chunk report (slime chunk, biomes, structures) — <a href="/wiki/player/#survey">player guide</a></td></tr>
+              <tr><td><code>/shop stock confirm</code></td><td><strong>5 G</strong></td><td>Move matching items from inventory into your sell-shop chests — fee applies only when items are stocked — <a href="/wiki/player/#shop-stock">player guide</a></td></tr>
+              <tr><td><code>/warp create &lt;name&gt;</code></td><td><strong>500 G</strong></td><td>Register a public warp at your location (unique name)</td></tr>
+              <tr><td><code>/rank buy</code></td><td><strong>500 – 150,000 G</strong></td><td>Buy the next LuckPerms player rank in order — see <a href="#taxes-fees-reference">rank price table</a></td></tr>
+            </tbody>
+          </table>
+          <p>Shop buys and sells use quote + confirm at the <strong>listed trade price</strong> — no extra tax on top for the customer. The <strong>0.1% transaction tax</strong> is deducted from the receiver’s payout automatically (separate from flat service fees like <code>/shop stock</code>).</p>
+        </article>
+
+        <article id="shops">
+          <h2>Player shops &amp; market</h2>
+          <p><strong>rootmc-shops</strong> is the primary shop system. Listings sync to the <a href="/market/">stock market</a> every ~<strong>5 minutes</strong> when at least one player is online.</p>
+          <h3>Quick reference</h3>
+          <ul>
+            <li><strong>Create</strong> — chest/barrel + hold item + <code>/shop create</code> or <code>/shop create &lt;price&gt;</code> (optional price sets total G in one step; otherwise type price in chat).</li>
+            <li><strong>Buy</strong> — right-click a sell-shop sign (<strong>that shop only</strong>) or <code>/buy &lt;item&gt; [amount]</code> (equal split across same-price listings; confirm before charge).</li>
+            <li><strong>Sell to buy shops</strong> — <code>/sell &lt;item&gt; [amount]</code> (equal split at the best price; sign click = that buy shop only).</li>
+            <li><strong>Bulk stock</strong> — <code>/shop stock</code> → confirm <strong>5 G</strong> merchant fee (only charged when items are actually stocked).</li>
+            <li><strong>Price cap</strong> — max <strong>110%</strong> of rolling average (<code>/shop avg &lt;item&gt;</code>).</li>
+          </ul>
+          <p>Full step-by-step with sign colors, buy shops, and legacy QuickShop notes: <a href="/wiki/player/#shops-ingame">Opening a player shop</a> in the player guide.</p>
+          <h3>Fair split at the same price</h3>
+          <p><code>/buy</code> and <code>/sell</code> use the <strong>lowest</strong> (or <strong>highest</strong> for sell-to-buy-shop) in-stock price tier. Every shop at that exact price shares the order <strong>equally</strong> — 64 items across 4 shops is 16 each. One item among ties goes to a <strong>random</strong> shop. <strong>Right-clicking a shop sign</strong> always trades with <strong>that shop only</strong>. Five or more shops in one quote show a summary line (<em>“Buying 64 IRON_INGOT from 5 players”</em>) instead of listing every owner.</p>
+          <p>Shop trades: the customer pays the listed price; <strong>0.1%</strong> is withheld from the seller’s or seller-side payout to the treasury.</p>
+        </article>
+
+        <article id="towny">
+          <h2>Towny costs &amp; town taxes</h2>
+          <p>RootMC has <strong>no daily Towny plot rent</strong> — you pay one-time founding and claim costs, not recurring plot upkeep from Towny itself. <strong>Root-Upkeep</strong> adds a separate <a href="#inactivity-tax">inactivity tax</a> on idle wallets and inactive town/nation banks. <strong>All land rates:</strong> <a href="#taxes-fees-reference">Taxes &amp; fees reference</a>.</p>
+          <table class="wiki-table">
+            <thead><tr><th>Cost</th><th>Amount</th></tr></thead>
+            <tbody>
+              <tr><td>New town (<code>/town new</code>)</td><td><strong>400 G</strong> → Server Reserve</td></tr>
+              <tr><td>New nation</td><td><strong>2,000 G</strong> → Server Reserve</td></tr>
+              <tr><td>Per-chunk claim</td><td><strong>12 G</strong> base, ×<strong>1.12</strong> per plot already owned (no cap)</td></tr>
+              <tr><td>Bonus plot purchase</td><td><strong>500 G</strong> base, ×<strong>1.12</strong> per bonus bought (no cap)</td></tr>
+              <tr><td>Daily Towny plot/town tax (server)</td><td><strong>None</strong> (<strong>0 G</strong> upkeep)</td></tr>
+              <tr><td>Town peaceful status</td><td><strong>25 G</strong>/Towny day (town bank)</td></tr>
+              <tr><td>Nation peaceful status</td><td><strong>100 G</strong>/Towny day (nation bank)</td></tr>
+            </tbody>
+          </table>
+          <h3>Mayor-set resident tax</h3>
+          <p>Mayors can set a <strong>resident tax %</strong> inside Towny (money moves to the <strong>town bank</strong>, not player wallets or the Server Reserve). Server caps: <strong>8%</strong> of balance per day, max <strong>500 G</strong>/resident/day. Nation tax on towns: up to <strong>10%</strong>, max <strong>800 G</strong>/town/day. Defaults are <strong>0%</strong>. Town tax rates are synced to the cloud for comparison — useful when choosing where to live.</p>
+          <p>More Towny commands, territory influence, and founding rules: <a href="/wiki/player/#towny">Towns &amp; land</a> and <a href="/wiki/territories/">Territory influence</a>.</p>
+        </article>
+
+        <article id="inactivity-tax">
+          <h2>Inactivity tax (Root-Upkeep)</h2>
+          <p><strong>Root-Upkeep</strong> runs once per day at <strong>midnight HST</strong>. It debits a small percentage from idle balances into the <strong>Server Reserve</strong> — the same closed-loop treasury as transaction tax and Towny sinks. Each charge is broadcast server-wide in chat.</p>
+          <h3>Who gets taxed</h3>
+          <table class="wiki-table">
+            <thead><tr><th>Target</th><th>When tax applies</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Player wallet</strong></td><td>You have not logged in for <strong>≥ 7 days</strong></td></tr>
+              <tr><td><strong>Town bank</strong></td><td><strong>No</strong> town member has logged in within <strong>7 days</strong></td></tr>
+              <tr><td><strong>Nation bank</strong></td><td><strong>No</strong> nation member (any town) has logged in within <strong>7 days</strong></td></tr>
+            </tbody>
+          </table>
+          <p>If <strong>any</strong> member of a town or nation has been active within the grace window, that group’s bank is skipped — one active resident keeps the whole town or nation alive.</p>
+          <h3>Tax rate by idle week</h3>
+          <p>After the 7-day grace period, the daily rate scales with how long the wallet or bank has been idle:</p>
+          <table class="wiki-table">
+            <thead><tr><th>Idle week</th><th>Daily rate (% of current balance)</th></tr></thead>
+            <tbody>
+              <tr><td>Week 1 (days 8–14)</td><td><strong>0.01%</strong></td></tr>
+              <tr><td>Week 2 (days 15–21)</td><td><strong>0.05%</strong></td></tr>
+              <tr><td>Week 3 (days 22–28)</td><td><strong>0.1%</strong></td></tr>
+              <tr><td>Week 4+ (29+ days)</td><td><strong>1.0%</strong></td></tr>
+            </tbody>
+          </table>
+          <p>Minimum balance and minimum tax are <strong>0.01 G</strong>. Logging back in resets your personal idle clock. For towns and nations, any member login resets the group clock.</p>
+          <div class="wiki-callout">
+            Inactivity tax is <strong>not</strong> minting — gold moves from idle wallets and banks into the Server Reserve for redistribution (loans, votes, grants). Stay active or check in occasionally to avoid slow balance erosion on abandoned accounts.
+          </div>
+        </article>
+
+        <article id="loans">
+          <h2>Personal loans</h2>
+          <p><strong>Root-Loans</strong> offers optional credit after a community vote — borrow <strong>G</strong> for startup costs (e.g. founding a town) when you are short on gold.</p>
+          <ul>
+            <li>Default borrow limit <strong>100 G</strong>; with purchased ranks, cap equals that tier’s <code>/rank buy</code> price (up to <strong>150,000 G</strong> at Champion). Staff use the same rule — only player-track ranks count.</li>
+            <li><strong>10% interest</strong> per borrow; one active loan at a time</li>
+            <li>While in debt, <strong>100% of incoming gold</strong> pays the loan first (including mint/sell/shop income)</li>
+            <li>Disbursements draw from the <strong>Server Reserve</strong> — if the pool is empty, <code>/loan take</code> fails until inflows return</li>
+          </ul>
+          <p>Full rules, commands, and gold-ore behavior while in debt: <a href="/wiki/player/#loans">Personal loans</a> in the player guide.</p>
+        </article>
+
+        <article id="net-worth">
+          <h2>Net worth &amp; tracking</h2>
+          <p><strong>Net worth</strong> ≈ Vault balance + valued inventory + redeemable gold in player chests + shop stock + <strong>physical gold in storage</strong> at the mint peg (see <a href="/wiki/constitution/#net-worth">Constitution — Net worth</a>). Sync exports <strong>all player wallets</strong> from MySQL — town and nation bank accounts are not counted as player balance on web leaderboards.</p>
+          <p>Shop stock counts <strong>quantity in your sell chests</strong>, valued at the same <strong>blended buy-side reference</strong> used on <a href="/market/">stock market charts</a> — median in-stock sell average blended with recent history — <em>not</em> your individual listing prices.</p>
+          <ul>
+            <li><a href="/economy/">Economy overview</a> — note supply, backing, reserve vs wallets + physical gold charts</li>
+            <li><a href="/leaderboard/">Leaderboard</a> — richest player balances and net worth ranks (web)</li>
+            <li><a href="/player/">Player search</a> — per-player balance breakdown, McMMO, playtime</li>
+            <li><code>/baltop players</code> — in-game top player wallets (town/nation banks: <code>/baltop towns</code> · <code>/baltop nations</code>)</li>
+            <li><code>/reserve</code> — Server Reserve balance and full treasury stats</li>
+          </ul>
+          <p>Link with <code>/rootmc link</code> so the web and Discord tools know your UUID.</p>
+        </article>
+
+        <article id="discord-web">
+          <h2>Discord &amp; web tools</h2>
+          <table class="wiki-table">
+            <thead><tr><th>Tool</th><th>Economy features</th></tr></thead>
+            <tbody>
+              <tr><td><a href="/economy/">Economy overview</a></td><td>Note supply, backing %, mint &amp; gold-found leaderboards, reserve chart</td></tr>
+              <tr><td><a href="/economy/#server-reserve">Economy — Server Reserve</a></td><td>Ledger charts, month picker, glossary</td></tr>
+              <tr><td><a href="/market/">Stock market</a></td><td>Live listings, filters, price history charts</td></tr>
+              <tr><td><a href="/leaderboard/">Leaderboards</a></td><td>Net worth, balances, playtime</td></tr>
+              <tr><td><a href="/player/">Player profiles</a></td><td>Net worth, playtime, McMMO</td></tr>
+              <tr><td>RootMC Discord</td><td><code>/balance</code>, <code>/pay</code>, <code>/value</code> / <code>/worth</code> with charts (linked accounts)</td></tr>
+              <tr><td>RootMC Android app</td><td>Market browser, vault claims after <code>/rootmc vault</code></td></tr>
+            </tbody>
+          </table>
+          <p>Economy data typically refreshes every <strong>~5 minutes</strong> or when staff run <code>/rootmc sync</code>.</p>
+        </article>
+
+        <article id="commands">
+          <h2>Commands</h2>
+          <h3>Balances &amp; transfers</h3>
+          <pre class="wiki-pre">/balance · /bal              — your G balance
+/pay reserve &lt;amount&gt;       — voluntary donation; burns Notes from circulation
+/pay &lt;player&gt; &lt;amount&gt;       — send G (0.1% tax; dynamic tax when over-issued)
+/paytoggle                   — opt out of receiving payments
+/baltop                      — leaderboard help + Server Reserve balance
+/baltop players|towns|nations — top 10; line 11 = your rank &amp; balance
+/reserve                     — treasury stats (balance, inflows/outflows)
+/mint hand · /mint all         — gold items → G
+/sell hand · /sell all · /sell blocks — sell priced items
+/worth [item]                — price lookup</pre>
+          <h3>Shops</h3>
+          <pre class="wiki-pre">/buy &lt;item&gt; [qty]            — quote cheapest shop; confirm to pay
+/sell &lt;item&gt; [qty]           — quote best buy shop; confirm to sell
+/shop create [price]         — start a shop (look at chest; optional price sets total G)
+/shop stock                  — preview bulk stock; confirm (5 G merchant fee)
+/shop avg &lt;item&gt;             — rolling average + cap hint
+/survey                      — chunk report quote; confirm (25 G)</pre>
+          <p class="rmc-muted" style="margin-top:0.35rem"><code>/shop</code> aliases: <code>/rootshops</code>, <code>/rshops</code> · also <code>edittype</code>, <code>editprice</code>, <code>remove</code>, <code>cancel</code>, <code>stock confirm|cancel</code></p>
+          <h3>Rewards &amp; staff</h3>
+          <pre class="wiki-pre">/vote                         — vote site links (1–20 G to your wallet from reserve)
+/rewards                      — playtime milestone progress
+/rank list · /rank buy        — view or buy next player rank (gold → reserve)
+/grant &lt;player&gt; &lt;amt&gt; [why]  — staff treasury payout (rootmc.grant)</pre>
+          <p>Full command tables (Towny, contracts, RootMC link, loans): <a href="/wiki/player/#commands">Player guide — all commands</a>.</p>
+        </article>
+
+        <article id="faq">
+          <h2>FAQ</h2>
+          <h3>Does the server give free starter money?</h3>
+          <p>No lump-sum grant. You start at <strong>0 G</strong> and earn via minting, selling, milestones, votes, and trade.</p>
+          <h3>Why didn’t I get gold from voting?</h3>
+          <p>Vote gold lands in <strong>your wallet</strong> when the listing confirms via Votifier. It is debited from the Server Reserve, not minted. If the reserve is low, payout may fail until inflows catch up.</p>
+          <h3>Can the Server Reserve go negative?</h3>
+          <p>Yes. Grants, loans, milestones, and vote rewards always debit the reserve ledger even when inflows lag. A negative balance on <code>/reserve</code> means the pool owes more than it currently holds — not that the server printed free gold. Taxes, votes, repayments, and service fees refill it over time.</p>
+          <h3>Do I pay tax when someone pays me?</h3>
+          <p>Tax is withheld from the <strong>sender</strong> on <code>/pay</code> and shop trades. Receiving payments is not separately taxed.</p>
+          <h3>Why was I charged on death?</h3>
+          <p>Only <strong>PvP deaths</strong> trigger the 10% balance fee (split between killer and treasury). Mob, fall, and environmental deaths do not.</p>
+          <h3>Where can I compare town tax rates?</h3>
+          <p>Town mayor tax percentages sync to the cloud for leaderboard-style comparison (lowest rates first). Ask in Discord if you need the current API link.</p>
+          <h3>What is inactivity tax?</h3>
+          <p>After <strong>7 days</strong> without logging in, your wallet is charged a small daily percentage (0.01% → 1% by idle week) into the Server Reserve. Town and nation banks are taxed only when <strong>no</strong> member has logged in within 7 days. See <a href="#inactivity-tax">Inactivity tax</a>.</p>
+          <h3>Where do town and nation founding fees go?</h3>
+          <p><strong>400 G</strong> for a new town and <strong>2,000 G</strong> (split across agreeing town banks) for a new nation debit town banks and credit the Server Reserve — they are not destroyed. Nation founding requires <code>/nationfounding propose</code> and partner mayor signatures before <code>/nation new</code>. See <a href="/wiki/territories/#rules">Territory founding rules</a>.</p>
+          <h3>Where can I see every tax and fee rate?</h3>
+          <p>The <a href="/wiki/constitution/#taxes-fees-reference">Constitution — Taxes &amp; fees</a> lists all percentage taxes, flat fees, Towny costs, loan charges, mayor tax caps, and exemptions. This guide summarizes gameplay.</p>
+          <h3>Is $ROOTMC the same as G?</h3>
+          <p><strong>No.</strong> <strong>G</strong> is the in-game currency on the Minecraft server. <strong>$ROOTMC</strong> is a separate Solana token on pump.fun. There is no official exchange between them. See the <a href="/wiki/token/">token disclaimer</a>.</p>
+        </article>
+      </div>
+    </div>
+  </main>
+
+  <footer class="rmc-footer">
+    <div class="container rmc-footer-meta">
+      <p><a href="/wiki/">Wiki</a> · <a href="/wiki/constitution/">Constitution</a> · <a href="/wiki/player/">Player guide</a> · <a href="/">RootMC</a></p>
+      <p class="rmc-footer-mono">economy guide · <a href="/wiki/constitution/" style="color:inherit">constitution</a></p>
+    </div>
+  </footer>
+
+  <nav class="rmc-bottomnav" aria-label="Mobile">
+    <div class="rmc-bottomnav-inner">
+      <a href="/"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-7 9 7v9a2 2 0 0 1-2 2h-4v-7H9v7H5a2 2 0 0 1-2-2z"/></svg>Home</a>
+      <a href="/market/"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8"/><path d="M14 7h7v7"/></svg>Market</a>
+      <a href="/leaderboard/"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 21h8M12 17v4M7 4h10l1 7H6l1-7zM6 11h12v6H6z"/></svg>Ranks</a>
+      <a href="/player/"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg>Players</a>
+      <a href="/wiki/" aria-current="page"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19V5a2 2 0 0 1 2-2h12v18H6a2 2 0 0 1-2-2z"/><path d="M8 7h7M8 11h7M8 15h5"/></svg>Wiki</a>
+    </div>
+  </nav>
+
+  <script>
+    (function(){
+      var t = document.querySelector('[data-nav-toggle]');
+      if (!t) return;
+      var h = document.querySelector('.rmc-header');
+      t.addEventListener('click', function(){ h.classList.toggle('is-open'); });
+    })();
+  </script>
+</body>
+</html>

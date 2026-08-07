@@ -1,0 +1,184 @@
+{
+    "root-appreciation": {
+        "version": "1.8.1",
+        "filename": "root-appreciation-1.8.1.jar",
+        "url": "https://rootmc.net/plugins/root-appreciation-1.8.1.jar",
+        "sha256": "935c73b6d1f7129d7ffc5643814466a49dcae75ea16995482338ad8818cc3870",
+        "bytes": 212961
+    },
+    "root-ava-core": {
+        "version": "1.8.5",
+        "filename": "root-ava-core-1.8.5.jar",
+        "url": "https://rootmc.net/plugins/root-ava-core-1.8.5.jar",
+        "sha256": "20dfa53397da4ac441c49d6150815127aaf59f0374cad3b80264126e26dda3a5",
+        "bytes": 181733
+    },
+    "root-bluemap-r2-fix": {
+        "version": "1.8.0",
+        "filename": "root-bluemap-r2-fix-1.8.0.jar",
+        "url": "https://rootmc.net/plugins/root-bluemap-r2-fix-1.8.0.jar",
+        "sha256": "af7ad1a3845bd7e90f61aba33ec5ce81ca1598daf117af35c50343a32e26fe34",
+        "bytes": 148937
+    },
+    "root-chestshops": {
+        "version": "1.8.0",
+        "filename": "root-chestshops-1.8.0.jar",
+        "url": "https://rootmc.net/plugins/root-chestshops-1.8.0.jar",
+        "sha256": "62685afed499415d187839b18532a92c0e52723cddf2804c18ca74609603acaf",
+        "bytes": 329127
+    },
+    "root-claims": {
+        "version": "1.8.0",
+        "filename": "root-claims-1.8.0.jar",
+        "url": "https://rootmc.net/plugins/root-claims-1.8.0.jar",
+        "sha256": "c237f74e09675c193433d009eaec2c63dc83a38e460f083c892704673249cfe7",
+        "bytes": 309701
+    },
+    "root-core": {
+        "version": "1.8.0",
+        "filename": "root-core-1.8.0.jar",
+        "url": "https://rootmc.net/plugins/root-core-1.8.0.jar",
+        "sha256": "467933d4cc3153e4fd2ac6b1c56ce192dff1b8e5e0f44cda8544a470fd61f283",
+        "bytes": 16233194
+    },
+    "root-economy": {
+        "version": "1.8.2",
+        "filename": "root-economy-1.8.2.jar",
+        "url": "https://rootmc.net/plugins/root-economy-1.8.2.jar",
+        "sha256": "ec598f2da4e15b06a3800cc4298b1c46a625d9523f3aff0515bbaa7fcd1082d8",
+        "bytes": 5176467
+    },
+    "root-essentials": {
+        "version": "1.8.0",
+        "filename": "root-essentials-1.8.0.jar",
+        "url": "https://rootmc.net/plugins/root-essentials-1.8.0.jar",
+        "sha256": "c0b0e9364843df516a6a45f6d8e4b18e54038fc1664793c453d451ff27c5dc59",
+        "bytes": 4935621
+    },
+    "root-gamble": {
+        "version": "1.8.0",
+        "filename": "root-gamble-1.8.0.jar",
+        "url": "https://rootmc.net/plugins/root-gamble-1.8.0.jar",
+        "sha256": "3fe95ac0ea436e99681afa8d6901fdf895a53be4c6972f448f1b6a225962ff82",
+        "bytes": 227215
+    },
+    "root-haste": {
+        "version": "1.8.0",
+        "filename": "root-haste-1.8.0.jar",
+        "url": "https://rootmc.net/plugins/root-haste-1.8.0.jar",
+        "sha256": "1815874658e86c37d1c53f8e41158cde7bf9d9655748e093366de3c53d1ca4d0",
+        "bytes": 177203
+    },
+    "root-heads": {
+        "version": "1.8.0",
+        "filename": "root-heads-1.8.0.jar",
+        "url": "https://rootmc.net/plugins/root-heads-1.8.0.jar",
+        "sha256": "5afabcfb1f0fa1ea4630633102514568fdb21c7a8507349fc4cdb1922bf1d259",
+        "bytes": 168855
+    },
+    "root-iteminfo": {
+        "version": "1.8.0",
+        "filename": "root-iteminfo-1.8.0.jar",
+        "url": "https://rootmc.net/plugins/root-iteminfo-1.8.0.jar",
+        "sha256": "3ce6976f2ffba545559198dadbe0e79533f9f8ebc42668e53b344eb316d41d99",
+        "bytes": 175757
+    },
+    "root-market": {
+        "version": "1.8.0",
+        "filename": "root-market-1.8.0.jar",
+        "url": "https://rootmc.net/plugins/root-market-1.8.0.jar",
+        "sha256": "9deac802d406967d97ec3177778e20b4e9b249649369b5310c1c592974e1a895",
+        "bytes": 194804
+    },
+    "root-memberships": {
+        "version": "1.8.0",
+        "filename": "root-memberships-1.8.0.jar",
+        "url": "https://rootmc.net/plugins/root-memberships-1.8.0.jar",
+        "sha256": "924f048a3cec112a49b4d98a6b819b2e77ac214ab936f652d2e9eb41698cd468",
+        "bytes": 170926
+    },
+    "root-ops": {
+        "version": "1.8.0",
+        "filename": "root-ops-1.8.0.jar",
+        "url": "https://rootmc.net/plugins/root-ops-1.8.0.jar",
+        "sha256": "204d857e292583d8305c75d4eb629b93780b079e03d25a01ede09f7b91c00ce7",
+        "bytes": 388811
+    },
+    "root-perms": {
+        "version": "1.8.0",
+        "filename": "root-perms-1.8.0.jar",
+        "url": "https://rootmc.net/plugins/root-perms-1.8.0.jar",
+        "sha256": "5d6138d5fdd52bb061518c919d56e253930b1921aca89218ad96f00669145bb0",
+        "bytes": 4651040
+    },
+    "root-ping": {
+        "version": "1.8.0",
+        "filename": "root-ping-1.8.0.jar",
+        "url": "https://rootmc.net/plugins/root-ping-1.8.0.jar",
+        "sha256": "145090925e788b5a9839e861a4dd2a7dc5e93530dd3a0d182c630f1a954a5c6a",
+        "bytes": 2631626
+    },
+    "root-play": {
+        "version": "1.8.2",
+        "filename": "root-play-1.8.2.jar",
+        "url": "https://rootmc.net/plugins/root-play-1.8.2.jar",
+        "sha256": "586e1e66d197e7c0abce719a5d19cc1ca1f15159c7c74e82988e0610d3775ebf",
+        "bytes": 4814776
+    },
+    "root-referrals": {
+        "version": "1.8.0",
+        "filename": "root-referrals-1.8.0.jar",
+        "url": "https://rootmc.net/plugins/root-referrals-1.8.0.jar",
+        "sha256": "a0ee10a8e7e1d375587ce065a31ebd0dec809f1c6174b6640a7629ce1c7ca33f",
+        "bytes": 2666994
+    },
+    "root-skills": {
+        "version": "1.8.1",
+        "filename": "root-skills-1.8.1.jar",
+        "url": "https://rootmc.net/plugins/root-skills-1.8.1.jar",
+        "sha256": "835d0557833da5bb454cf7d5fbd32f72cedaef9f3b7ce0c531757aaba5c1e070",
+        "bytes": 4984471
+    },
+    "root-territories": {
+        "version": "1.8.0",
+        "filename": "root-territories-1.8.0.jar",
+        "url": "https://rootmc.net/plugins/root-territories-1.8.0.jar",
+        "sha256": "918b4d5ad117a81f4cff4913464daebeac7ed537823c10dc5d27b7c7ddf5b71e",
+        "bytes": 285625
+    },
+    "root-times": {
+        "version": "1.8.0",
+        "filename": "root-times-1.8.0.jar",
+        "url": "https://rootmc.net/plugins/root-times-1.8.0.jar",
+        "sha256": "df5f487fea69fe31b1c5103168d21db2d06432afc81f7db68037e4cbb08b461f",
+        "bytes": 4756115
+    },
+    "root-try": {
+        "version": "1.8.0",
+        "filename": "root-try-1.8.0.jar",
+        "url": "https://rootmc.net/plugins/root-try-1.8.0.jar",
+        "sha256": "6d8d4e9f6375fcc182211e96a0481d6e67a562ea5e90ae3d691f6886a7d3ea2d",
+        "bytes": 2642800
+    },
+    "root-webstat": {
+        "version": "1.8.0",
+        "filename": "root-webstat-1.8.0.jar",
+        "url": "https://rootmc.net/plugins/root-webstat-1.8.0.jar",
+        "sha256": "0cc598b9c7fe90fb84be5d9fceab5f6a7a5237d5e45948f90625067600c2fa19",
+        "bytes": 2674779
+    },
+    "rootmc": {
+        "version": "1.8.0",
+        "filename": "rootmc-1.8.0.jar",
+        "url": "https://rootmc.net/plugins/rootmc-1.8.0.jar",
+        "sha256": "527bfd14e4ecf1e24484b835ba9c97b30f4ffe567de5549315c78dda3b64b571",
+        "bytes": 5186175
+    },
+    "rootmc-official": {
+        "version": "1.8.0",
+        "filename": "rootmc-official-1.8.0.jar",
+        "url": "https://rootmc.net/plugins/rootmc-official-1.8.0.jar",
+        "sha256": "27a96d9bf06cd5f63986554086313083e807be7a0e7c3aff85ecd4f02e87a60c",
+        "bytes": 4658948
+    }
+}

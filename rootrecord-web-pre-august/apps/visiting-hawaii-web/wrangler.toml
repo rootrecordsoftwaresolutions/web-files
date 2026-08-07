@@ -1,0 +1,5 @@
+# Cloudflare Pages — Vite output in build/
+# First deploy: npx wrangler pages project create rootrecord-visiting-hawaii-web
+name = "rootrecord-visiting-hawaii-web"
+compatibility_date = "2024-11-01"
+pages_build_output_dir = "build"

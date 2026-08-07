@@ -1,0 +1,64 @@
+.guide-screen {
+  max-width: 42rem;
+}
+
+.guide-header h1 {
+  margin: 0 0 0.5rem;
+  font-size: 1.5rem;
+}
+
+.guide-lead {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+.guide-disclaimer {
+  margin: 1.25rem 0 1.5rem;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  border: 1px solid rgba(251, 191, 36, 0.35);
+  background: rgba(251, 191, 36, 0.08);
+  font-size: 0.9rem;
+  line-height: 1.45;
+}
+
+.guide-section {
+  margin-bottom: 1.5rem;
+}
+
+.guide-section h2 {
+  margin: 0 0 0.5rem;
+  font-size: 1.1rem;
+}
+
+.guide-section p {
+  margin: 0 0 0.65rem;
+  line-height: 1.55;
+  color: var(--text);
+}
+
+.guide-section p:last-child {
+  margin-bottom: 0;
+}
+
+.guide-list {
+  margin: 0.5rem 0 0.65rem;
+  padding-left: 1.25rem;
+  line-height: 1.55;
+}
+
+.guide-list li {
+  margin-bottom: 0.4rem;
+}
+
+.guide-section--tips {
+  padding-top: 0.5rem;
+  border-top: 1px solid var(--border);
+}
+
+.store-notice--disclaimer {
+  border-color: rgba(251, 191, 36, 0.25);
+  background: rgba(251, 191, 36, 0.06);
+  font-size: 0.85rem;
+}

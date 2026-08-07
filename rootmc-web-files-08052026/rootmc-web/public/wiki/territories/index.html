@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Territory Influence — RootMC Wiki</title>
+  <meta name="description" content="RootMC territory influence — nation and town rings, border particles, wilderness alerts, founding rules, and /territories commands.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..700&family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <meta name="theme-color" content="#0a0f10">
+  <link rel="canonical" href="https://rootmc.net/wiki/territories/">
+  <link rel="stylesheet" href="/styles/rootmc.css">
+</head>
+<body>
+  <header class="rmc-header">
+    <div class="container rmc-header-inner">
+      <a class="rmc-brand" href="/">
+        <span class="rmc-brand-mark" aria-hidden="true">R</span>
+        RootMC
+        <span class="rmc-brand-tag">SMP</span>
+      </a>
+      <nav class="rmc-nav" aria-label="Main" data-site-nav="player"></nav>
+      <button class="rmc-nav-toggle" type="button" aria-label="Open menu" data-nav-toggle>
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <main class="container rmc-section">
+    <p class="wiki-breadcrumb"><a href="/">Home</a> / <a href="/wiki/">Wiki</a> / Territories</p>
+    <p class="market-badge">Towny</p>
+    <h1 class="wiki-page-title">Territory <em>influence</em></h1>
+    <p class="page-lead"><strong>Root-Territories</strong> adds an influence zone around every town and nation — measured from <strong>claimed plot edges</strong>, not town spawn. Influence is where your group has reach in the wilderness between plots. Claimed chunks are still governed by normal Towny rules.</p>
+    <div class="wiki-badge-row">
+      <span class="wiki-badge wiki-badge-server">Plot-edge buffers</span>
+      <span class="wiki-badge wiki-badge-player">Border particles</span>
+      <span class="wiki-badge">BlueMap overlays</span>
+    </div>
+
+    <div class="wiki-shell" style="margin-top:1.5rem">
+      <aside class="wiki-sidebar" aria-label="Wiki navigation">
+        <h2>On this page</h2>
+        <nav>
+          <ul>
+            <li><a href="#overview">Overview</a></li>
+            <li><a href="#ranges">Influence ranges</a></li>
+            <li><a href="#borders">Border particles</a></li>
+            <li><a href="#messages">Enter / exit messages</a></li>
+            <li><a href="#wilderness">Wilderness band alerts</a></li>
+            <li><a href="#rules">Founding &amp; nation rules</a></li>
+            <li><a href="#map">BlueMap</a></li>
+            <li><a href="#commands">Commands</a></li>
+            <li><a href="#faq">FAQ</a></li>
+          </ul>
+        </nav>
+        <div class="wiki-switch">
+          <h2>Wiki</h2>
+          <nav>
+            <ul>
+              <li><a href="/wiki/">Wiki home</a></li>
+              <li><a href="/wiki/constitution/">Constitution</a></li>
+              <li><a href="/wiki/economy/">Economy guide</a></li>
+              <li><a href="/wiki/player/">Player guide</a></li>
+              <li><a href="/wiki/weekly-awards/">Weekly activity awards</a></li>
+            </ul>
+          </nav>
+        </div>
+      </aside>
+
+      <div class="wiki-content">
+        <article id="overview">
+          <h2>Overview</h2>
+          <p>Towny claims are only part of the picture. Each town has an outer <strong>influence ring</strong> — unclaimed wilderness where your town or nation still watches for outsiders. When a town joins a nation, its solo ring disappears and it becomes part of the <strong>nation area</strong>.</p>
+          <ul>
+            <li><strong>Independent towns</strong> — blue influence and blue border particles.</li>
+            <li><strong>Nations</strong> — red influence around the combined nation area; capital gets the largest buffer.</li>
+            <li><strong>Wilderness band</strong> — inside influence but outside claimed plots; residents get alerts when outsiders build or break there.</li>
+          </ul>
+          <div class="wiki-callout">
+            Influence does <strong>not</strong> let you build in unclaimed land. It only affects border UX, wilderness alerts, and rules for founding towns and joining nations.
+          </div>
+        </article>
+
+        <article id="ranges">
+          <h2>Influence ranges</h2>
+          <p>All distances are measured from the <strong>outer edge of claimed town plots</strong>, not from town spawn or town hall.</p>
+          <table class="wiki-table">
+            <thead><tr><th>Territory type</th><th>Buffer past plot edges</th></tr></thead>
+            <tbody>
+              <tr><td>Independent town (no nation)</td><td><strong>250 blocks</strong></td></tr>
+              <tr><td>Nation capital town</td><td><strong>500 blocks</strong></td></tr>
+              <tr><td>Nation member town</td><td><strong>250 blocks</strong> (extends the nation area)</td></tr>
+            </tbody>
+          </table>
+          <p>When a town joins a nation, its independent ring is removed. The town’s plots become part of the nation’s combined influence shape.</p>
+        </article>
+
+        <article id="borders">
+          <h2>Border particles</h2>
+          <p>Walk the <strong>outer edge</strong> of an influence zone to see dust particles on the surface (similar to the spawn safe-zone ring):</p>
+          <ul>
+            <li><strong>Red dust</strong> — nation territory border</li>
+            <li><strong>Blue dust</strong> — independent town territory border</li>
+          </ul>
+          <p>Particles follow the <strong>exact</strong> influence outline, not a simple circle around spawn. You need to be within about <strong>96 blocks</strong> of the border line to see them clearly.</p>
+        </article>
+
+        <article id="messages">
+          <h2>Enter / exit messages</h2>
+          <p>Crossing an influence border shows a short chat line:</p>
+          <ul>
+            <li>Entering / leaving a <strong>nation</strong></li>
+            <li>Entering / leaving an <strong>independent town</strong> (towns in a nation use the nation message instead)</li>
+          </ul>
+          <p>Messages have an <strong>8-second cooldown</strong> per player so walking along a border does not spam chat.</p>
+          <p>Mute border messages for yourself:</p>
+          <pre class="wiki-pre">/territories notifications off
+/territories notifications on
+/territories notifications status</pre>
+          <p>Aliases: <code>/territory</code>, <code>/border</code></p>
+        </article>
+
+        <article id="wilderness">
+          <h2>Wilderness band alerts</h2>
+          <p>Inside your influence but <strong>outside claimed plots</strong> is the <strong>wilderness band</strong> — unclaimed land your town or nation still monitors.</p>
+          <p>If an <strong>outsider</strong> places or breaks blocks there <strong>above sea level</strong>, online residents see:</p>
+          <p class="wiki-pre">Satellite imagery shows &lt;player&gt; is stealing resources in your territory.</p>
+          <ul>
+            <li><strong>3-minute cooldown</strong> per outsider, per town or nation</li>
+            <li>Town residents get town alerts; nation members get nation wilderness alerts</li>
+            <li>Your own members do not trigger alerts on your territory</li>
+            <li>Alerts apply in wilderness between plots, not inside claimed town blocks</li>
+          </ul>
+        </article>
+
+        <article id="rules">
+          <h2>Founding &amp; nation rules</h2>
+          <p>Root-Territories enforces geographic rules at town creation and nation join time:</p>
+          <table class="wiki-table">
+            <thead><tr><th>Rule</th><th>What happens</th></tr></thead>
+            <tbody>
+              <tr><td>Found a town</td><td>Blocked if spawn would be inside another town’s or nation’s influence</td></tr>
+              <tr><td>Join a nation</td><td>Blocked unless your town’s influence <strong>touches or overlaps</strong> the nation’s territory</td></tr>
+              <tr><td>Found a new nation</td><td><strong>2+ towns</strong> must agree via <code>/nationfounding</code>; <strong>2,000 G</strong> splits across town banks when the capital runs <code>/nation new</code> (first nation grandfathered)</td></tr>
+              <tr><td>Any member logged in within 30 real days</td><td>Keeps a town or nation bank protected from inactivity tax (see <a href="/wiki/constitution/#inactivity-tax">Constitution</a>)</td></tr>
+            </tbody>
+          </table>
+          <h3>Nation founding workflow</h3>
+          <ol>
+            <li>Capital mayor: <code>/nationfounding propose &lt;NationName&gt; &lt;PartnerTown&gt; [more…]</code></li>
+            <li>Each partner mayor: <code>/nationfounding agree &lt;proposal-id&gt;</code></li>
+            <li>When fully signed: capital runs <code>/nation new &lt;NationName&gt;</code></li>
+            <li>Partner towns join via normal Towny invite after the nation exists</li>
+          </ol>
+          <p>Status: <code>/nationfounding status</code> · Cancel (capital only): <code>/nationfounding cancel &lt;id&gt;</code></p>
+          <p>Nation expansion is <strong>geographic</strong> — remote member towns across the map cannot join without connecting influence rings.</p>
+        </article>
+
+        <article id="map">
+          <h2>BlueMap</h2>
+          <p>Territory outlines appear on the web map at <a href="https://map.rootmc.net" target="_blank" rel="noopener">map.rootmc.net</a>:</p>
+          <ul>
+            <li><strong>Nation territories</strong> — gold overlay</li>
+            <li><strong>Independent town territories</strong> — blue overlay</li>
+          </ul>
+          <p>In-game: <code>/map</code> or <code>/cmds</code> for the map link. Map outlines are slightly inset for readability; in-game borders and particles use the exact edge.</p>
+        </article>
+
+        <article id="commands">
+          <h2>Commands</h2>
+          <table class="wiki-table">
+            <thead><tr><th>Command</th><th>Description</th></tr></thead>
+            <tbody>
+              <tr><td><code>/territories</code></td><td>Info about where you stand — zones, allegiance, wilderness alert status</td></tr>
+              <tr><td><code>/territories notifications [on|off|status]</code></td><td>Toggle border enter/exit messages</td></tr>
+              <tr><td><code>/territory</code> · <code>/border</code></td><td>Aliases for <code>/territories</code></td></tr>
+            </tbody>
+          </table>
+          <p class="rmc-muted">Staff: <code>/rootterritories reload</code> rebuilds zones and BlueMap markers.</p>
+        </article>
+
+        <article id="faq">
+          <h2>FAQ</h2>
+          <h3>Can I build in the influence ring?</h3>
+          <p>Only on land you can normally build on (wilderness or your claims). Influence alone does not grant build rights outside your plots.</p>
+          <h3>Why don’t I see particles?</h3>
+          <p>Particles draw on the <strong>border line</strong>, not through the whole zone. Walk the outer edge within ~96 blocks. Nation borders can be large — follow the ring on the map if needed.</p>
+          <h3>Does influence replace Towny claims?</h3>
+          <p>No. Towny plots are unchanged. Influence is an extra layer for borders, alerts, and founding/join rules.</p>
+          <h3>What if my town joins a nation?</h3>
+          <p>Your independent blue ring goes away. You become part of the nation’s red influence area. You must already touch or overlap the nation before joining.</p>
+        </article>
+      </div>
+    </div>
+  </main>
+
+  <footer class="rmc-footer">
+    <div class="container rmc-footer-meta">
+      <p><a href="/wiki/">Wiki</a> · <a href="/wiki/player/">Player guide</a> · <a href="/">RootMC</a></p>
+      <p class="rmc-footer-mono">territories · influence · towny</p>
+    </div>
+  </footer>
+
+  <nav class="rmc-bottomnav" aria-label="Mobile">
+    <div class="rmc-bottomnav-inner">
+      <a href="/"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-7 9 7v9a2 2 0 0 1-2 2h-4v-7H9v7H5a2 2 0 0 1-2-2z"/></svg>Home</a>
+      <a href="/market/"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8"/><path d="M14 7h7v7"/></svg>Market</a>
+      <a href="/leaderboard/"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 21h8M12 17v4M7 4h10l1 7H6l1-7zM6 11h12v6H6z"/></svg>Ranks</a>
+      <a href="/player/"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg>Players</a>
+      <a href="/wiki/" aria-current="page"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19V5a2 2 0 0 1 2-2h12v18H6a2 2 0 0 1-2-2z"/><path d="M8 7h7M8 11h7M8 15h5"/></svg>Wiki</a>
+    </div>
+  </nav>
+
+  
+  <script src="/scripts/site-nav.js" defer></script>
+</body>
+</html>

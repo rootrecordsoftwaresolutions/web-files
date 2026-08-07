@@ -1,0 +1,10 @@
+{
+  "name": "rootrecord-realm-web-redirect",
+  "version": "2.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "pages:deploy": "powershell -NoProfile -ExecutionPolicy Bypass -File ../../scripts/deploy-product-web-to-pages.ps1 -ProjectName rootrecord-realm-web"
+  }
+}

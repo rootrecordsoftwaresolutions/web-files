@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The RootMC Network — Official Minecraft servers</title>
+  <meta name="description" content="Your journey is written in The Root. Official Towny and Claims survival on The RootMC Network — linked progression, live market, and Discord.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..700&family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon-180.png">
+  <meta name="theme-color" content="#0a0f10">
+  <link rel="canonical" href="https://rootmc.net/">
+  <link rel="stylesheet" href="/styles/rootmc.css?v=20260723vote">
+</head>
+<body class="home-page">
+  <div class="rmc-market-tape" id="home-price-tape-wrap" hidden aria-label="Live shop price changes">
+    <span class="rmc-market-tape-badge">Market</span>
+    <div class="rmc-market-tape-viewport">
+      <div class="rmc-market-tape-inner" id="home-price-tape"></div>
+    </div>
+  </div>
+  <header class="rmc-header">
+    <div class="container rmc-header-inner">
+      <a class="rmc-brand" href="/">
+        <span class="rmc-brand-mark" aria-hidden="true">R</span>
+        RootMC
+        <span class="rmc-brand-tag">Network</span>
+      </a>
+      <nav class="rmc-nav" aria-label="Main" data-site-nav="player"></nav>
+      <button class="rmc-nav-toggle" type="button" aria-label="Open menu" data-nav-toggle>
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <section class="rmc-hero container">
+      <div class="rmc-hero-grid">
+        <div>
+          <p class="rmc-hero-brand">The RootMC Network</p>
+          <p class="rmc-hero-eyebrow"><span class="dot"></span>Official servers · live</p>
+          <h1>Your journey is written in <span class="gold">The Root</span>.</h1>
+          <p class="rmc-lead">Two linked official worlds — <strong>Towny</strong> and <strong>Claims</strong> — live market, and progression that travels with you.</p>
+          <div class="rmc-actions">
+            <a class="rmc-btn rmc-btn-primary" href="https://play.rootmc.net">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 3l14 9-14 9V3z"/></svg>
+              Join · play.rootmc.net
+            </a>
+            <a class="rmc-btn rmc-btn-ghost" href="#official-servers">Official servers</a>
+            <a class="rmc-btn rmc-btn-ghost" href="https://discord.gg/rFFQYrNaqS" target="_blank" rel="noopener">Discord</a>
+          </div>
+        </div>
+        <aside class="rmc-hero-aside" aria-label="Activity in your timezone">
+          <div class="rmc-hero-aside-head">
+            <span>OFFICIAL · Activity</span>
+            <span class="live" id="home-activity-live">LIVE</span>
+          </div>
+          <div class="rmc-hero-activity" id="home-hero-activity">
+            <p class="rmc-muted rmc-hero-ticker-loading">Loading local activity…</p>
+          </div>
+          <p class="rmc-hero-ticker-meta" id="home-hero-activity-meta"></p>
+        </aside>
+      </div>
+    </section>
+
+    <section class="rmc-section container" id="official-servers" aria-labelledby="official-heading">
+      <p class="market-badge">RootMC Official</p>
+      <h2 id="official-heading" class="rmc-section-title">Official servers</h2>
+      <p class="rmc-lead rmc-section-lead">Towny and Claims — linked progression, one public join address.</p>
+      <div class="rmc-network-official">
+        <article class="rmc-network-official-card">
+          <p class="rmc-network-kicker">Official · Towny &amp; Claims</p>
+          <h3>Official network</h3>
+          <p class="rmc-muted">Two linked worlds — Towny towns &amp; nations plus personal Claims land. Progression (playtime, mcMMO, votes, ranks) syncs between them; Gold wallets and inventories stay per-host. Join either through <code>play.rootmc.net</code>.</p>
+          <p class="rmc-network-addr"><code>play.rootmc.net</code></p>
+          <div class="rmc-actions">
+            <a class="rmc-btn rmc-btn-primary" href="https://play.rootmc.net">Join · play.rootmc.net</a>
+            <a class="rmc-btn rmc-btn-ghost" href="https://map.rootmc.net" target="_blank" rel="noopener">Live map</a>
+            <a class="rmc-btn rmc-btn-ghost" href="/data/">Data</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="rmc-section container rmc-network-secondary" id="network-servers" aria-labelledby="network-heading">
+      <p class="market-badge">Network recognition</p>
+      <h2 id="network-heading" class="rmc-section-title">Secondary servers</h2>
+      <p class="rmc-lead rmc-section-lead">Independent servers in The RootMC Network — recognized here; not operated as our official Towny/Claims pair. They do not need RootMC-Official.</p>
+      <ul class="rmc-network-list">
+        <li class="rmc-network-list-empty">
+          <span>Partner and community servers that run RootMC plugins will be listed here.</span>
+          <a href="/developer/">Developer portal →</a>
+        </li>
+      </ul>
+    </section>
+
+    <section class="rmc-section container rmc-vote-section" aria-labelledby="vote-heading">
+      <p class="market-badge">Support the official servers</p>
+      <h2 id="vote-heading" class="rmc-section-title">Vote &amp; earn 1–20 G</h2>
+      <p class="rmc-lead">Vote on listing sites once every 24h per site — Gold rewards land in-game. Use <code>/vote</code> for the same links. Vote history syncs across Towny and Claims.</p>
+      <div class="rmc-vote-grid">
+        <a class="rmc-vote-card" href="https://minecraft-mp.com/server/359724/vote/" target="_blank" rel="noopener noreferrer">Minecraft-MP</a>
+        <a class="rmc-vote-card" href="https://minecraftservers.org/vote/689134" target="_blank" rel="noopener noreferrer">MinecraftServers.org</a>
+        <a class="rmc-vote-card" href="https://minecraft-server-list.com/server/521165/vote/" target="_blank" rel="noopener noreferrer">Minecraft Server List</a>
+        <a class="rmc-vote-card" href="https://minecraft.buzz/vote/21857" target="_blank" rel="noopener noreferrer">Minecraft.Buzz</a>
+        <a class="rmc-vote-card" href="https://topminecraftservers.org/vote/43816" target="_blank" rel="noopener noreferrer">TopMinecraftServers</a>
+        <a class="rmc-vote-card" href="https://www.minerank.com/rootmc-top-tier-economy-server/vote" target="_blank" rel="noopener noreferrer">MineRank</a>
+        <a class="rmc-vote-card" href="https://minecraftlist.org/vote/34144" target="_blank" rel="noopener noreferrer">MinecraftList.org</a>
+        <a class="rmc-vote-card" href="https://www.planetminecraft.com/server/rootmc/vote/" target="_blank" rel="noopener noreferrer">Planet Minecraft</a>
+      </div>
+      <div class="rmc-vote-tool">
+        <a class="rmc-btn rmc-btn-secondary" href="/tools/rootmc-open-vote-sites.zip" download="rootmc-open-vote-sites.zip">Download Windows vote opener</a>
+        <p class="rmc-muted rmc-vote-tool-note">Unzip and run <code>open-vote-sites.bat</code> — opens every site above in one browser window. <a href="/tools/vote-sites/">Details</a></p>
+      </div>
+    </section>
+
+    <section class="rmc-section container" aria-labelledby="about-heading">
+      <div class="rmc-home-split">
+        <article class="rmc-about rmc-card">
+          <p class="market-badge">About the network</p>
+          <h2 id="about-heading">Official play, shared tools</h2>
+          <p class="rmc-muted">The RootMC Network centers on our official Towny and Claims worlds — long-form survival built around cooperation, trade, and territory — not pay-to-win. Secondary servers can join the plugin network for recognition while Towny remains the primary public join address.</p>
+
+          <h3>What makes official RootMC different</h3>
+          <ul class="rmc-about-list">
+            <li><strong>Closed-loop economy</strong> — Gold (G) from minting, shops, and trade. Rules in the <a href="/wiki/constitution/">Constitution</a>; how-to in the <a href="/wiki/economy/">economy guide</a> · <a href="/data/">live data</a> (redesign in progress).</li>
+            <li><strong>Towny &amp; Claims</strong> — Towns and nations on Towny; personal claims on the Claims host. Progression ranks and votes follow you between them.</li>
+            <li><strong>McMMO progression</strong> — Classic skill grinding with public stats once you <a href="/verify/">link your account</a>.</li>
+            <li><strong>Live map</strong> — Explore builds at <a href="https://map.rootmc.net" target="_blank" rel="noopener">map.rootmc.net</a> while you plan your next base.</li>
+            <li><strong>Discord bridge</strong> — In-game chat mirrors to Discord; community votes and weekly awards keep both sides connected.</li>
+          </ul>
+
+          <h3>Fair play &amp; linking</h3>
+          <p class="rmc-muted">We expect respect, no cheating (x-ray, dupes, unfair clients), and honest trade. Linking your Minecraft account unlocks the linked-player Discord role, public stats pages, and the RootMC Android companion app. Rules: <a href="/wiki/constitution/">Constitution</a> · commands: <a href="/wiki/player/">player wiki</a>.</p>
+
+          <h3>Weekly recognition</h3>
+          <p class="rmc-muted">Every Sunday at 08:00 HST we post <strong>Top Participator</strong> (Discord messages, votes, and reactions) and <strong>Top Active Player</strong> (linked in-game playtime). Roles reset each week — when awards are posted, the leaders appear in Discord and on this page.</p>
+
+          <div class="rmc-about-cta">
+            <a class="rmc-btn rmc-btn-secondary" href="/wiki/constitution/">Constitution</a>
+            <a class="rmc-btn rmc-btn-secondary" href="/history/">History</a>
+            <a class="rmc-btn rmc-btn-secondary" href="/wiki/economy/">Economy guide</a>
+            <a class="rmc-btn rmc-btn-secondary" href="/wiki/">Read the wiki</a>
+            <a class="rmc-btn rmc-btn-secondary" href="/data/">Data hub</a>
+          </div>
+        </article>
+
+        <aside class="rmc-home-aside">
+          <a class="rmc-card rmc-card-hover rmc-discord-card" href="https://discord.gg/rFFQYrNaqS" target="_blank" rel="noopener" style="text-decoration:none;color:inherit;display:block">
+            <p class="market-badge">Community</p>
+            <h2>Join our Discord</h2>
+            <p class="rmc-muted">Chat, announcements, Towny channels, and the in-game bridge.</p>
+            <p style="color:var(--rmc-gold);margin:1rem 0 0">discord.gg/rFFQYrNaqS →</p>
+          </a>
+
+          <div class="rmc-card rmc-leaders-card" id="weekly-leaders" hidden>
+            <p class="market-badge">Weekly awards</p>
+            <h2>This week&rsquo;s leaders</h2>
+            <p class="rmc-muted" id="weekly-leaders-week">Posted after Sunday 08:00 HST awards.</p>
+
+            <h3 class="rmc-leaders-sub">Top Participator</h3>
+            <p class="rmc-muted rmc-leaders-note">Discord activity — messages, community votes, and reactions.</p>
+            <ol class="rmc-leader-list" id="weekly-participators"></ol>
+
+            <h3 class="rmc-leaders-sub">Top Active Player</h3>
+            <div id="weekly-top-player" hidden></div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="rmc-section container">
+      <p class="market-badge">Explore the realm</p>
+      <h2 class="rmc-section-title">Where to go next</h2>
+      <div class="rmc-grid">
+        <a class="rmc-card rmc-card-hover" href="/data/" style="text-decoration:none;color:inherit">
+          <h2>Data</h2>
+          <p class="rmc-muted">Live market, economy, time, leaderboards, and player stats — hub under redesign. Archive at <code>/old/</code>.</p>
+          <p style="color: var(--rmc-gold); margin-top:1rem;">Open Data →</p>
+        </a>
+        <a class="rmc-card rmc-card-hover" href="/wiki/economy/" style="text-decoration:none;color:inherit">
+          <h2>Economy guide</h2>
+          <p class="rmc-muted">Treasury, Server Reserve, minting, shops, tax, PvP death recycling, Towny costs, and loans — the full G reference.</p>
+          <p style="color: var(--rmc-gold); margin-top:1rem;">Read economy guide →</p>
+        </a>
+        <a class="rmc-card rmc-card-hover" href="/wiki/" style="text-decoration:none;color:inherit">
+          <h2>Wiki</h2>
+          <p class="rmc-muted">Join steps, linking, Towny, commands, and web tools — everything you need on day one.</p>
+          <p style="color: var(--rmc-gold); margin-top:1rem;">Read the wiki →</p>
+        </a>
+        <a class="rmc-card rmc-card-hover" href="/login/" style="text-decoration:none;color:inherit">
+          <h2>Login &amp; stats</h2>
+          <p class="rmc-muted">Sign in with Discord for My Stats. Link Minecraft later via <code>/link</code> if you have not yet.</p>
+          <p style="color: var(--rmc-gold); margin-top:1rem;">Login/Register →</p>
+        </a>
+        <a class="rmc-card rmc-card-hover" href="/plugins/" style="text-decoration:none;color:inherit">
+          <h2>Plugins</h2>
+          <p class="rmc-muted">Full suite: Core, Times, Perms, Essentials, Claims, Play, Ops, Territories, RootMC, and Official Towny↔Claims link — with auto-updates.</p>
+          <p style="color: var(--rmc-gold); margin-top:1rem;">Download plugins →</p>
+        </a>
+        <a class="rmc-card rmc-card-hover" href="/developer/" style="text-decoration:none;color:inherit">
+          <h2>Developers</h2>
+          <p class="rmc-muted">Register with Discord for product keys, My Servers presence, and suite entitlements.</p>
+          <p style="color: var(--rmc-gold); margin-top:1rem;">Developer portal →</p>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="rmc-footer">
+    <div class="container rmc-footer-meta">
+      <p><a href="https://discord.gg/rFFQYrNaqS">Discord</a> · <a href="/wiki/">Wiki</a> · <a href="/history/">History</a> · <a href="https://map.rootmc.net" target="_blank" rel="noopener">Live map</a> · <a href="/plugins/">Plugins</a> · <a href="/developer/">Developers</a></p>
+      <p class="rmc-footer-mono">The RootMC Network · play.rootmc.net</p>
+    </div>
+  </footer>
+
+  <nav class="rmc-bottomnav" aria-label="Mobile">
+    <div class="rmc-bottomnav-inner">
+      <a href="/" aria-current="page">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-7 9 7v9a2 2 0 0 1-2 2h-4v-7H9v7H5a2 2 0 0 1-2-2z"/></svg>
+        Home
+      </a>
+      <a href="/data/">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8"/><path d="M14 7h7v7"/></svg>
+        Data
+      </a>
+      <a href="/plugins/">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 21h8M12 17v4M7 4h10l1 7H6l1-7zM6 11h12v6H6z"/></svg>
+        Plugins
+      </a>
+      <a href="/developer/">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg>
+        Devs
+      </a>
+      <a href="/wiki/">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19V5a2 2 0 0 1 2-2h12v18H6a2 2 0 0 1-2-2z"/><path d="M8 7h7M8 11h7M8 15h5"/></svg>
+        Wiki
+      </a>
+    </div>
+  </nav>
+
+  
+  <script src="/scripts/item-keys.js" defer></script>
+  <script src="/home.js?v=20260722b" defer></script>
+  <script src="/scripts/site-nav.js?v=20260722c" defer></script>
+  <script src="/js/connection-preference.js?v=20260724a" defer></script>
+</body>
+</html>

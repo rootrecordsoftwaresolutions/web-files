@@ -1,0 +1,1566 @@
+/* ──────────────────────────────────────────────────────────────────────────
+   Root Farms — "Alive" layer
+   Organic palette, ambient background, motion, micro-interactions, harvest
+   burst. Loaded after base index.css so it overrides safely without
+   touching base classNames/data-testids.
+   ────────────────────────────────────────────────────────────────────────── */
+
+@import url("https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700;9..144,800&family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap");
+
+:root {
+  /* organic dark palette */
+  --bg: #0b1410;
+  --bg-deep: #060c0a;
+  --panel: #11201a;
+  --panel2: #0d1814;
+  --border: rgba(168, 220, 188, 0.10);
+  --text: #ecf5ec;
+  --muted: #8aa499;
+  --cyan: #34d6c2;
+  --green: #7bd66a;
+  --green-deep: #2f8a3a;
+  --leaf: #a6e07a;
+  --blue: #74b9e8;
+  --purple: #c9a7ff;
+  --amber: #ffc46b;
+  --gold: #f5c45a;
+  --danger: #f6857c;
+  --soil: #5b3d23;
+  --soil-warm: #a86b3c;
+
+  --font: "DM Sans", system-ui, sans-serif;
+  --font-display: "Fraunces", "DM Sans", serif;
+  --mono: "JetBrains Mono", ui-monospace, monospace;
+
+  --shadow-card: 0 1px 0 rgba(255, 255, 255, 0.04) inset,
+                 0 18px 38px -22px rgba(0, 0, 0, 0.7),
+                 0 4px 12px -6px rgba(0, 0, 0, 0.45);
+  --shadow-glow-green: 0 0 0 1px rgba(123, 214, 106, 0.18),
+                       0 0 26px -6px rgba(123, 214, 106, 0.35);
+
+  --ease-organic: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --ease-out-soft: cubic-bezier(0.16, 0.84, 0.32, 1);
+}
+
+html, body, #root {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ───────── Ambient living background ───────── */
+
+body::before,
+body::after {
+  content: "";
+  position: fixed;
+  inset: -10%;
+  pointer-events: none;
+  z-index: -1;
+}
+
+body::before {
+  background:
+    radial-gradient(60% 50% at 18% 8%, rgba(123, 214, 106, 0.10), transparent 60%),
+    radial-gradient(45% 40% at 88% 12%, rgba(52, 214, 194, 0.08), transparent 65%),
+    radial-gradient(55% 45% at 50% 100%, rgba(168, 107, 60, 0.10), transparent 65%),
+    linear-gradient(180deg, #0b1410 0%, #060c0a 60%, #0a1612 100%);
+  filter: saturate(1.05);
+  animation: ambient-drift 26s var(--ease-organic) infinite alternate;
+}
+
+body::after {
+  background-image:
+    radial-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+    radial-gradient(rgba(255, 255, 255, 0.018) 1px, transparent 1px);
+  background-size: 3px 3px, 7px 7px;
+  background-position: 0 0, 1px 1px;
+  mix-blend-mode: overlay;
+  opacity: 0.5;
+  animation: grain-shift 8s steps(6) infinite;
+}
+
+@keyframes ambient-drift {
+  0%   { transform: translate3d(0, 0, 0) scale(1); }
+  50%  { transform: translate3d(-1.5%, 1%, 0) scale(1.03); }
+  100% { transform: translate3d(1%, -1.5%, 0) scale(1.05); }
+}
+@keyframes grain-shift {
+  0%   { transform: translate(0, 0); }
+  20%  { transform: translate(-2%, 1%); }
+  40%  { transform: translate(1%, -2%); }
+  60%  { transform: translate(-1%, -1%); }
+  80%  { transform: translate(2%, 2%); }
+  100% { transform: translate(0, 0); }
+}
+
+/* ───────── Typography polish ───────── */
+
+h1, h2, h3, .hud-balance, .detail-hero h1, .auth-card h1,
+.contract-title, .varmint-card-title, .market-panel h2 {
+  font-family: var(--font-display);
+  letter-spacing: -0.01em;
+}
+
+.hud-balance {
+  background: linear-gradient(180deg, #d6ffd0 0%, var(--green) 60%, var(--green-deep) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  text-shadow: 0 0 38px rgba(123, 214, 106, 0.25);
+  animation: balance-pulse 4.5s ease-in-out infinite;
+}
+@keyframes balance-pulse {
+  0%, 100% { filter: drop-shadow(0 0 0 rgba(123, 214, 106, 0)); }
+  50%      { filter: drop-shadow(0 0 18px rgba(123, 214, 106, 0.35)); }
+}
+
+.hud-rate {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.25rem 0.6rem;
+  background: rgba(123, 214, 106, 0.08);
+  border: 1px solid rgba(123, 214, 106, 0.22);
+  border-radius: 999px;
+  color: var(--green);
+  font-family: var(--mono);
+  font-size: 0.78rem;
+}
+.hud-rate::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--green);
+  box-shadow: 0 0 10px var(--green);
+  animation: live-dot 1.6s ease-in-out infinite;
+}
+@keyframes live-dot {
+  0%, 100% { opacity: 1;   transform: scale(1); }
+  50%      { opacity: 0.4; transform: scale(0.7); }
+}
+
+/* ───────── Side nav — desktop ───────── */
+
+.side-nav {
+  background:
+    radial-gradient(80% 60% at 20% 0%, rgba(123, 214, 106, 0.06), transparent 60%),
+    linear-gradient(180deg, #0a130f 0%, #060b09 100%);
+  border-right: 1px solid var(--border);
+  padding: 1.25rem 0.8rem;
+  position: relative;
+}
+.side-nav::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0 0;
+  height: 40%;
+  background: radial-gradient(80% 100% at 50% 100%, rgba(168, 107, 60, 0.10), transparent 70%);
+  pointer-events: none;
+}
+
+.side-nav-brand {
+  display: flex;
+  gap: 0.7rem;
+  align-items: center;
+  padding: 0 0.4rem 1rem;
+  border-bottom: 1px solid var(--border);
+}
+.side-nav-logo {
+  display: inline-grid;
+  place-items: center;
+  width: 2.1rem;
+  height: 2.1rem;
+  border-radius: 0.7rem;
+  background: linear-gradient(135deg, rgba(123, 214, 106, 0.35), rgba(52, 214, 194, 0.25));
+  color: #062514;
+  font-weight: 800;
+  font-size: 1rem;
+  box-shadow: 0 0 0 1px rgba(123, 214, 106, 0.35), 0 8px 20px -8px rgba(123, 214, 106, 0.45);
+  animation: brand-breathe 5s ease-in-out infinite;
+}
+@keyframes brand-breathe {
+  0%, 100% { transform: scale(1); box-shadow: 0 0 0 1px rgba(123, 214, 106, 0.35), 0 8px 20px -8px rgba(123, 214, 106, 0.45); }
+  50%      { transform: scale(1.06); box-shadow: 0 0 0 1px rgba(123, 214, 106, 0.55), 0 12px 30px -8px rgba(123, 214, 106, 0.7); }
+}
+.side-nav-title {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 1.08rem;
+}
+.side-nav-tag {
+  color: var(--leaf);
+  letter-spacing: 0.16em;
+  font-size: 0.62rem;
+}
+
+.side-nav-btn {
+  position: relative;
+  border-radius: 0.7rem;
+  padding: 0.65rem 0.7rem;
+  color: var(--muted);
+  transition: color 0.25s var(--ease-organic),
+              background-color 0.25s var(--ease-organic),
+              transform 0.25s var(--ease-organic);
+  overflow: hidden;
+}
+.side-nav-btn::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 12%;
+  bottom: 12%;
+  width: 3px;
+  border-radius: 0 4px 4px 0;
+  background: linear-gradient(180deg, var(--green), var(--cyan));
+  transform: scaleY(0);
+  transform-origin: center;
+  transition: transform 0.3s var(--ease-out-soft);
+}
+.side-nav-btn:hover {
+  color: var(--text);
+  background: rgba(123, 214, 106, 0.06);
+  transform: translateX(2px);
+}
+.side-nav-btn.is-active {
+  background: linear-gradient(90deg, rgba(123, 214, 106, 0.14), rgba(123, 214, 106, 0) 80%);
+  color: var(--leaf);
+}
+.side-nav-btn.is-active::before {
+  transform: scaleY(1);
+}
+.side-nav-btn .side-nav-icon {
+  display: inline-grid;
+  place-items: center;
+  width: 1.5rem;
+  font-size: 0.95rem;
+  opacity: 0.85;
+}
+
+/* ───────── Mobile header (when narrow) ───────── */
+
+.mobile-web-header {
+  background: linear-gradient(180deg, #0a130f 0%, rgba(10, 19, 15, 0.85) 100%);
+  border-bottom: 1px solid var(--border);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+.mobile-web-header-logo {
+  display: inline-grid;
+  place-items: center;
+  width: 1.9rem;
+  height: 1.9rem;
+  border-radius: 0.55rem;
+  background: linear-gradient(135deg, rgba(123, 214, 106, 0.35), rgba(52, 214, 194, 0.25));
+  color: #062514;
+  font-weight: 800;
+  box-shadow: 0 0 0 1px rgba(123, 214, 106, 0.35);
+}
+.mobile-web-header-title {
+  font-family: var(--font-display);
+  font-weight: 800;
+}
+
+/* ───────── Bottom nav (mobile + mobile-web) ───────── */
+
+.bottom-nav {
+  background:
+    linear-gradient(180deg, rgba(10, 19, 15, 0.92) 0%, rgba(6, 11, 9, 0.98) 100%);
+  border-top: 1px solid var(--border);
+  backdrop-filter: blur(20px) saturate(140%);
+  -webkit-backdrop-filter: blur(20px) saturate(140%);
+}
+.bottom-nav-btn {
+  transition: color 0.25s var(--ease-organic), transform 0.25s var(--ease-organic);
+}
+.bottom-nav-btn:active { transform: scale(0.94); }
+.bottom-nav-btn::after {
+  content: "";
+  position: absolute;
+  bottom: 6px;
+  left: 50%;
+  width: 22px;
+  height: 3px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--green), var(--cyan));
+  transform: translateX(-50%) scaleX(0);
+  transition: transform 0.35s var(--ease-out-soft);
+}
+.bottom-nav-btn.is-active {
+  color: var(--leaf);
+}
+.bottom-nav-btn.is-active::after { transform: translateX(-50%) scaleX(1); }
+.bottom-nav-btn .bottom-nav-icon {
+  transition: transform 0.3s var(--ease-out-soft);
+}
+.bottom-nav-btn.is-active .bottom-nav-icon {
+  transform: translateY(-2px);
+  filter: drop-shadow(0 0 6px rgba(123, 214, 106, 0.5));
+}
+
+/* ───────── Cards (plots, tiers, generic panels) ───────── */
+
+.plot-card,
+.plot-tier-card,
+.market-panel,
+.upgrade-card,
+.row-card,
+.store-card,
+.minting-machine,
+.auth-card,
+.detail-hero,
+.root-facts,
+.beta-tester-banner {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.025), rgba(255, 255, 255, 0) 40%),
+    linear-gradient(180deg, var(--panel) 0%, var(--panel2) 100%);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-card);
+  border-radius: 16px;
+  transition: transform 0.35s var(--ease-out-soft),
+              box-shadow 0.35s var(--ease-out-soft),
+              border-color 0.35s var(--ease-out-soft);
+  position: relative;
+  overflow: hidden;
+}
+
+/* subtle moving sheen on cards */
+.plot-card::before,
+.plot-tier-card::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  background: linear-gradient(120deg,
+    transparent 30%,
+    rgba(255, 255, 255, 0.05) 50%,
+    transparent 70%);
+  transform: translateX(-120%);
+  pointer-events: none;
+  transition: transform 0.9s var(--ease-out-soft);
+}
+.plot-card:hover::before,
+.plot-tier-card:hover::before { transform: translateX(120%); }
+
+button.plot-card:hover,
+.plot-tier-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(123, 214, 106, 0.28);
+  box-shadow: var(--shadow-card), var(--shadow-glow-green);
+}
+button.plot-card:active { transform: translateY(-1px) scale(0.995); }
+
+.plot-card--cluster {
+  border-color: rgba(123, 214, 106, 0.32) !important;
+  background:
+    radial-gradient(70% 80% at 20% 0%, rgba(123, 214, 106, 0.18), transparent 60%),
+    linear-gradient(180deg, #11281e 0%, #0c1c15 100%) !important;
+}
+
+/* growing-leaf decoration top-right of plot cards */
+.plot-card--grid::after {
+  content: "";
+  position: absolute;
+  right: -14px;
+  top: -14px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(123, 214, 106, 0.20), transparent 65%);
+  pointer-events: none;
+  opacity: 0.7;
+  transition: transform 0.5s var(--ease-out-soft), opacity 0.3s ease;
+}
+button.plot-card--grid:hover::after { transform: scale(1.6); opacity: 1; }
+
+/* the green active dot — gently breathes */
+.plot-dot {
+  background: var(--green);
+  box-shadow: 0 0 0 3px rgba(123, 214, 106, 0.18), 0 0 12px var(--green);
+  animation: pulse-dot 2.2s ease-in-out infinite;
+}
+@keyframes pulse-dot {
+  0%, 100% { box-shadow: 0 0 0 3px rgba(123, 214, 106, 0.18), 0 0 8px var(--green); }
+  50%      { box-shadow: 0 0 0 6px rgba(123, 214, 106, 0.06), 0 0 18px var(--green); }
+}
+
+/* row segment bar — animated fill */
+.seg-bar span {
+  background: rgba(255, 255, 255, 0.06);
+  position: relative;
+  overflow: hidden;
+}
+.seg-bar span.on {
+  background: linear-gradient(90deg, var(--green-deep), var(--green), var(--leaf));
+  animation: seg-fill 0.6s var(--ease-out-soft) both;
+}
+@keyframes seg-fill {
+  from { transform: scaleX(0); transform-origin: left center; }
+  to   { transform: scaleX(1); transform-origin: left center; }
+}
+
+/* plot cycle (growth) progress bar — shimmer over fill */
+.plot-cycle {
+  background: linear-gradient(90deg, var(--green-deep), var(--green) 50%, var(--leaf));
+  box-shadow: 0 0 14px rgba(123, 214, 106, 0.55);
+  height: 4px !important;
+  border-radius: 0 4px 4px 0;
+}
+.plot-cycle::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.35), transparent);
+  animation: shimmer 1.8s linear infinite;
+}
+.plot-cycle {
+  position: absolute;
+  overflow: hidden;
+}
+@keyframes shimmer {
+  from { transform: translateX(-100%); }
+  to   { transform: translateX(100%); }
+}
+
+/* row-progress similar polish */
+.row-progress {
+  background: linear-gradient(90deg, var(--green-deep), var(--leaf));
+  box-shadow: 0 0 10px rgba(123, 214, 106, 0.4);
+  height: 3px;
+}
+
+/* ───────── Accent border colors (org tones) ───────── */
+.accent-green  { color: var(--green);  border-color: rgba(123, 214, 106, 0.28); }
+.accent-cyan   { color: var(--cyan);   border-color: rgba(52, 214, 194, 0.28); }
+.accent-blue   { color: var(--blue);   border-color: rgba(116, 185, 232, 0.28); }
+.accent-purple { color: var(--purple); border-color: rgba(201, 167, 255, 0.28); }
+.accent-amber  { color: var(--amber);  border-color: rgba(255, 196, 107, 0.30); }
+
+/* ───────── HUD container — hero-card on web ───────── */
+.account-balance-hud.hud--web {
+  position: relative;
+  margin-bottom: 1.5rem;
+  padding: 1.5rem 1.65rem;
+  border-radius: 22px;
+  border: 1px solid var(--border);
+  background:
+    radial-gradient(120% 80% at 0% 0%, rgba(123, 214, 106, 0.10), transparent 55%),
+    radial-gradient(80% 80% at 100% 0%, rgba(52, 214, 194, 0.08), transparent 55%),
+    linear-gradient(180deg, #122620 0%, #0b1814 100%);
+  box-shadow: var(--shadow-card);
+  overflow: hidden;
+}
+.account-balance-hud.hud--web::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: 22px;
+  padding: 1px;
+  background: linear-gradient(135deg, rgba(123, 214, 106, 0.25), transparent 40%, rgba(52, 214, 194, 0.18) 80%);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+          mask-composite: exclude;
+  pointer-events: none;
+}
+.account-balance-hud.hud--web::after {
+  /* sun-glow */
+  content: "";
+  position: absolute;
+  width: 220px; height: 220px;
+  right: -60px; top: -90px;
+  background: radial-gradient(circle, rgba(255, 196, 107, 0.18), transparent 65%);
+  border-radius: 50%;
+  pointer-events: none;
+  animation: sun-bob 9s ease-in-out infinite;
+}
+@keyframes sun-bob {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(6px); }
+}
+
+.hud-sub {
+  color: var(--muted);
+  font-size: 0.7rem;
+  letter-spacing: 0.18em;
+}
+
+.hud-pending {
+  color: var(--amber);
+  background: rgba(255, 196, 107, 0.06);
+  border: 1px solid rgba(255, 196, 107, 0.20);
+  border-radius: 999px;
+  padding: 0.35rem 0.75rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+.hud-pending::before {
+  content: "🌱";
+  font-size: 0.85rem;
+  filter: hue-rotate(-10deg);
+}
+
+/* ───────── Buttons ───────── */
+
+.btn {
+  border-radius: 12px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  transition: transform 0.2s var(--ease-out-soft),
+              box-shadow 0.25s var(--ease-out-soft),
+              background-color 0.25s var(--ease-organic),
+              filter 0.25s ease;
+  position: relative;
+  overflow: hidden;
+}
+.btn:hover { transform: translateY(-1px); }
+.btn:active { transform: translateY(0) scale(0.97); }
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--leaf), var(--green));
+  color: #062514;
+  border: 1px solid rgba(123, 214, 106, 0.4);
+  box-shadow: 0 6px 18px -6px rgba(123, 214, 106, 0.55);
+}
+.btn-primary:hover {
+  box-shadow: 0 10px 26px -8px rgba(123, 214, 106, 0.7);
+  filter: brightness(1.06);
+}
+
+.btn-buy {
+  background: rgba(123, 214, 106, 0.12);
+  color: var(--leaf);
+  border-color: rgba(123, 214, 106, 0.32);
+}
+.btn-buy:hover { background: rgba(123, 214, 106, 0.18); }
+
+.btn-harvest-now {
+  position: relative;
+  padding: 0.55rem 1.1rem !important;
+  font-weight: 700 !important;
+  border: 1px solid rgba(123, 214, 106, 0.55) !important;
+  background: linear-gradient(135deg, rgba(123, 214, 106, 0.20), rgba(52, 214, 194, 0.12)) !important;
+  color: var(--leaf) !important;
+  border-radius: 999px !important;
+  box-shadow: 0 0 0 0 rgba(123, 214, 106, 0.4),
+              0 6px 22px -8px rgba(123, 214, 106, 0.5);
+  animation: harvest-ready 2.4s ease-in-out infinite;
+}
+.btn-harvest-now:disabled { animation: none; opacity: 0.55; }
+@keyframes harvest-ready {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(123, 214, 106, 0.4),   0 6px 22px -8px rgba(123, 214, 106, 0.5); }
+  50%      { box-shadow: 0 0 0 8px rgba(123, 214, 106, 0),   0 6px 22px -8px rgba(123, 214, 106, 0.5); }
+}
+
+.btn-ghost {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--border);
+  color: var(--text);
+}
+.btn-ghost:hover { background: rgba(255, 255, 255, 0.05); border-color: rgba(123, 214, 106, 0.25); }
+
+.back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: var(--leaf);
+  transition: transform 0.25s var(--ease-out-soft), color 0.25s ease;
+}
+.back-btn:hover { transform: translateX(-3px); color: var(--green); }
+
+/* ───────── Tier summary cards ───────── */
+
+.plot-tier-summary { gap: 1rem; margin-bottom: 1.5rem; }
+.plot-tier-card {
+  padding: 1.1rem 1.15rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+.plot-tier-card .plot-tier-icon {
+  font-size: 1.8rem;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.4));
+  transition: transform 0.45s var(--ease-out-soft);
+  transform-origin: 50% 80%;
+}
+.plot-tier-card:hover .plot-tier-icon { transform: rotate(-6deg) scale(1.12); }
+.plot-tier-title {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+}
+.plot-tier-yield strong { color: var(--leaf); font-family: var(--mono); font-size: 1rem; }
+
+/* ───────── Section heads ───────── */
+
+.section-head {
+  color: var(--leaf);
+  opacity: 0.85;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+}
+
+/* ───────── Boot / loading ───────── */
+
+.boot {
+  color: var(--muted);
+  position: relative;
+}
+.boot::after {
+  content: "";
+  display: block;
+  width: 38px;
+  height: 38px;
+  margin: 1rem auto 0;
+  border-radius: 50%;
+  border: 3px solid rgba(123, 214, 106, 0.15);
+  border-top-color: var(--green);
+  animation: spin 0.9s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* ───────── Modals ───────── */
+
+.contract-overlay,
+.varmint-overlay {
+  background: rgba(4, 10, 8, 0.62);
+  backdrop-filter: blur(14px) saturate(140%);
+  -webkit-backdrop-filter: blur(14px) saturate(140%);
+  animation: overlay-in 0.25s ease both;
+}
+@keyframes overlay-in { from { opacity: 0; } to { opacity: 1; } }
+
+.contract-card,
+.varmint-card {
+  background:
+    radial-gradient(120% 80% at 0% 0%, rgba(123, 214, 106, 0.12), transparent 50%),
+    linear-gradient(180deg, #142822 0%, #0a1814 100%) !important;
+  border: 1px solid rgba(123, 214, 106, 0.22) !important;
+  box-shadow: 0 30px 60px -16px rgba(0, 0, 0, 0.6) !important;
+  animation: card-in 0.4s var(--ease-out-soft) both;
+}
+.varmint-card { max-width: 360px; }
+@keyframes card-in {
+  from { opacity: 0; transform: translateY(10px) scale(0.96); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.contract-amount {
+  background: linear-gradient(180deg, #fff2c4, var(--gold) 70%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  filter: drop-shadow(0 0 24px rgba(245, 196, 90, 0.35));
+}
+
+/* ───────── Auth screen ───────── */
+
+.auth-screen {
+  background:
+    radial-gradient(50% 40% at 50% 20%, rgba(123, 214, 106, 0.10), transparent 60%),
+    radial-gradient(60% 40% at 50% 100%, rgba(168, 107, 60, 0.12), transparent 60%);
+}
+.auth-card {
+  animation: card-in 0.55s var(--ease-out-soft) both;
+}
+.auth-form input {
+  background: rgba(11, 22, 18, 0.6);
+  border: 1px solid var(--border);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.auth-form input:focus {
+  outline: none;
+  border-color: rgba(123, 214, 106, 0.45);
+  box-shadow: 0 0 0 3px rgba(123, 214, 106, 0.12);
+}
+
+/* ───────── Screen entrance (staggered) ───────── */
+
+.screen > * {
+  animation: stagger-in 0.55s var(--ease-out-soft) both;
+}
+.screen > *:nth-child(1) { animation-delay: 0.02s; }
+.screen > *:nth-child(2) { animation-delay: 0.08s; }
+.screen > *:nth-child(3) { animation-delay: 0.14s; }
+.screen > *:nth-child(4) { animation-delay: 0.2s; }
+.screen > *:nth-child(5) { animation-delay: 0.26s; }
+.screen > *:nth-child(6) { animation-delay: 0.32s; }
+.screen > *:nth-child(n+7) { animation-delay: 0.38s; }
+@keyframes stagger-in {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* grid items stagger too */
+.plots-grid > *,
+.market-game-grid > *,
+.market-dice-grid > *,
+.row-grid > *,
+.store-grid > * {
+  animation: card-pop 0.55s var(--ease-out-soft) both;
+}
+.plots-grid > *:nth-child(2),
+.market-game-grid > *:nth-child(2) { animation-delay: 0.05s; }
+.plots-grid > *:nth-child(3),
+.market-game-grid > *:nth-child(3) { animation-delay: 0.10s; }
+.plots-grid > *:nth-child(4) { animation-delay: 0.15s; }
+.plots-grid > *:nth-child(5) { animation-delay: 0.20s; }
+.plots-grid > *:nth-child(6) { animation-delay: 0.25s; }
+.plots-grid > *:nth-child(7) { animation-delay: 0.30s; }
+.plots-grid > *:nth-child(8) { animation-delay: 0.35s; }
+.plots-grid > *:nth-child(n+9) { animation-delay: 0.40s; }
+@keyframes card-pop {
+  from { opacity: 0; transform: translateY(8px) scale(0.985); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* ───────── Beta banner refresh ───────── */
+
+.beta-tester-banner {
+  background:
+    linear-gradient(120deg, rgba(255, 196, 107, 0.10), rgba(255, 196, 107, 0.04));
+  border: 1px solid rgba(255, 196, 107, 0.30);
+}
+.beta-tester-banner-text strong { color: var(--gold); }
+
+/* ───────── Harvest burst (RU coin flight) ───────── */
+
+.harvest-burst {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 80;
+}
+.harvest-coin {
+  position: absolute;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 32% 28%, #fff7c4 0%, var(--gold) 45%, #b07c14 100%);
+  box-shadow: 0 0 14px rgba(245, 196, 90, 0.7),
+              inset 0 -3px 6px rgba(0, 0, 0, 0.35);
+  color: #4a2e00;
+  font-family: var(--mono);
+  font-weight: 800;
+  font-size: 10px;
+  display: grid;
+  place-items: center;
+  will-change: transform, opacity;
+  animation: coin-fly 1.1s var(--ease-out-soft) both;
+}
+.harvest-coin::after { content: "₹"; }
+@keyframes coin-fly {
+  0% {
+    opacity: 0;
+    transform: translate(var(--sx, 0), var(--sy, 0)) scale(0.4);
+  }
+  18% { opacity: 1; }
+  100% {
+    opacity: 0;
+    transform: translate(var(--ex, 0), var(--ey, -120px)) scale(1.05) rotate(360deg);
+  }
+}
+
+/* harvest splash ring at click origin */
+.harvest-ring {
+  position: absolute;
+  border: 2px solid rgba(123, 214, 106, 0.55);
+  border-radius: 50%;
+  width: 12px; height: 12px;
+  transform: translate(-50%, -50%);
+  animation: ring-out 0.8s ease-out both;
+}
+@keyframes ring-out {
+  from { transform: translate(-50%, -50%) scale(0.3); opacity: 0.9; }
+  to   { transform: translate(-50%, -50%) scale(6);   opacity: 0; }
+}
+
+/* harvest celebration tag on balance */
+.account-balance-hud.is-bursting .hud-balance {
+  animation: balance-pop 0.7s var(--ease-out-soft);
+}
+@keyframes balance-pop {
+  0%   { transform: scale(1); }
+  35%  { transform: scale(1.08); filter: drop-shadow(0 0 24px rgba(123, 214, 106, 0.7)); }
+  100% { transform: scale(1); }
+}
+
+/* ───────── Welcome back card touches ───────── */
+
+.welcome-back-card { max-width: 380px; }
+.welcome-event {
+  margin: 0.35rem 0;
+  font-size: 0.84rem;
+  color: var(--muted);
+  padding-left: 0.6rem;
+  border-left: 2px solid rgba(255, 255, 255, 0.06);
+}
+.welcome-event--attack { color: var(--danger); border-left-color: rgba(246, 133, 124, 0.5); }
+.welcome-event--block  { color: var(--green);  border-left-color: rgba(123, 214, 106, 0.5); }
+
+/* ───────── Misc cleanup ───────── */
+
+.plot-yield small { color: var(--muted); }
+.detail-hero h1 { letter-spacing: -0.015em; }
+
+/* leaf scrollbar */
+::-webkit-scrollbar {
+  width: 10px; height: 10px;
+}
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, rgba(123, 214, 106, 0.25), rgba(123, 214, 106, 0.10));
+  border-radius: 10px;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, rgba(123, 214, 106, 0.45), rgba(123, 214, 106, 0.18));
+  background-clip: padding-box;
+}
+
+::selection {
+  background: rgba(123, 214, 106, 0.30);
+  color: #fff;
+}
+
+/* reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+/* ───────── Growing plant art (P1 — plot + row cycle) ───────── */
+
+/* Per-card sprite, anchored bottom-right of the plot card */
+.plot-plant {
+  position: absolute;
+  right: 0.85rem;
+  bottom: 1rem;
+  width: 56px;
+  height: 64px;
+  pointer-events: none;
+  z-index: 1;
+  --g: var(--grow, 0);
+  transform-origin: 50% 100%;
+  filter: drop-shadow(0 6px 10px rgba(0, 0, 0, 0.35))
+          drop-shadow(0 0 14px rgba(123, 214, 106, calc(var(--g) * 0.35)));
+}
+
+/* mound of soil — always visible on unlocked plot */
+.plot-plant-soil {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: 40px;
+  height: 10px;
+  transform: translateX(-50%);
+  background:
+    radial-gradient(ellipse at 50% 100%, #6a4424 0%, #4a2d16 60%, transparent 75%);
+  border-radius: 50% / 80%;
+}
+.plot-plant-soil::after {
+  /* tiny seed/dots speckle */
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(circle at 28% 55%, rgba(0, 0, 0, 0.35) 1px, transparent 1.5px),
+    radial-gradient(circle at 72% 65%, rgba(255, 255, 255, 0.08) 1px, transparent 1.5px),
+    radial-gradient(circle at 50% 45%, rgba(0, 0, 0, 0.3) 1px, transparent 1.5px);
+  background-size: 22px 22px;
+  opacity: 0.9;
+}
+
+/* stem grows up from soil; height ties to --grow */
+.plot-plant-stem {
+  position: absolute;
+  left: 50%;
+  bottom: 6px;
+  width: 2.5px;
+  height: calc(8px + var(--g) * 34px);
+  background: linear-gradient(180deg, var(--leaf) 0%, var(--green) 55%, var(--green-deep) 100%);
+  border-radius: 3px;
+  transform: translateX(-50%);
+  transform-origin: 50% 100%;
+  transition: height 0.4s var(--ease-organic);
+  box-shadow: 0 0 6px rgba(123, 214, 106, calc(var(--g) * 0.5));
+  animation: plant-sway 4.5s ease-in-out infinite;
+}
+@keyframes plant-sway {
+  0%, 100% { transform: translateX(-50%) rotate(0deg); }
+  50%      { transform: translateX(-50%) rotate(2deg); }
+}
+
+/* three leaves — emerge at thresholds, scale + tilt by --g */
+.plot-plant-leaf {
+  position: absolute;
+  bottom: calc(8px + var(--g) * 18px);
+  left: 50%;
+  width: 14px;
+  height: 9px;
+  background: linear-gradient(135deg, var(--leaf) 0%, var(--green-deep) 100%);
+  border-radius: 100% 0 100% 0;
+  opacity: 0;
+  transform-origin: 0% 100%;
+  transition: opacity 0.5s var(--ease-organic),
+              transform 0.5s var(--ease-organic),
+              bottom 0.5s var(--ease-organic);
+}
+.plot-plant-leaf--l {
+  /* left leaf — appears earliest */
+  border-radius: 100% 0 100% 0;
+  transform: translateX(-100%) rotate(-30deg) scale(calc(0.4 + var(--g) * 0.9));
+  opacity: clamp(0, calc((var(--g) - 0.05) * 4), 1);
+  animation: leaf-bob 5.5s ease-in-out infinite;
+}
+.plot-plant-leaf--r {
+  border-radius: 0 100% 0 100%;
+  transform: translateX(0%) rotate(30deg) scale(calc(0.4 + var(--g) * 0.9));
+  opacity: clamp(0, calc((var(--g) - 0.2) * 3), 1);
+  animation: leaf-bob 5.5s ease-in-out infinite reverse;
+  animation-delay: 0.4s;
+}
+.plot-plant-leaf--c {
+  /* crown leaf, only in late grow */
+  bottom: calc(14px + var(--g) * 32px);
+  width: 12px;
+  height: 12px;
+  border-radius: 60% 60% 30% 30%;
+  background: radial-gradient(circle at 35% 30%, var(--leaf), var(--green-deep) 75%);
+  transform: translateX(-50%) scale(calc(0.2 + var(--g) * 1));
+  opacity: clamp(0, calc((var(--g) - 0.55) * 2.8), 1);
+  animation: leaf-bob 6s ease-in-out infinite;
+}
+@keyframes leaf-bob {
+  0%, 100% { filter: brightness(1) saturate(1); }
+  50%      { filter: brightness(1.1) saturate(1.15); }
+}
+
+/* ripe glow — full grown plant pulses to signal harvest */
+.plot-plant[data-stage="ripe"] {
+  animation: ripe-glow 1.8s ease-in-out infinite;
+}
+@keyframes ripe-glow {
+  0%, 100% { filter: drop-shadow(0 6px 10px rgba(0, 0, 0, 0.35))
+                     drop-shadow(0 0 12px rgba(245, 196, 90, 0.35)); }
+  50%      { filter: drop-shadow(0 6px 10px rgba(0, 0, 0, 0.35))
+                     drop-shadow(0 0 24px rgba(245, 196, 90, 0.75)); }
+}
+
+/* keep plant clear of bottom progress bar */
+.plot-card--grid .plot-cycle { z-index: 2; }
+
+/* on hover, plants pop forward a touch */
+button.plot-card:hover .plot-plant {
+  transform: scale(1.06);
+  transition: transform 0.35s var(--ease-out-soft);
+}
+
+/* hide plant on locked / cluster cards (no plant there) */
+.plot-card-locked .plot-plant,
+.plot-card--cluster .plot-plant,
+.orchard-tree-card .plot-plant,
+.orchard-empty-card .plot-plant { display: none; }
+
+/* shift the plot-yield label slightly to avoid overlap with plant */
+.plot-card--grid .plot-card-top { padding-right: 4rem; }
+.plot-card--grid:not(.plot-card-locked):not(.plot-card--cluster) .plot-yield {
+  position: relative;
+  z-index: 1;
+}
+
+/* ───────── Row-card mini plants (in plot detail) ───────── */
+
+.row-card {
+  padding-bottom: 1.1rem;
+  min-height: 5.25rem;
+}
+.row-plant {
+  position: absolute;
+  right: 0.45rem;
+  bottom: 0.5rem;
+  width: 26px;
+  height: 30px;
+  pointer-events: none;
+  --g: var(--grow, 0);
+  filter: drop-shadow(0 0 8px rgba(123, 214, 106, calc(var(--g) * 0.4)));
+}
+.row-plant-stem {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: 2px;
+  height: calc(3px + var(--g) * 22px);
+  background: linear-gradient(180deg, var(--leaf), var(--green-deep));
+  border-radius: 2px;
+  transform: translateX(-50%);
+  transition: height 0.35s var(--ease-organic);
+  animation: plant-sway 4s ease-in-out infinite;
+}
+.row-plant-leaf {
+  position: absolute;
+  bottom: calc(3px + var(--g) * 12px);
+  left: 50%;
+  width: 9px;
+  height: 6px;
+  background: linear-gradient(135deg, var(--leaf), var(--green-deep));
+  opacity: 0;
+  transition: opacity 0.45s var(--ease-organic),
+              transform 0.45s var(--ease-organic),
+              bottom 0.45s var(--ease-organic);
+}
+.row-plant-leaf--l {
+  border-radius: 100% 0 100% 0;
+  transform: translateX(-100%) rotate(-28deg) scale(calc(0.4 + var(--g) * 0.9));
+  opacity: clamp(0, calc((var(--g) - 0.1) * 3), 1);
+}
+.row-plant-leaf--r {
+  border-radius: 0 100% 0 100%;
+  transform: translateX(0%) rotate(28deg) scale(calc(0.4 + var(--g) * 0.9));
+  opacity: clamp(0, calc((var(--g) - 0.25) * 2.6), 1);
+}
+.row-card .row-name,
+.row-card .row-rate {
+  position: relative;
+  z-index: 1;
+  padding-right: 2rem;
+}
+
+/* ───────── Tier consistency: shared header strip + locked + empty cards ───────── */
+
+.screen-header { margin-bottom: 1rem; }
+.screen-header h1 {
+  font-family: var(--font-display);
+  font-weight: 800;
+  margin: 0 0 0.35rem;
+  font-size: clamp(1.6rem, 2.2vw, 2rem);
+  letter-spacing: -0.015em;
+  background: linear-gradient(180deg, #e8ffe1 0%, var(--leaf) 75%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+.screen-header .screen-lead {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.92rem;
+  line-height: 1.5;
+  max-width: 52rem;
+}
+
+/* the 3-pill total strip seen on Vegetables + Orchards (and reusable elsewhere) */
+.tier-stat-strip {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(8.5rem, 1fr));
+  gap: 0.7rem;
+  margin: 0.5rem 0 1.25rem;
+}
+.tier-stat-pill {
+  position: relative;
+  padding: 0.85rem 1rem;
+  border-radius: 14px;
+  border: 1px solid var(--border);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.025), rgba(255, 255, 255, 0)),
+    linear-gradient(180deg, var(--panel) 0%, var(--panel2) 100%);
+  box-shadow: var(--shadow-card);
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  overflow: hidden;
+  transition: transform 0.3s var(--ease-out-soft), border-color 0.3s var(--ease-out-soft);
+}
+.tier-stat-pill::before {
+  content: "";
+  position: absolute;
+  left: 0; right: 0; top: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--leaf), transparent);
+  opacity: 0.5;
+}
+.tier-stat-pill:hover { transform: translateY(-2px); border-color: rgba(123, 214, 106, 0.30); }
+.tier-stat-pill--accent {
+  background:
+    radial-gradient(80% 80% at 0% 0%, rgba(123, 214, 106, 0.12), transparent 60%),
+    linear-gradient(180deg, var(--panel) 0%, var(--panel2) 100%);
+  border-color: rgba(123, 214, 106, 0.25);
+}
+.tier-stat-k {
+  font-size: 0.66rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.tier-stat-v {
+  font-family: var(--mono);
+  font-weight: 700;
+  font-size: 1.25rem;
+  color: var(--leaf);
+}
+.tier-stat-v small {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--muted);
+  margin-left: 0.15rem;
+}
+
+/* tier locked card (Vegetables before level 20) */
+.tier-locked-card {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  padding: 1.25rem;
+  border-radius: 16px;
+  border: 1px dashed rgba(255, 196, 107, 0.4);
+  background:
+    radial-gradient(70% 80% at 0% 0%, rgba(255, 196, 107, 0.08), transparent 55%),
+    linear-gradient(180deg, var(--panel) 0%, var(--panel2) 100%);
+  box-shadow: var(--shadow-card);
+}
+.tier-locked-emoji {
+  font-size: 2.5rem;
+  filter: grayscale(0.4) drop-shadow(0 6px 12px rgba(0, 0, 0, 0.45));
+  animation: balance-pulse 4s ease-in-out infinite;
+}
+.tier-locked-title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.15rem;
+  color: var(--amber);
+}
+.tier-locked-sub {
+  margin: 0.2rem 0 0;
+  color: var(--muted);
+  font-size: 0.9rem;
+  line-height: 1.45;
+}
+
+/* orchard empty hero */
+.orchard-empty-card {
+  display: flex !important;
+  gap: 1rem;
+  align-items: center;
+  padding: 1.25rem !important;
+  border-style: dashed !important;
+}
+.orchard-empty-emoji {
+  font-size: 2.6rem;
+  filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.45));
+  animation: brand-breathe 6s ease-in-out infinite;
+}
+.orchard-empty-title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 700;
+  color: var(--leaf);
+  font-size: 1.1rem;
+}
+.orchard-empty-card .plot-sub { margin-top: 0.25rem; }
+
+/* ───────── Tree sprite (Orchards cards) ───────── */
+
+.plot-tree {
+  position: absolute;
+  right: 0.85rem;
+  bottom: 0.95rem;
+  width: 60px;
+  height: 76px;
+  pointer-events: none;
+  z-index: 1;
+  filter: drop-shadow(0 8px 12px rgba(0, 0, 0, 0.4));
+  transform-origin: 50% 100%;
+  transition: transform 0.45s var(--ease-out-soft);
+}
+.plot-card:hover .plot-tree { transform: scale(1.05); }
+
+.plot-tree-soil {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: 44px;
+  height: 10px;
+  transform: translateX(-50%);
+  background: radial-gradient(ellipse at 50% 100%, #6a4424 0%, #4a2d16 60%, transparent 75%);
+  border-radius: 50% / 80%;
+}
+.plot-tree-trunk {
+  position: absolute;
+  left: 50%;
+  bottom: 6px;
+  width: 5px;
+  height: 26px;
+  transform: translateX(-50%);
+  background: linear-gradient(180deg, #6a4424, #3e2614);
+  border-radius: 3px 3px 1px 1px;
+  box-shadow: inset -1px 0 0 rgba(0, 0, 0, 0.4);
+}
+.plot-tree-canopy {
+  position: absolute;
+  left: 50%;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, var(--leaf) 0%, var(--green) 55%, var(--green-deep) 100%);
+  box-shadow: inset -4px -4px 8px rgba(0, 0, 0, 0.25),
+              inset 4px 4px 6px rgba(255, 255, 255, 0.06);
+}
+.plot-tree-canopy--a {
+  width: 36px; height: 36px;
+  bottom: 28px;
+  transform: translate(-50%, 0);
+}
+.plot-tree-canopy--b {
+  width: 24px; height: 24px;
+  bottom: 42px;
+  transform: translate(-90%, 0);
+}
+.plot-tree-canopy--c {
+  width: 22px; height: 22px;
+  bottom: 44px;
+  transform: translate(-10%, 0);
+}
+
+/* inactive tree → grey/wilted */
+.plot-tree:not(.plot-tree--active) {
+  filter: grayscale(0.85) brightness(0.78) drop-shadow(0 6px 10px rgba(0, 0, 0, 0.4));
+}
+.plot-tree--active {
+  animation: tree-sway 6s ease-in-out infinite;
+}
+@keyframes tree-sway {
+  0%, 100% { transform: rotate(0deg); }
+  50%      { transform: rotate(1.5deg); }
+}
+.plot-tree--active .plot-tree-canopy {
+  animation: canopy-bob 5s ease-in-out infinite;
+}
+.plot-tree--active .plot-tree-canopy--b { animation-delay: 0.4s; }
+.plot-tree--active .plot-tree-canopy--c { animation-delay: 0.8s; }
+@keyframes canopy-bob {
+  0%, 100% { filter: brightness(1); }
+  50%      { filter: brightness(1.1); }
+}
+
+/* keep tree card text clear of the tree sprite */
+.orchard-tree-card .plot-card-top { padding-right: 4.5rem; }
+
+/* mobile sizes */
+@media (max-width: 768px) {
+  .plot-tree { width: 48px; height: 60px; right: 0.6rem; bottom: 0.8rem; }
+  .plot-tree-trunk { height: 20px; }
+  .plot-tree-canopy--a { width: 28px; height: 28px; bottom: 22px; }
+  .plot-tree-canopy--b { width: 18px; height: 18px; bottom: 32px; }
+  .plot-tree-canopy--c { width: 18px; height: 18px; bottom: 34px; }
+  .orchard-tree-card .plot-card-top { padding-right: 3.5rem; }
+}
+
+/* the tier locked card on narrow screens */
+@media (max-width: 540px) {
+  .tier-locked-card,
+  .orchard-empty-card { flex-direction: column; align-items: flex-start; text-align: left; }
+}
+
+/* tier locked-plot lock chip + visual */
+.plot-name-lock {
+  display: inline-grid;
+  place-items: center;
+  width: 1.15rem;
+  height: 1.15rem;
+  margin-right: 0.4rem;
+  border-radius: 0.4rem;
+  background: rgba(255, 196, 107, 0.15);
+  border: 1px solid rgba(255, 196, 107, 0.35);
+  color: var(--gold);
+  font-size: 0.7rem;
+  line-height: 1;
+}
+
+.tier-plot-card-locked .plot-card-main,
+.tier-plot-card-locked .plot-yield { opacity: 0.7; }
+
+/* ──────────────────────────────────────────────────────────────────────────
+   Per-plot accent themes (P2)
+   Each accent class declares CSS variables that the plant, glow, and card
+   gradient consume. Per-species overrides via data-plot-id="N" then layer
+   on top for hero plots (Carrot, Beetroot, Ginger, etc.) — wiring untouched.
+   ────────────────────────────────────────────────────────────────────────── */
+
+/* Defaults if no accent class matched */
+.plot-card,
+.row-card,
+.detail-hero {
+  --acc: var(--green);
+  --acc-2: var(--green-deep);
+  --acc-soft: rgba(123, 214, 106, 0.10);
+  --acc-strong: rgba(123, 214, 106, 0.28);
+  --acc-glow: rgba(123, 214, 106, 0.45);
+}
+
+/* Group accents — bigger visual swing than just border color */
+.plot-card.accent-green,
+.row-card.accent-green,
+.detail-hero.accent-green {
+  --acc: #7bd66a;
+  --acc-2: #2f8a3a;
+  --acc-soft: rgba(123, 214, 106, 0.12);
+  --acc-strong: rgba(123, 214, 106, 0.32);
+  --acc-glow: rgba(123, 214, 106, 0.45);
+}
+
+.plot-card.accent-cyan,
+.row-card.accent-cyan,
+.detail-hero.accent-cyan {
+  --acc: #5ce0d4;
+  --acc-2: #1a8a82;
+  --acc-soft: rgba(92, 224, 212, 0.12);
+  --acc-strong: rgba(92, 224, 212, 0.32);
+  --acc-glow: rgba(92, 224, 212, 0.50);
+}
+
+.plot-card.accent-blue,
+.row-card.accent-blue,
+.detail-hero.accent-blue {
+  --acc: #74b9e8;
+  --acc-2: #2a5f9c;
+  --acc-soft: rgba(116, 185, 232, 0.12);
+  --acc-strong: rgba(116, 185, 232, 0.32);
+  --acc-glow: rgba(116, 185, 232, 0.45);
+}
+
+.plot-card.accent-purple,
+.row-card.accent-purple,
+.detail-hero.accent-purple {
+  --acc: #c9a7ff;
+  --acc-2: #6e3fb8;
+  --acc-soft: rgba(201, 167, 255, 0.14);
+  --acc-strong: rgba(201, 167, 255, 0.34);
+  --acc-glow: rgba(201, 167, 255, 0.50);
+}
+
+.plot-card.accent-amber,
+.row-card.accent-amber,
+.detail-hero.accent-amber {
+  --acc: #ffc46b;
+  --acc-2: #b46d1a;
+  --acc-soft: rgba(255, 196, 107, 0.14);
+  --acc-strong: rgba(255, 196, 107, 0.36);
+  --acc-glow: rgba(255, 196, 107, 0.55);
+}
+
+/* Per-species hero overrides — picks one signature plant per group */
+.plot-card[data-plot-id="1"],
+.row-card[data-plot-id="1"],
+.detail-hero[data-plot-id="1"] {
+  /* Carrot — classic orange */
+  --acc: #ff8e3c;
+  --acc-2: #b04612;
+  --acc-soft: rgba(255, 142, 60, 0.14);
+  --acc-strong: rgba(255, 142, 60, 0.40);
+  --acc-glow: rgba(255, 142, 60, 0.55);
+}
+.plot-card[data-plot-id="4"],
+.row-card[data-plot-id="4"],
+.detail-hero[data-plot-id="4"] {
+  /* Beetroot — deep magenta */
+  --acc: #ff5d9d;
+  --acc-2: #8a1a4f;
+  --acc-soft: rgba(255, 93, 157, 0.14);
+  --acc-strong: rgba(255, 93, 157, 0.38);
+  --acc-glow: rgba(255, 93, 157, 0.55);
+}
+.plot-card[data-plot-id="5"],
+.row-card[data-plot-id="5"],
+.detail-hero[data-plot-id="5"] {
+  /* Radish — coral pink */
+  --acc: #ff7a8a;
+  --acc-2: #9a2536;
+  --acc-soft: rgba(255, 122, 138, 0.13);
+  --acc-strong: rgba(255, 122, 138, 0.36);
+  --acc-glow: rgba(255, 122, 138, 0.50);
+}
+.plot-card[data-plot-id="10"],
+.row-card[data-plot-id="10"],
+.detail-hero[data-plot-id="10"] {
+  /* Ginger — warm gold */
+  --acc: #f0b657;
+  --acc-2: #8c5a1a;
+  --acc-soft: rgba(240, 182, 87, 0.14);
+  --acc-strong: rgba(240, 182, 87, 0.36);
+  --acc-glow: rgba(240, 182, 87, 0.55);
+}
+.plot-card[data-plot-id="14"],
+.row-card[data-plot-id="14"],
+.detail-hero[data-plot-id="14"] {
+  /* Taro — soft lilac */
+  --acc: #b8a5e8;
+  --acc-2: #5a3f8c;
+  --acc-soft: rgba(184, 165, 232, 0.14);
+  --acc-strong: rgba(184, 165, 232, 0.36);
+  --acc-glow: rgba(184, 165, 232, 0.50);
+}
+.plot-card[data-plot-id="16"],
+.row-card[data-plot-id="16"],
+.detail-hero[data-plot-id="16"] {
+  /* Turmeric — vivid saffron */
+  --acc: #ffae3c;
+  --acc-2: #b56612;
+  --acc-soft: rgba(255, 174, 60, 0.14);
+  --acc-strong: rgba(255, 174, 60, 0.42);
+  --acc-glow: rgba(255, 174, 60, 0.60);
+}
+.plot-card[data-plot-id="23"],
+.row-card[data-plot-id="23"],
+.detail-hero[data-plot-id="23"] {
+  /* Lotus root — pale pond rose */
+  --acc: #f3b6c7;
+  --acc-2: #aa5a72;
+  --acc-soft: rgba(243, 182, 199, 0.14);
+  --acc-strong: rgba(243, 182, 199, 0.34);
+  --acc-glow: rgba(243, 182, 199, 0.50);
+}
+.plot-card[data-plot-id="28"],
+.row-card[data-plot-id="28"],
+.detail-hero[data-plot-id="28"] {
+  /* Wasabi — vivid bright green */
+  --acc: #b7ff5c;
+  --acc-2: #4a8c1a;
+  --acc-soft: rgba(183, 255, 92, 0.14);
+  --acc-strong: rgba(183, 255, 92, 0.38);
+  --acc-glow: rgba(183, 255, 92, 0.55);
+}
+.plot-card[data-plot-id="62"],
+.row-card[data-plot-id="62"],
+.detail-hero[data-plot-id="62"] {
+  /* Ube — vivid purple yam */
+  --acc: #b063ff;
+  --acc-2: #4d1e8a;
+  --acc-soft: rgba(176, 99, 255, 0.16);
+  --acc-strong: rgba(176, 99, 255, 0.40);
+  --acc-glow: rgba(176, 99, 255, 0.60);
+}
+
+/* Pipe the accent into every visual surface */
+.plot-card.accent-green,
+.plot-card.accent-cyan,
+.plot-card.accent-blue,
+.plot-card.accent-purple,
+.plot-card.accent-amber {
+  border-color: var(--acc-strong);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.025), rgba(255, 255, 255, 0) 40%),
+    radial-gradient(140% 90% at 100% 0%, var(--acc-soft), transparent 55%),
+    linear-gradient(180deg, var(--panel) 0%, var(--panel2) 100%);
+}
+
+button.plot-card:hover {
+  border-color: var(--acc-strong);
+  box-shadow: var(--shadow-card),
+              0 0 0 1px var(--acc-strong),
+              0 0 28px -6px var(--acc-glow);
+}
+
+/* Plot name dot tinted to accent */
+.plot-card .plot-dot {
+  background: var(--acc);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--acc) 18%, transparent),
+              0 0 12px var(--acc);
+}
+
+/* Plot yield + accent name color */
+.plot-card .plot-yield { color: var(--acc); }
+.plot-card .plot-name { color: var(--acc); }
+
+/* Cycle bar uses accent */
+.plot-card .plot-cycle {
+  background: linear-gradient(90deg, var(--acc-2), var(--acc));
+  box-shadow: 0 0 14px var(--acc-glow);
+}
+
+/* Seg bar fills tinted to accent */
+.plot-card.accent-green .seg-bar span.on,
+.plot-card.accent-cyan .seg-bar span.on,
+.plot-card.accent-blue .seg-bar span.on,
+.plot-card.accent-purple .seg-bar span.on,
+.plot-card.accent-amber .seg-bar span.on {
+  background: linear-gradient(90deg, var(--acc-2), var(--acc));
+}
+
+/* Decorative top-right halo on grid cards now uses accent */
+.plot-card--grid::after {
+  background: radial-gradient(circle, var(--acc-soft), transparent 65%);
+}
+
+/* The plant: stem + leaves tinted by accent (was pure green) */
+.plot-card .plot-plant-stem {
+  background: linear-gradient(180deg, var(--acc) 0%, var(--acc-2) 100%);
+  box-shadow: 0 0 6px color-mix(in srgb, var(--acc-glow) 70%, transparent);
+}
+.plot-card .plot-plant-leaf {
+  background: linear-gradient(135deg, var(--acc) 0%, var(--acc-2) 100%);
+}
+.plot-card .plot-plant-leaf--c {
+  background: radial-gradient(circle at 35% 30%, var(--acc) 0%, var(--acc-2) 80%);
+}
+.plot-card .plot-plant {
+  filter: drop-shadow(0 6px 10px rgba(0, 0, 0, 0.35))
+          drop-shadow(0 0 14px color-mix(in srgb, var(--acc-glow) calc(var(--g, 0) * 70%), transparent));
+}
+
+/* Row card mini-plant follows accent too */
+.row-card .row-plant-stem {
+  background: linear-gradient(180deg, var(--acc), var(--acc-2));
+}
+.row-card .row-plant-leaf {
+  background: linear-gradient(135deg, var(--acc), var(--acc-2));
+}
+.row-card .row-progress {
+  background: linear-gradient(90deg, var(--acc-2), var(--acc));
+  box-shadow: 0 0 10px var(--acc-glow);
+}
+.row-card .row-name { color: var(--acc); }
+.row-card.accent-green,
+.row-card.accent-cyan,
+.row-card.accent-blue,
+.row-card.accent-purple,
+.row-card.accent-amber {
+  border-color: var(--acc-strong);
+  background:
+    radial-gradient(140% 90% at 100% 0%, var(--acc-soft), transparent 55%),
+    linear-gradient(180deg, var(--panel) 0%, var(--panel2) 100%);
+}
+
+/* Detail hero — tint title gradient by accent */
+.detail-hero h1 {
+  background: linear-gradient(180deg, color-mix(in srgb, var(--acc) 30%, #ffffff) 0%, var(--acc) 80%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+.detail-hero {
+  border-color: var(--acc-strong);
+  background:
+    radial-gradient(140% 90% at 0% 0%, var(--acc-soft), transparent 55%),
+    linear-gradient(180deg, var(--panel) 0%, var(--panel2) 100%);
+}
+
+/* Locked card chevron icon uses accent (when known) */
+.plot-card-locked { border-color: color-mix(in srgb, var(--acc-strong) 60%, transparent); }
+.plot-card-locked .plot-name { color: var(--text); }
+
+/* Cluster card keeps its signature green */
+.plot-card--cluster {
+  --acc: var(--green);
+  --acc-2: var(--green-deep);
+  --acc-soft: rgba(123, 214, 106, 0.16);
+  --acc-strong: rgba(123, 214, 106, 0.40);
+  --acc-glow: rgba(123, 214, 106, 0.55);
+}

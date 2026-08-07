@@ -1,0 +1,20 @@
+{
+  "name": "root-manager",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Root Manager — operator-only custodial/D1/Solana CLI. Build .exe with build-exe.ps1.",
+  "scripts": {
+    "start": "node index.mjs",
+    "bundle": "npx esbuild index.mjs --bundle --platform=node --target=node18 --format=cjs --outfile=dist/cli.cjs --legal-comments=none",
+    "exe": "npm run bundle && npx pkg dist/cli.cjs --targets node18-win-x64 --output \"dist/Root Manager.exe\""
+  },
+  "dependencies": {
+    "@solana/spl-token": "^0.4.14",
+    "@solana/web3.js": "^1.98.4"
+  },
+  "devDependencies": {
+    "esbuild": "^0.24.2",
+    "pkg": "^5.8.1"
+  }
+}

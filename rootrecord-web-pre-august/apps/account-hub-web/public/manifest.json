@@ -1,0 +1,8 @@
+{
+  "short_name": "Account Hub",
+  "name": "RootRecord Account Hub",
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#0B0D12",
+  "background_color": "#0B0D12"
+}

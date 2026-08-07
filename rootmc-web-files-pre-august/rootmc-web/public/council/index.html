@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Council — RootMC</title>
+  <meta name="description" content="RootMC Council of Voters — live voting power shares, weighted polls, proposals, bills, and treasury grants.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..700&family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <meta name="theme-color" content="#0a0f10">
+  <link rel="canonical" href="https://rootmc.net/council/">
+  <link rel="stylesheet" href="/styles/rootmc.css">
+  <style>
+    .council-hero { margin-bottom: 1.25rem; max-width: 42rem; }
+    .council-grid { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); margin: 1.25rem 0; }
+    .council-stat { text-align: center; padding: 1rem; background: rgba(255,255,255,.04); border-radius: 10px; }
+    .council-stat strong { display: block; font-size: 1.45rem; color: var(--rmc-gold, #f5b942); }
+    .council-table { width: 100%; border-collapse: collapse; font-size: .92rem; }
+    .council-table th, .council-table td { padding: .65rem .5rem; border-bottom: 1px solid rgba(255,255,255,.06); text-align: left; vertical-align: middle; }
+    .council-table th { color: var(--rmc-muted); font-weight: 600; font-size: .78rem; text-transform: uppercase; letter-spacing: .04em; }
+    .council-table .gold { color: var(--rmc-gold, #f5b942); font-weight: 600; }
+    .share-bar { height: 8px; background: rgba(255,255,255,.08); border-radius: 4px; overflow: hidden; min-width: 80px; }
+    .share-bar span { display: block; height: 100%; background: linear-gradient(90deg, #c9a227, #f5b942); border-radius: 4px; }
+    .policy-formula { font-family: "JetBrains Mono", ui-monospace, monospace; font-size: .85rem; padding: .85rem 1rem; background: rgba(0,0,0,.25); border-radius: 8px; white-space: pre-wrap; margin: .75rem 0; }
+    .gov-list { list-style: none; padding: 0; margin: 0; }
+    .gov-list li { padding: .75rem 0; border-bottom: 1px solid rgba(255,255,255,.06); }
+    .gov-list a { font-weight: 600; }
+    .gov-meta { font-size: .85rem; color: var(--rmc-muted); margin-top: .25rem; }
+    .council-note { font-size: .88rem; color: var(--rmc-muted); }
+    .council-card h3 { margin: 0 0 .5rem; font-size: 1.05rem; }
+    .req-grid { display: grid; gap: 1.25rem; margin-top: 1rem; }
+    @media (min-width: 720px) { .req-grid { grid-template-columns: 1fr 1fr; } }
+    .req-block h3 { margin: 0 0 .5rem; font-size: 1rem; }
+    .req-block ul { margin: .35rem 0 0; padding-left: 1.15rem; font-size: .9rem; color: var(--rmc-muted); }
+    .req-block li { margin-bottom: .35rem; }
+    .req-block li strong { color: var(--rmc-text, #e8ece9); }
+  </style>
+</head>
+<body>
+  <header class="rmc-header">
+    <div class="container rmc-header-inner">
+      <a class="rmc-brand" href="/"><span class="rmc-brand-mark" aria-hidden="true">R</span>RootMC<span class="rmc-brand-tag">SMP</span></a>
+      <nav class="rmc-nav" aria-label="Main">
+        <a href="/">Home</a>
+        <a href="/market/">Market</a>
+        <a href="/economy/">Economy</a>
+        <a href="/council/" aria-current="page">Council</a>
+        <a href="/wiki/">Wiki</a>
+        <a href="https://map.rootmc.net" target="_blank" rel="noopener">Live map</a>
+        <a href="/governance/submit/" class="rmc-nav-cta">Propose</a>
+      </nav>
+      <button class="rmc-nav-toggle" type="button" aria-label="Open menu" data-nav-toggle>
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <main class="container" style="padding-bottom: 3rem;">
+    <p class="wiki-breadcrumb"><a href="/">Home</a> · Council</p>
+    <p class="market-badge">Council of Voters</p>
+    <h1><span class="gold">Council</span></h1>
+    <p class="rmc-muted council-hero">Weighted voting power for linked players. Shares sum to <strong>100%</strong> — outcomes use governance %, not one account = one vote. Proposals, bills, grants, and polls live under this hub.</p>
+    <div id="council-me"></div>
+    <p id="council-sync" class="council-note">Loading roster…</p>
+
+    <div class="council-grid" id="council-stats" hidden>
+      <div class="council-stat"><strong id="stat-eligible">—</strong>Eligible voters</div>
+      <div class="council-stat"><strong id="stat-polls">—</strong>Open polls</div>
+      <div class="council-stat"><strong id="stat-formula">playtime × votes</strong>Power formula</div>
+    </div>
+
+    <section class="rmc-card" style="margin-top: 1.25rem;">
+      <h2 style="margin-top:0">Voters &amp; voting power</h2>
+      <p class="rmc-muted">Linked Minecraft + Discord · ≥1 hour playtime · <a href="/terms/">terms accepted</a> to vote.</p>
+      <div style="overflow-x:auto;margin-top:1rem;">
+        <table class="council-table" id="council-table">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Player</th>
+              <th>Share</th>
+              <th>Bar</th>
+              <th>Vote pts</th>
+              <th>Playtime</th>
+            </tr>
+          </thead>
+          <tbody><tr><td colspan="6" class="rmc-muted">Loading…</td></tr></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="rmc-card" style="margin-top: 1.25rem;">
+      <h2 style="margin-top:0">Open Council votes</h2>
+      <ul id="poll-list" class="gov-list"><li class="rmc-muted">Loading…</li></ul>
+    </section>
+
+    <div class="council-grid" style="margin-top: 1.25rem;">
+      <section class="rmc-card council-card">
+        <h3>Submit proposal</h3>
+        <p class="rmc-muted">Constitution, governance, plugin, or metric changes.</p>
+        <a class="rmc-btn rmc-btn-primary" href="/governance/submit/">Submit</a>
+      </section>
+      <section class="rmc-card council-card">
+        <h3>Citizen proposals</h3>
+        <p class="rmc-muted">Pending items compile into the weekly bill (Sunday HST).</p>
+        <a class="rmc-btn rmc-btn-secondary" href="/governance/proposals/">Browse proposals</a>
+      </section>
+      <section class="rmc-card council-card">
+        <h3>Weekly bills</h3>
+        <p class="rmc-muted">Compiled bills · 48h amendment window before vote.</p>
+        <a class="rmc-btn rmc-btn-secondary" href="/governance/bills/">Browse bills</a>
+      </section>
+      <section class="rmc-card council-card">
+        <h3>Treasury grant</h3>
+        <p class="rmc-muted">Request Gold from reserve · 24h sustained majority.</p>
+        <a class="rmc-btn rmc-btn-secondary" href="/governance/grant/">Request grant</a>
+      </section>
+      <section class="rmc-card council-card">
+        <h3>Constitution</h3>
+        <p class="rmc-muted">Policy and reserve rules for every Council action.</p>
+        <a class="rmc-btn rmc-btn-ghost" href="/wiki/constitution/#governance-voting">Read wiki</a>
+      </section>
+      <section class="rmc-card council-card">
+        <h3>Terms of Service</h3>
+        <p class="rmc-muted">Required before submitting or voting.</p>
+        <a class="rmc-btn rmc-btn-ghost" href="/terms/">Read terms</a>
+      </section>
+    </div>
+
+    <section class="rmc-card" style="margin-top: 1.25rem;" id="vote-requirements">
+      <h2 style="margin-top:0">Vote requirements</h2>
+      <p class="rmc-muted">Who can vote, how weight is calculated, and what each poll type needs to pass. Tallies use <strong>governance %</strong> — not one player = one vote.</p>
+      <div class="req-grid" id="vote-req-grid">
+        <div class="req-block">
+          <h3>Eligibility (submit &amp; vote)</h3>
+          <ul id="req-eligibility">
+            <li><strong>Linked</strong> Minecraft + Discord — <a href="/verify/">verify</a> after <code>/rootmc link</code></li>
+            <li><strong>≥ 1 hour</strong> total playtime on RootMC</li>
+            <li><strong>Terms accepted</strong> — current <a href="/terms/">Terms of Service</a></li>
+            <li>Sign in on the site with Discord to cast votes</li>
+          </ul>
+        </div>
+        <div class="req-block">
+          <h3>Your vote weight</h3>
+          <ul>
+            <li><strong>raw</strong> = playtime (seconds) × vote points</li>
+            <li><strong>share</strong> = your raw ÷ all eligible raw → % of 100%</li>
+            <li><strong>Vote points</strong> = all-time verified listing votes; baseline <strong>1</strong> if none (<code>/vote</code>)</li>
+            <li>Net worth does <strong>not</strong> affect Council weight</li>
+          </ul>
+        </div>
+        <div class="req-block">
+          <h3>Weekly bill vote</h3>
+          <ul id="req-bill">
+            <li>Proposal published <strong>≥ 3 days</strong> before Sunday compile</li>
+            <li><strong>48h</strong> amendment window after bill posts</li>
+            <li>Council vote runs <strong>7 days</strong> — For / Against / Abstain</li>
+            <li>Leading option needs <strong>&gt;50%</strong> of <em>cast</em> weighted votes</li>
+          </ul>
+        </div>
+        <div class="req-block">
+          <h3>Treasury grant vote</h3>
+          <ul id="req-grant">
+            <li>Any eligible linked player may request <strong>1–10,000 G</strong> from reserve</li>
+            <li><strong>Proposer cannot vote</strong> on their own grant</li>
+            <li>Pass or veto: weighted <strong>For &gt; Against</strong> (Abstain does not break ties)</li>
+            <li>That majority must hold <strong>24 hours</strong> unchanged — then auto-payout or veto</li>
+            <li>Poll may stay open up to <strong>30 days</strong></li>
+          </ul>
+        </div>
+        <div class="req-block" style="grid-column: 1 / -1;">
+          <h3>How weighted tallies work</h3>
+          <ul>
+            <li>Each ballot uses your current <strong>share %</strong> as vote weight</li>
+            <li>Site and Discord <strong>#voting</strong> buttons count the same weight</li>
+            <li>You may change your vote until the poll closes (grant clock resets if majority direction flips)</li>
+            <li>Listing-site <strong>Gold rewards</strong> (1–20 G) are separate from governance power</li>
+          </ul>
+          <p class="council-note" style="margin-top:.75rem;" id="req-listing-sites"></p>
+        </div>
+      </div>
+    </section>
+
+    <section class="rmc-card" style="margin-top: 1.25rem;" id="power-section">
+      <h2 style="margin-top:0">How voting power works</h2>
+      <p class="rmc-muted" id="policy-share-note">Each eligible voter holds a share of 100% — all shares sum to exactly 100%.</p>
+      <div class="policy-formula" id="policy-formula">raw = playtime_seconds × vote_points
+share = raw ÷ Σ(all raw) → % of 100%</div>
+      <p class="council-note">Vote points: <strong>1 per verified listing vote</strong> (all-time), baseline <strong>1</strong> when none — run <code>/vote</code> in-game. Net worth does not affect Council weight.</p>
+      <p class="council-note" style="margin-top:.5rem;"><a id="policy-constitution" href="/wiki/constitution/#governance-voting">Full policy in the Constitution</a></p>
+    </section>
+  </main>
+
+  <script src="/governance/governance.js"></script>
+  <script>
+    (async function () {
+      const G = window.RootMcGovernance;
+      const me = await G.loadMe();
+      G.renderStatusBanner(me, G.el("council-me"));
+
+      const [{ data: councilData }, { data: pollData }] = await Promise.all([
+        G.govFetch("council", { method: "GET" }),
+        G.govFetch("polls", { method: "GET" }),
+      ]);
+
+      if (!councilData || !councilData.ok) {
+        G.el("council-sync").textContent = "Could not load Council roster.";
+        return;
+      }
+
+      const policy = councilData.policy || {};
+      const council = councilData.council || [];
+      const polls = (pollData && pollData.polls) || councilData.polls || [];
+
+      G.el("council-sync").textContent =
+        "Synced " + G.fmtDate(councilData.synced_at) + " · " + (councilData.eligible_count || 0) + " eligible voters";
+      G.el("council-stats").hidden = false;
+      G.el("stat-eligible").textContent = String(councilData.eligible_count || 0);
+      G.el("stat-polls").textContent = String(polls.length);
+
+      if (policy.formula) {
+        G.el("stat-formula").textContent = policy.formula.replace(/_/g, " ");
+      }
+      if (policy.share_note) G.el("policy-share-note").textContent = policy.share_note;
+      if (policy.formula) {
+        G.el("policy-formula").textContent = policy.formula + "\nshare = raw ÷ Σ(all raw) → % of 100%";
+      }
+      if (policy.constitution_url) G.el("policy-constitution").href = policy.constitution_url;
+
+      function renderVoteRequirements(p) {
+        p = p || {};
+        const minH = Math.max(1, Math.round((Number(p.min_playtime_seconds) || 3600) / 3600));
+        const holdH = Number(p.grant_majority_hold_hours) || 24;
+        const thresh = Number(p.majority_threshold_pct) || 50;
+        const amendH = Number(p.amendment_hours) || 48;
+        const voteDays = Number(p.bill_vote_days) || 7;
+        const pubDays = Number(p.min_publication_days) || 3;
+        const gMin = Number(p.grant_min_amount) || 1;
+        const gMax = Number(p.grant_max_amount) || 10000;
+        const baseline = Number(p.vote_points_baseline) || 1;
+
+        G.el("req-eligibility").innerHTML =
+          "<li><strong>Linked</strong> Minecraft + Discord — <a href=\"" + G.esc(p.verify_url || "/verify/") + "\">verify</a> after <code>/rootmc link</code></li>" +
+          "<li><strong>≥ " + minH + " hour</strong>" + (minH === 1 ? "" : "s") + " total playtime on RootMC</li>" +
+          "<li><strong>Terms accepted</strong> — <a href=\"" + G.esc(p.terms_url || "/terms/") + "\">Terms of Service</a></li>" +
+          "<li>Sign in on the site with Discord to cast votes</li>";
+
+        G.el("req-bill").innerHTML =
+          "<li>Proposal published <strong>≥ " + pubDays + " days</strong> before Sunday compile</li>" +
+          "<li><strong>" + amendH + "h</strong> amendment window after bill posts</li>" +
+          "<li>Council vote runs <strong>" + voteDays + " days</strong> — For / Against / Abstain</li>" +
+          "<li>Leading option needs <strong>&gt;" + thresh + "%</strong> of <em>cast</em> weighted votes</li>";
+
+        G.el("req-grant").innerHTML =
+          "<li>Any eligible linked player may request <strong>" + gMin.toLocaleString() + "–" + gMax.toLocaleString() + " G</strong> from reserve</li>" +
+          (p.grant_proposer_cannot_vote !== false ? "<li><strong>Proposer cannot vote</strong> on their own grant</li>" : "") +
+          "<li>Pass or veto: weighted <strong>For &gt; Against</strong> (Abstain does not decide grants)</li>" +
+          "<li>That majority must hold <strong>" + holdH + " hours</strong> unchanged — then auto-payout or veto</li>" +
+          "<li>Poll may stay open up to <strong>30 days</strong></li>";
+
+        const sites = Array.isArray(p.listing_sites) ? p.listing_sites : [];
+        const siteNote = G.el("req-listing-sites");
+        if (sites.length) {
+          siteNote.textContent = "Official listing sites for vote points (" + sites.length + "): " +
+            sites.map(function (s) { return s.label || s.id; }).join(", ") + ".";
+        } else {
+          siteNote.textContent = "Vote points: 1 per verified listing vote (all-time), baseline " + baseline + " when none.";
+        }
+      }
+      renderVoteRequirements(policy);
+
+      const tbody = G.el("council-table").querySelector("tbody");
+      if (!council.length) {
+        tbody.innerHTML = "<tr><td colspan=\"6\" class=\"rmc-muted\">No eligible voters yet (need linked account + ≥1h playtime).</td></tr>";
+      } else {
+        tbody.innerHTML = council.map(function (row, i) {
+          const pct = Number(row.share_percent) || 0;
+          const name = row.minecraft_username || "?";
+          return (
+            "<tr>" +
+            "<td>" + (i + 1) + "</td>" +
+            "<td><strong><a href=\"/player/?player=" + encodeURIComponent(name) + "\">" + G.esc(name) + "</a></strong></td>" +
+            "<td class=\"gold\">" + G.fmtPct(pct) + "</td>" +
+            "<td><div class=\"share-bar\" title=\"" + G.fmtPct(pct) + "\"><span style=\"width:" + Math.min(100, pct) + "%\"></span></div></td>" +
+            "<td>" + (Number(row.vote_points) || 1) + "</td>" +
+            "<td>" + G.fmtHours(row.playtime_seconds) + "</td>" +
+            "</tr>"
+          );
+        }).join("");
+      }
+
+      const list = G.el("poll-list");
+      if (!polls.length) {
+        list.innerHTML = "<li class=\"rmc-muted\">No open votes right now.</li>";
+      } else {
+        list.innerHTML = polls.map(function (p) {
+          const grantMeta = p.kind === "grant" && p.grant_amount
+            ? " · Grant " + p.grant_amount + " G → " + G.esc(p.grant_recipient_username || "?")
+            : "";
+          const closeMeta = p.kind === "grant"
+            ? (p.majority_direction && p.majority_since
+              ? "Majority " + p.majority_direction + " since " + G.fmtDate(p.majority_since)
+              : "Awaiting 24h sustained majority")
+            : "Closes " + G.fmtDate(p.closes_at);
+          return (
+            "<li><a href=\"/governance/vote/?id=" + encodeURIComponent(p.id) + "\">" + G.esc(p.title) + "</a>" +
+            (p.kind === "grant" ? " <span class=\"market-badge\">Grant</span>" : "") +
+            "<div class=\"gov-meta\">" + closeMeta + grantMeta +
+            " · For " + G.fmtPct(p.weighted_for_pct) +
+            " · Against " + G.fmtPct(p.weighted_against_pct) + "</div></li>"
+          );
+        }).join("");
+      }
+    })();
+  </script>
+</body>
+</html>

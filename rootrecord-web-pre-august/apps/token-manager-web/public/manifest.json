@@ -1,0 +1,9 @@
+{
+  "short_name": "RR Token",
+  "name": "RootRecord Token Manager",
+  "icons": [],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#07090C",
+  "background_color": "#07090C"
+}
