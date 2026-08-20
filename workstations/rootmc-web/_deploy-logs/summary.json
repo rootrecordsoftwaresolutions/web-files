@@ -1,0 +1,20 @@
+[
+    {
+        "Name":  "rootmc-api",
+        "Exit":  0,
+        "Sec":  65.1,
+        "Ok":  true
+    },
+    {
+        "Name":  "rootmc-web",
+        "Exit":  0,
+        "Sec":  16,
+        "Ok":  true
+    },
+    {
+        "Name":  "rootmc-app",
+        "Exit":  1,
+        "Sec":  2.3,
+        "Ok":  false
+    }
+]

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dataset — Data — RootMC</title>
+  <meta name="description" content="LIVE_DB dataset for a RootMC server.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <meta name="theme-color" content="#0a0e14">
+  <link rel="stylesheet" href="/styles/rootmc.css?v=20260819ivy">
+  <link rel="stylesheet" href="/styles/data-hub.css?v=20260727data">
+</head>
+<body>
+  <header class="rmc-header">
+    <div class="container rmc-header-inner">
+      <a class="rmc-brand" href="/">
+        <span class="rmc-brand-mark" aria-hidden="true">◈</span>
+        RootMC
+        <span class="rmc-brand-tag">Network</span>
+      </a>
+      <nav class="rmc-nav" aria-label="Main" data-site-nav="player" data-site-nav-current="data"></nav>
+      <button class="rmc-nav-toggle" type="button" aria-label="Open menu" data-nav-toggle>
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <main class="container data-hub-main">
+    <p class="wiki-breadcrumb"><a href="/">Home</a> / <a href="/data/">Data</a> / dataset</p>
+    <p><a id="data-back" href="/data/">← catalog</a></p>
+    <div id="data-switch"></div>
+    <h1 class="wiki-page-title" id="data-title">Dataset</h1>
+    <p class="rmc-muted" id="data-meta">Loading…</p>
+    <p class="data-error" id="data-error" hidden></p>
+    <section class="data-card" id="data-summary"></section>
+    <section class="data-card">
+      <h2>Rows</h2>
+      <div id="data-rows"></div>
+    </section>
+    <p class="rmc-muted" style="margin-top:1rem;font-size:0.85rem">
+      JSON: <a id="data-api-link" href="/api/rootmc/live/servers">/api/rootmc/live/…</a>
+    </p>
+  </main>
+
+  <footer class="rmc-footer">
+    <div class="container rmc-footer-meta"><p>RootMC · Data · LIVE_DB</p></div>
+  </footer>
+  <script src="/scripts/site-nav.js?v=20260727data" defer></script>
+  <script src="/scripts/data-scope.js?v=20260727data" defer></script>
+  <script src="/scripts/data/dataset.js?v=20260727data" defer></script>
+<script src="https://rootrecord.info/ava/assets/disruption-banner.js" defer></script>
+</body>
+</html>

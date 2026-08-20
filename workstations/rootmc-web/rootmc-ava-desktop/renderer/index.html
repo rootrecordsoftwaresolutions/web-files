@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Ava Ivy</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600;700&family=IBM+Plex+Mono:wght@400;500&family=Syne:wght@700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header>
+    <h1>Ava Ivy</h1>
+    <p class="sub">Terminal · core · feedback · Slack · crons · release · links · post as Ava</p>
+    <nav>
+      <button type="button" class="tab active" data-page="terminal">Terminal</button>
+      <button type="button" class="tab" data-page="core">Core</button>
+      <button type="button" class="tab" data-page="discord">Discord</button>
+      <button type="button" class="tab" data-page="slack">Slack</button>
+      <button type="button" class="tab" data-page="telegram">Telegram</button>
+      <button type="button" class="tab" data-page="post">Post</button>
+      <button type="button" class="tab" data-page="feedback">Feedback</button>
+      <button type="button" class="tab" data-page="crons">Crons</button>
+      <button type="button" class="tab" data-page="release">Release</button>
+      <button type="button" class="tab" data-page="links">Links</button>
+      <button type="button" class="tab" data-page="settings">Settings</button>
+    </nav>
+  </header>
+  <main>
+    <section id="page-terminal" class="page active page-terminal">
+      <div class="terminal-shell">
+        <div class="terminal-toolbar">
+          <span class="terminal-title">Ava terminal</span>
+          <span id="terminal-run-label" class="terminal-run idle">idle</span>
+          <button type="button" id="terminal-clear">Clear</button>
+          <button type="button" id="terminal-cancel">Cancel</button>
+        </div>
+        <pre id="terminal-out" class="terminal-out" aria-live="polite"></pre>
+      </div>
+      <label class="terminal-filter">Filter commands
+        <input id="terminal-filter" type="search" placeholder="recap, wake, dump, restart…" />
+      </label>
+      <div id="terminal-commands" class="terminal-commands"></div>
+    </section>
+
+    <section id="page-core" class="page page-core">
+      <div class="core-head">
+        <div>
+          <h2 class="cron-title">Core · Ollama 1:1</h2>
+          <p id="core-meta" class="hint-inline">Private 1:1 with local Ava core (Ollama). Turns save under data/training/. Cold starts on this CPU can take 2–3 min; keep model warm.</p>
+        </div>
+        <div class="row">
+          <button type="button" id="core-refresh-status">Refresh status</button>
+          <button type="button" id="core-cancel" disabled>Cancel</button>
+          <button type="button" id="core-clear">Clear chat</button>
+          <button type="button" id="core-new-session">New session</button>
+        </div>
+      </div>
+      <div id="core-history" class="history core-history" aria-live="polite"></div>
+      <label>Message
+        <textarea id="core-draft" class="draft-tall" rows="5" placeholder="Talk to Ava core (Ollama)…"></textarea>
+      </label>
+      <div class="row wrap">
+        <button type="button" id="core-send" class="primary">Send to Ollama</button>
+        <button type="button" id="core-mark-gold">Mark last turn gold</button>
+      </div>
+      <div class="rewrite-bar core-enhance-bar">
+        <span class="rewrite-label">Pass last Ava reply to</span>
+        <div id="core-providers" class="provider-row"></div>
+        <div class="row wrap">
+          <button type="button" id="core-enhance">Enhance</button>
+          <button type="button" id="core-enhance-apply">Use enhance as Ava</button>
+          <button type="button" id="core-enhance-gold">Gold enhance pair</button>
+        </div>
+      </div>
+      <pre id="core-enhance-out" class="compare-out"></pre>
+      <pre id="core-status" class="status"></pre>
+      <details class="response-log" open data-surface="core">
+        <summary>Past responses</summary>
+        <p class="response-log-meta" id="core-response-log-meta">Core turns and agent enhancements.</p>
+        <div id="core-response-log" class="response-log-body"></div>
+        <div class="response-log-actions">
+          <button type="button" data-log-clear="core">Clear log</button>
+        </div>
+      </details>
+    </section>
+
+    <section id="page-discord" class="page">
+      <div class="grid-2">
+        <label>Guild channel
+          <select id="discord-channel"></select>
+        </label>
+        <label>Private / DM
+          <select id="discord-private">
+            <option value="">(none — use guild)</option>
+          </select>
+        </label>
+      </div>
+      <p class="hint-inline">Private overrides guild. Click Ava’s message → draft loads for edit · Delete in the bar · others = reply target.</p>
+      <div id="discord-history" class="history"></div>
+      <div id="discord-reply-bar" class="reply-bar hidden">
+        <span>Selected <strong id="discord-reply-who">?</strong></span>
+        <button type="button" id="discord-edit-load" class="hidden" title="Load into draft to edit">Edit</button>
+        <button type="button" id="discord-delete" class="hidden danger-inline" title="Delete this message">Delete</button>
+        <button type="button" id="discord-reply-clear" title="Clear selection">×</button>
+      </div>
+      <textarea id="discord-draft" class="draft-tall" rows="8" placeholder="Type as Ava…"></textarea>
+      <div class="rewrite-bar" data-surface="discord">
+        <span class="rewrite-label">Rewrite as</span>
+        <div id="discord-providers" class="provider-row"></div>
+        <div class="row wrap">
+          <button type="button" id="discord-refresh">Refresh</button>
+          <button type="button" id="discord-preview">Preview rewrite</button>
+          <button type="button" id="discord-compare">Compare all</button>
+          <button type="button" id="discord-summarize">Summarize chat</button>
+          <button type="button" id="discord-send" class="primary">Send</button>
+          <button type="button" id="discord-save-edit" class="primary hidden">Save edit</button>
+          <button type="button" id="discord-cancel-edit" class="hidden">Cancel edit</button>
+        </div>
+      </div>
+      <pre id="discord-status" class="status"></pre>
+      <pre id="discord-compare" class="compare-out"></pre>
+      <details class="response-log" open data-surface="discord">
+        <summary>Past responses</summary>
+        <p class="response-log-meta" id="discord-response-log-meta">Rewrites, summaries, compares, and sends for this page.</p>
+        <div id="discord-response-log" class="response-log-body"></div>
+        <div class="response-log-actions">
+          <button type="button" data-log-clear="discord">Clear log</button>
+        </div>
+      </details>
+    </section>
+
+    <section id="page-slack" class="page">
+      <label>Channel (joined)
+        <select id="slack-channel"></select>
+      </label>
+      <p class="hint-inline">Includes private channels Ava is in. Click a message to thread-reply.</p>
+      <div id="slack-history" class="history"></div>
+      <div id="slack-reply-bar" class="reply-bar hidden">
+        <span>Thread <strong id="slack-reply-who">?</strong></span>
+        <button type="button" id="slack-reply-clear" title="Clear">×</button>
+      </div>
+      <textarea id="slack-draft" class="draft-tall" rows="8" placeholder="Type as Ava…"></textarea>
+      <div class="rewrite-bar" data-surface="slack">
+        <span class="rewrite-label">Rewrite as</span>
+        <div id="slack-providers" class="provider-row"></div>
+        <div class="row wrap">
+          <button type="button" id="slack-refresh">Refresh</button>
+          <button type="button" id="slack-preview">Preview rewrite</button>
+          <button type="button" id="slack-compare">Compare all</button>
+          <button type="button" id="slack-summarize">Summarize chat</button>
+          <button type="button" id="slack-send" class="primary">Send</button>
+        </div>
+      </div>
+      <pre id="slack-status" class="status"></pre>
+      <pre id="slack-compare" class="compare-out"></pre>
+      <details class="response-log" open data-surface="slack">
+        <summary>Past responses</summary>
+        <p class="response-log-meta" id="slack-response-log-meta">Rewrites, summaries, compares, and sends for this page.</p>
+        <div id="slack-response-log" class="response-log-body"></div>
+        <div class="response-log-actions">
+          <button type="button" data-log-clear="slack">Clear log</button>
+        </div>
+      </details>
+    </section>
+
+    <section id="page-telegram" class="page">
+      <label>Private / known chat
+        <select id="telegram-chat"></select>
+      </label>
+      <p class="hint-inline">History from Ava logs + local buffers (Telegram Bot API has no full history API).</p>
+      <div id="telegram-history" class="history"></div>
+      <div id="telegram-reply-bar" class="reply-bar hidden">
+        <span>Replying to <strong id="telegram-reply-who">?</strong></span>
+        <button type="button" id="telegram-reply-clear" title="Clear reply">×</button>
+      </div>
+      <textarea id="telegram-draft" class="draft-tall" rows="8" placeholder="Type as Ava…"></textarea>
+      <div class="rewrite-bar" data-surface="telegram">
+        <span class="rewrite-label">Rewrite as</span>
+        <div id="telegram-providers" class="provider-row"></div>
+        <div class="row wrap">
+          <button type="button" id="telegram-refresh">Refresh</button>
+          <button type="button" id="telegram-preview">Preview rewrite</button>
+          <button type="button" id="telegram-compare">Compare all</button>
+          <button type="button" id="telegram-summarize">Summarize chat</button>
+          <button type="button" id="telegram-send" class="primary">Send</button>
+        </div>
+      </div>
+      <pre id="telegram-status" class="status"></pre>
+      <pre id="telegram-compare" class="compare-out"></pre>
+      <details class="response-log" open data-surface="telegram">
+        <summary>Past responses</summary>
+        <p class="response-log-meta" id="telegram-response-log-meta">Rewrites, summaries, compares, and sends for this page.</p>
+        <div id="telegram-response-log" class="response-log-body"></div>
+        <div class="response-log-actions">
+          <button type="button" data-log-clear="telegram">Clear log</button>
+        </div>
+      </details>
+    </section>
+
+    <section id="page-post" class="page">
+      <div class="grid-2">
+        <label>Surface
+          <select id="post-surface">
+            <option value="discord">Discord</option>
+            <option value="slack">Slack</option>
+            <option value="telegram">Telegram</option>
+          </select>
+        </label>
+        <label>Preset
+          <select id="post-preset"></select>
+        </label>
+      </div>
+      <label>Channel / chat ID
+        <input id="post-channel" type="text" placeholder="alias or raw ID" />
+      </label>
+      <div class="row wrap" style="margin:0.35rem 0 0.5rem">
+        <button type="button" id="post-refresh-history">Load chat history</button>
+        <span id="post-history-meta" class="hint-inline"></span>
+      </div>
+      <div id="post-history" class="history"></div>
+      <label>Reply / thread ref <span class="hint">(optional)</span>
+        <input id="post-ref" type="text" placeholder="message id or Slack thread_ts" />
+      </label>
+      <label>Message
+        <textarea id="post-draft" class="draft-tall" rows="10" placeholder="Type exactly what Ava should post…"></textarea>
+      </label>
+      <div class="rewrite-bar" data-surface="post">
+        <span class="rewrite-label">Rewrite as</span>
+        <div id="post-providers" class="provider-row"></div>
+      </div>
+      <div class="row">
+        <button type="button" id="post-clear">Clear</button>
+        <button type="button" id="post-preview">Preview rewrite</button>
+        <button type="button" id="post-compare">Compare all</button>
+        <button type="button" id="post-send" class="primary">Post as Ava</button>
+      </div>
+      <pre id="post-status" class="status"></pre>
+      <pre id="post-compare" class="compare-out"></pre>
+      <details class="response-log" open data-surface="post">
+        <summary>Past responses</summary>
+        <p class="response-log-meta" id="post-response-log-meta">Rewrites, compares, and posts for this page.</p>
+        <div id="post-response-log" class="response-log-body"></div>
+        <div class="response-log-actions">
+          <button type="button" data-log-clear="post">Clear log</button>
+        </div>
+      </details>
+    </section>
+
+    <section id="page-feedback" class="page page-feedback">
+      <div class="cron-head">
+        <div>
+          <h2 class="cron-title">Feedback</h2>
+          <p id="feedback-meta" class="hint-inline">In-game /feedback queue + dual post → Discord #development + Slack #feedback</p>
+        </div>
+        <div class="row wrap">
+          <button type="button" id="feedback-refresh-queue">Refresh queue</button>
+          <button type="button" id="feedback-process-next" class="primary">Process next</button>
+          <button type="button" id="feedback-process-drain">Drain queue (×5)</button>
+          <button type="button" id="feedback-refresh-channels">Refresh channels</button>
+          <button type="button" id="feedback-refresh-all">Refresh all</button>
+        </div>
+      </div>
+
+      <div class="feedback-toolbar">
+        <div class="row wrap">
+          <span class="rewrite-label">Queue</span>
+          <button type="button" id="feedback-load-selected">Load into draft</button>
+          <button type="button" id="feedback-draft-from-item">Draft staff reply</button>
+          <button type="button" id="feedback-ack-selected">Ack selected</button>
+          <button type="button" id="feedback-ack-all-queued">Ack all visible</button>
+          <button type="button" id="feedback-copy-item">Copy item</button>
+        </div>
+        <div class="row wrap">
+          <span class="rewrite-label">Delete</span>
+          <button type="button" id="feedback-delete-discord" class="danger-inline">Delete Discord sel</button>
+          <button type="button" id="feedback-delete-slack" class="danger-inline">Delete Slack sel</button>
+          <button type="button" id="feedback-clear-discord" class="danger-inline">Clear Discord Ava msgs</button>
+          <button type="button" id="feedback-clear-slack" class="danger-inline">Clear Slack Ava msgs</button>
+          <button type="button" id="feedback-clear-all" class="danger-inline primary">Clear all + stamp</button>
+        </div>
+        <div class="row wrap" style="align-items:center">
+          <label class="check"><input type="checkbox" id="feedback-clear-discord-opt" checked /> Clear Discord #development</label>
+          <label class="check"><input type="checkbox" id="feedback-clear-slack-opt" checked /> Clear Slack #feedback</label>
+          <label class="check"><input type="checkbox" id="feedback-also-devfeed" /> Also Slack #development-feed</label>
+        </div>
+      </div>
+
+      <div class="grid-2 feedback-grid">
+        <div>
+          <div class="row wrap" style="margin:0 0 0.45rem; align-items:end">
+            <label style="margin:0; flex:1">Queue status
+              <select id="feedback-status-filter">
+                <option value="queued">queued</option>
+                <option value="seen">seen</option>
+                <option value="acked">acked</option>
+                <option value="all">all</option>
+              </select>
+            </label>
+            <button type="button" id="feedback-select-first">Select first</button>
+            <button type="button" id="feedback-deselect">Deselect</button>
+          </div>
+          <div id="feedback-queue" class="feedback-queue"></div>
+        </div>
+        <div>
+          <h3 class="cron-title">Channel peek</h3>
+          <p class="hint-inline">Click a message to select · Ava msgs tagged (ava)</p>
+          <p id="feedback-sel-meta" class="hint-inline">No message selected</p>
+          <div class="row wrap" style="margin:0 0 0.35rem">
+            <button type="button" id="feedback-load-discord-sel">Load Discord → draft</button>
+            <button type="button" id="feedback-load-slack-sel">Load Slack → draft</button>
+            <button type="button" id="feedback-clear-sel">Clear selection</button>
+          </div>
+          <p class="hint-inline">Discord #development</p>
+          <div id="feedback-discord-hist" class="history feedback-hist"></div>
+          <p class="hint-inline">Slack #feedback</p>
+          <div id="feedback-slack-hist" class="history feedback-hist"></div>
+        </div>
+      </div>
+
+      <label>Templates
+        <select id="feedback-template"></select>
+      </label>
+      <div class="row wrap" id="feedback-quick-templates"></div>
+      <div class="row wrap" style="margin:0.35rem 0">
+        <span class="rewrite-label">Insert</span>
+        <button type="button" id="feedback-insert-stamp">Processed stamp</button>
+        <button type="button" id="feedback-insert-now">Now timestamp</button>
+        <button type="button" id="feedback-insert-triage">Triage header</button>
+        <button type="button" id="feedback-insert-digest">Digest header</button>
+        <button type="button" id="feedback-append-nl">↵ blank line</button>
+        <button type="button" id="feedback-uppercase">UPPER</button>
+        <button type="button" id="feedback-trim">Trim</button>
+        <button type="button" id="feedback-copy-draft">Copy draft</button>
+      </div>
+      <label>Compose (dual post)
+        <textarea id="feedback-draft" class="draft-tall" rows="8" placeholder="Staff note / triage / digest — posts to Discord #development + Slack #feedback…"></textarea>
+      </label>
+      <div class="rewrite-bar" data-surface="feedback">
+        <span class="rewrite-label">Rewrite as</span>
+        <div id="feedback-providers" class="provider-row"></div>
+      </div>
+      <div class="row wrap">
+        <button type="button" id="feedback-clear">Clear draft</button>
+        <button type="button" id="feedback-preview">Preview rewrite</button>
+        <button type="button" id="feedback-post-stamp">Post stamp only</button>
+        <button type="button" id="feedback-dual-post" class="primary">Post → Discord #development + Slack #feedback</button>
+      </div>
+      <pre id="feedback-status" class="status"></pre>
+      <details class="response-log" open data-surface="feedback">
+        <summary>Past responses</summary>
+        <p class="response-log-meta" id="feedback-response-log-meta">Dual posts, acks, deletes, and clear-all stamps.</p>
+        <div id="feedback-response-log" class="response-log-body"></div>
+        <div class="response-log-actions">
+          <button type="button" data-log-clear="feedback">Clear log</button>
+        </div>
+      </details>
+    </section>
+
+    <section id="page-crons" class="page">
+      <div class="cron-head">
+        <div>
+          <h2 class="cron-title">Crons</h2>
+          <p id="cron-meta" class="hint-inline">Loading…</p>
+        </div>
+        <div class="row">
+          <button type="button" id="cron-refresh">Refresh</button>
+          <button type="button" id="cron-catchup" class="primary">Force cron catchup</button>
+        </div>
+      </div>
+      <div id="cron-table" class="cron-table"></div>
+      <pre id="cron-status" class="status"></pre>
+    </section>
+
+    <section id="page-release" class="page">
+      <div class="cron-head">
+        <div>
+          <h2 class="cron-title">Release</h2>
+          <p class="hint-inline">Private · bump / build / release on this host. Downloads go to publicfiles.</p>
+        </div>
+        <div class="row">
+          <button type="button" id="release-kind-plugins" class="primary">Plugins</button>
+          <button type="button" id="release-kind-apps">Apps</button>
+          <button type="button" id="release-refresh">Refresh</button>
+        </div>
+      </div>
+      <div class="row release-actions">
+        <button type="button" id="release-bump" class="primary">Bump</button>
+        <button type="button" id="release-build">Build</button>
+        <button type="button" id="release-release" class="warn">Release → Telegram</button>
+        <a id="release-files-link" class="link-inline" href="https://ava.rootmc.net/publicfiles/" target="_blank" rel="noopener">publicfiles ↗</a>
+      </div>
+      <p id="release-meta" class="hint-inline">Loading…</p>
+      <div class="grid-2 release-grid">
+        <div>
+          <h3 class="cron-title">Targets <span class="hint-inline">(empty = all)</span></h3>
+          <div id="release-targets" class="release-targets"></div>
+        </div>
+        <div>
+          <h3 class="cron-title">Artifacts</h3>
+          <div id="release-arts" class="release-arts"></div>
+        </div>
+      </div>
+      <h3 class="cron-title">Job log</h3>
+      <pre id="release-log" class="status release-log">Idle.</pre>
+    </section>
+
+    <section id="page-links" class="page">
+      <div class="links-head">
+        <div>
+          <h2 class="cron-title">Links</h2>
+          <p class="hint-inline">All Ava surfaces and related Root Record / RootMC URLs. Click to open.</p>
+        </div>
+        <button type="button" id="links-refresh">Refresh</button>
+      </div>
+      <div id="links-catalog" class="links-catalog"></div>
+      <pre id="links-status" class="status"></pre>
+    </section>
+
+    <section id="page-settings" class="page">
+      <p>Tokens from <code>~/ava/.env</code>. Rewrite providers hit local Ava <code>:8787</code>.</p>
+      <pre id="settings-status" class="status"></pre>
+      <h3 class="cron-title">Providers</h3>
+      <pre id="settings-providers" class="status"></pre>
+    </section>
+  </main>
+  <script src="app.js"></script>
+</body>
+</html>

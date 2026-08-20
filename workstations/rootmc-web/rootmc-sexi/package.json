@@ -1,0 +1,19 @@
+{
+  "name": "rootmc-sexi",
+  "version": "0.3.0",
+  "private": true,
+  "type": "module",
+  "description": "Sexi Discord buddy — Grok+wiki chat, Cursor Root Server deep work.",
+  "scripts": {
+    "start": "node src/index.mjs",
+    "server": "node src/server.mjs",
+    "poller": "node src/poller.mjs",
+    "post-proposal": "node scripts/post-proposal.mjs"
+  },
+  "engines": {
+    "node": ">=22.13"
+  },
+  "dependencies": {
+    "@cursor/sdk": "^1.0.26"
+  }
+}

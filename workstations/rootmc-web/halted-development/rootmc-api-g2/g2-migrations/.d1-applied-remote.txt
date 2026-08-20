@@ -1,0 +1,9 @@
+0001_core.sql
+0002_identity.sql
+0003_reports.sql
+0004_item_census.sql
+0005_cross_chat.sql
+0006_cross_presence.sql
+0007_cross_return.sql
+0008_item_census_daily_snapshots.sql
+0009_host_metrics.sql

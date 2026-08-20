@@ -1,0 +1,29 @@
+{
+  "name": "rootmc-ava-desktop",
+  "version": "0.1.3",
+  "private": true,
+  "description": "Ava Ivy desktop — manual Post as Ava (Discord/Slack/Telegram) + chat panes",
+  "main": "main.mjs",
+  "type": "module",
+  "scripts": {
+    "start": "electron .",
+    "pack": "electron-builder --win portable --x64",
+    "dist": "electron-builder --win nsis portable --x64"
+  },
+  "build": {
+    "appId": "net.rootmc.ava.desktop",
+    "productName": "Ava Ivy",
+    "directories": { "output": "dist" },
+    "files": ["main.mjs", "preload.cjs", "renderer/**/*", "lib/**/*", "package.json"],
+    "win": {
+      "target": ["dir"],
+      "signAndEditExecutable": false,
+      "artifactName": "AvaIvy-${version}-portable.exe"
+    }
+  },
+  "engines": { "node": ">=20" },
+  "devDependencies": {
+    "electron": "^33.2.0",
+    "electron-builder": "^25.1.8"
+  }
+}

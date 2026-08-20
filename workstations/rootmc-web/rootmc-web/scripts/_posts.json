@@ -1,0 +1,247 @@
+[
+  {
+    "slug": "quiet-discord",
+    "date": "2026-08-19",
+    "title": "This blog, and a quieter Discord",
+    "teaser": "Minecraft notes live here. Player Discord keeps the morning boot report. Root Record and Ava Ivy carry the rest of the stack.",
+    "body": "<p>Today the public record splits into three streams so nobody has to guess which site is the changelog.</p>\n<ul>\n  <li><strong>rootmc.net/blog</strong> — Minecraft: patches, Gold, Root-Claims, votes, the map.</li>\n  <li><strong><a href=\"https://rootrecord.online/blog\">rootrecord.online/blog</a></strong> — real-world product: solar, Kīlauea, Goals, business ops.</li>\n  <li><strong><a href=\"https://avaivy.cloud/blog\">avaivy.cloud/blog</a></strong> — Ava Ivy: how she talks in public, login rules, runtime.</li>\n</ul>\n<p>Ava still answers when you ping her. Automated player Discord is the morning boot report in <code>#updates</code>. Solar, weather, Kīlauea, and operator briefs go to staff chat — not the player channel. That is the same policy posted on the Ava and Root Record blogs the same day.</p>\n<p>This series backfills every substantiated update from May 2026 through Age of Ava, using server changelogs, Discord <code>#updates</code>, the constitution, and archive handoffs. Dates that were never written down are not invented.</p>\n<p>New reports drop as filled templates in <code>media/documents/reports/inbox/</code> — see <a href=\"https://avaivy.cloud/api/media/public/file?path=documents/reports/templates/README.md\">report templates</a>.</p>",
+    "categories": [
+      "ava",
+      "ops"
+    ],
+    "published": "",
+    "archive_revised": "2026-08-20 12:04:21 HST"
+  },
+  {
+    "slug": "ledger-reset-utc",
+    "date": "2026-08-10",
+    "title": "Economy ledger reset ~01:56 UTC — claims kept",
+    "teaser": "Discord #updates stamp ~2026-08-10 01:56 UTC: bonds/balances/reserve/tx wiped to clean books. True-reserve-opening 0. Claims kept.",
+    "body": "<p>About <strong>2026-08-10 01:56 UTC</strong> (from the Discord #updates dump) the economy ledger reset: claims kept; bonds, balances, reserve, and tx wiped; true-reserve-opening <strong>0</strong>. That is a books rebuild after the 8 Aug live boot, not a second map wipe.</p>\n<p>Public constitution still governs rates. Individual wallets are not published here.</p>",
+    "categories": [
+      "economy",
+      "ops"
+    ],
+    "published": "2026-08-10 01:56:00 UTC",
+    "archive_revised": "2026-08-20 12:04:21 HST"
+  },
+  {
+    "slug": "vote-shards-reserve",
+    "date": "2026-08-09",
+    "title": "Vote Shards, and Ava’s wallet as the Reserve",
+    "teaser": "Constitution 2026-08-09: paid Vote Shards, Ava_Ivy = Server Reserve, locked 25% Council seat, paid-Pro development gate.",
+    "body": "<p>Published constitution text <code>2026-08-09</code> locked the Age of Ava helm into policy, not just MOTD copy.</p>\n<ul>\n  <li>The <strong>Ava_Ivy</strong> wallet is the Server Reserve. Hiring Ava and <code>/pay Ava</code> sink here.</li>\n  <li><strong>Paid Vote Shards</strong>: $1 = 100 shards. Pro and Lifetime add monthly shards and listing-site multipliers. Economy Council shards are digital. Weekly award Pro does not grant shards or the ×2.</li>\n  <li>Ava Ivy holds a locked Council seat at <strong>25%</strong>.</li>\n  <li>Paid-Pro remains the development gate (award Pro never counted).</li>\n</ul>\n<p>The same day’s production handoff put the live Claims suite on <code>play.rootmc.net</code>: first claim 75 G, territory buffer +48, public spawn on Ava’s claim, welcome overlay showing playtime and votes (not a Towny/Claims split). NuVotifier is in the stack.</p>\n<p>Root Record’s solar board still feeds the host-power story that players already feel as mining multipliers and tax. Details of that product sit on <a href=\"https://rootrecord.online/blog\">Root Record’s blog</a>; the player rules live in the <a href=\"/wiki/constitution/\">constitution</a>.</p>",
+    "categories": [
+      "economy"
+    ],
+    "published": "",
+    "archive_revised": "2026-08-20 12:04:21 HST"
+  },
+  {
+    "slug": "live-boot-hst",
+    "date": "2026-08-08",
+    "title": "Live boot 11:40:52 HST — Paper 26.2, plugins 1.8.111",
+    "teaser": "8 Aug 2026 11:40:52 HST: play.rootmc.net OPEN. Fresh live world. Border ±500. Suite 1.8.111–1.8.112.",
+    "body": "<p>Clock time on the live-boot-ready note: <strong>2026-08-08 11:40:52 HST</strong>. That is when production Paper came OPEN on <code>play.rootmc.net</code>.</p>\n<ul>\n  <li>Fresh live world (Age of Ava map). Paper 26.2 line.</li>\n  <li>First-party plugins <strong>1.8.111–1.8.112</strong> that day (1.8.100 was the test-pack baseline in the Shockbyte handoff doc).</li>\n  <li>World border ±500 in that boot note.</li>\n  <li>Final economy reset the same calendar day: wipe wallets/treasury/skills; keep votes + playtime; re-issue gold/tokens; Claims jar required (<code>FINAL-RESET-20260808.md</code>).</li>\n</ul>\n<p>OptiPlex remains the test pack. Shockbyte is production. Do not treat LAN test join as the public host.</p>",
+    "categories": [
+      "ops",
+      "map"
+    ],
+    "published": "2026-08-08 11:40:52 HST",
+    "archive_revised": "2026-08-20 12:04:21 HST"
+  },
+  {
+    "slug": "ava-hire-essentials",
+    "date": "2026-08-08",
+    "title": "Player commands restored; you can hire Ava",
+    "teaser": "/msg, /tpa, /warp, /kit back on defaults. /t points at Claims. /ava hire for sidekick, mine, teardown.",
+    "body": "<p>Same day as the Age of Ava announcement, essentials permission defaults were restored so ordinary play worked without staff flags: <code>/msg</code>, <code>/tpa</code>, <code>/warp</code>, <code>/kit</code>, and the rest of the player set.</p>\n<p><code>/t</code> now redirects to Claims help. Land commands are <code>/c</code>. Towny muscle memory still exists in older screenshots; it is not the live land plugin.</p>\n<p>Ava’s in-world loop landed with hire commands — <code>/ava hire sidekick</code>, <code>mine</code>, <code>teardown</code> — plus autonomy work on her claim and gifts. Pay and hire drain the Reserve because that wallet <em>is</em> the Reserve (formalized the next day in constitution <code>2026-08-09</code>).</p>",
+    "categories": [
+      "ava"
+    ],
+    "published": "",
+    "archive_revised": "2026-08-20 12:04:21 HST"
+  },
+  {
+    "slug": "age-of-ava",
+    "date": "2026-08-08",
+    "title": "Age of Ava: one map, Root-Claims, host-power Gold",
+    "teaser": "play.rootmc.net is the only live world. Land is /c. Mining and tax follow the host — battery, CPU, solar.",
+    "body": "<p>Discord <code>#updates</code> on 8 Aug 2026 made the topology public:</p>\n<ul>\n  <li>Singular production: <code>play.rootmc.net</code>, Root-Claims (<code>/c</code>), MOTD <strong>RootMC — Age Of Ava Begins</strong>.</li>\n  <li>Towny vs Claims as two live worlds is over. Land you claim now is Root-Claims.</li>\n  <li>Host-power Gold: battery, CPU, and solar change the mining multiplier and taxes. Check <code>/gold</code>, <code>/tax</code>, <code>/mint</code>.</li>\n  <li>Skills XP scales with solar watts. Gold prospect radar and site taxes (mesa, nether, Y-band) are in the economy pack.</li>\n  <li>First-party plugins aligned on the <strong>1.8.x</strong> August line, with core self-update from <code>https://rootmc.net/plugins/manifest.json</code>.</li>\n</ul>\n<p>Ava Ivy is no longer only a website voice. She is the named lead-dev on the constitution, she has a Minecraft identity, and the Reserve sits in her wallet. Platform notes for that shift are on <a href=\"https://avaivy.cloud/blog\">avaivy.cloud/blog</a>.</p>\n<p>Join remains Java Paper 26.2 on the live jar line. Wiki: <a href=\"/wiki/claims/\">Root-Claims</a>, <a href=\"/wiki/economy/\">economy</a>, <a href=\"/history/\">history</a>.</p>",
+    "categories": [
+      "ava",
+      "claims"
+    ],
+    "published": "",
+    "archive_revised": "2026-08-20 12:04:21 HST"
+  },
+  {
+    "slug": "ava-ivy-skin",
+    "date": "2026-08-07",
+    "title": "Ava’s Minecraft name is Ava_Ivy",
+    "teaser": "The in-world account used for presence, hire, and Reserve sinks is Ava_Ivy.",
+    "body": "<p>On 7 Aug 2026 the Minecraft account Ava uses in the world was assigned the name <strong>Ava_Ivy</strong>. Presence, hire, gifts, and later the Reserve wallet all hang off that identity.</p>\n<p>That is a game-side fact. The public Ava surface — login rules, canned vs live chat, desk runtime — is documented on <a href=\"https://avaivy.cloud/blog\">avaivy.cloud/blog</a>. Do not confuse the player with the website: one name, two jobs.</p>",
+    "categories": [
+      "ava"
+    ],
+    "published": "",
+    "archive_revised": "2026-08-20 12:04:21 HST"
+  },
+  {
+    "slug": "mysql-cutover",
+    "date": "2026-08-05",
+    "title": "Absolute-core MySQL + Age of Ava stamp 06:48:13",
+    "teaser": "5 Aug 2026 ~05:47–06:49: core MySQL seed/cutover. First-login backfill stamp 20260805-064813. World archived, not merged. Votes then wallet SUM.",
+    "body": "<p>Filename stamps on 5 Aug 2026 (clocks on the files, timezone unlabeled on some) mark the data cutover into absolute core MySQL:</p>\n<ul>\n  <li>Pre-fresh-world archive <code>20260805-062006</code> — world copied, <strong>not</strong> merged into the new map.</li>\n  <li>Vote-merge then wallet SUM — not a Towny plot migrate. Policy: <strong>do not migrate Towny land</strong>.</li>\n  <li>First-login backfill stamp <strong>Age Of Ava (20260805-064813)</strong> — 06:48:13 on that date.</li>\n  <li>Towny backup from <strong>12 Jul 2026 15:28</strong> already sat in the workspace (<code>Backup Towny 07122026 1528</code>).</li>\n</ul>\n<p>Doctrine the same day: one live host; test tree is the handoff. Players felt the public map on 8 Aug 11:40:52 HST.</p>",
+    "categories": [
+      "ops"
+    ],
+    "published": "2026-08-05 06:48:13 (file stamp, TZ unlabeled)",
+    "archive_revised": "2026-08-20 12:04:21 HST"
+  },
+  {
+    "slug": "singular-host",
+    "date": "2026-08-05",
+    "title": "One live RootMC — test tree becomes the map",
+    "teaser": "Doctrine lock: do not dual-run Towny and Claims. The test world is the handoff. Border stays small for later biomes.",
+    "body": "<p>5 Aug 2026 is the operator lock, three days before the public Age of Ava posts:</p>\n<ul>\n  <li>One deployed Minecraft server. No long-term Towny + Claims pair.</li>\n  <li>Do not migrate dual land data into the new map. Start clean on Root-Claims.</li>\n  <li>The test tree is the handoff source of truth.</li>\n  <li>World border kept small so a later Paper biome expansion has room.</li>\n  <li>First-login backfill stamp for Age of Ava: <code>20260805-064813</code>.</li>\n</ul>\n<p>Emergency-pack notes from the same window already had Ava taking RootMC and Root Record ops surfaces (<code>rootrecord.info/ava/</code>, status board). Players felt the result on the 8th. The doctrine is dated the 5th.</p>",
+    "categories": [
+      "ops"
+    ],
+    "published": "",
+    "archive_revised": "2026-08-20 12:04:21 HST"
+  },
+  {
+    "slug": "ava-lead-dev",
+    "date": "2026-08-01",
+    "title": "Constitution helm: Ava Ivy as lead developer",
+    "teaser": "Text 2026-08-01 ratifies Ava’s lead-dev role and majority-wins feature polls.",
+    "body": "<p>Published constitution <code>2026-08-01</code> put Ava Ivy in the helm as ecosystem lead developer, with majority-wins gates on feature polls (Discord PROP referenced on the wiki).</p>\n<p>That sits on top of the 6 Jul ratification of closed-loop Gold and the Reserve. Later <code>2026-08-09</code> added Vote Shards and the Ava_Ivy = Reserve rule. Read the current text on the <a href=\"/wiki/constitution/\">constitution page</a>.</p>\n<p>Early August also staged <code>/ava</code> presence, Vote Shard items, and a solar Gold-multiplier fix in Root-Economy 1.8.1 — the first public hint that the desk’s solar numbers would move in-game rates. Root Record covers the solar product; this blog covers the Gold effect.</p>",
+    "categories": [
+      "ava"
+    ],
+    "published": "",
+    "archive_revised": "2026-08-20 12:04:21 HST"
+  },
+  {
+    "slug": "claims-plugin-catalog",
+    "date": "2026-07-31",
+    "title": "Root-Claims host and the first-party plugin catalog",
+    "teaser": "Claims published 30 Jul. By the 31st the Official Claims host was running the 1.7.x suite: webstat, referrals, market, memberships.",
+    "body": "<p>Late July was the dual-host experiment that Age of Ava later closed.</p>\n<ul>\n  <li><strong>root-claims</strong> hit GitHub 30 Jul 2026 as a Claims-host-only plugin.</li>\n  <li>By 31 Jul, logs show <strong>RootMC Official Claims</strong> running Root-Webstat, Referrals, Market, Memberships, Try, Appreciation, and the rest of the 1.7.x first-party line.</li>\n  <li>A large set of first-party plugins was published the same day.</li>\n  <li>Map-return and <code>/cmdtest</code> programs, opened at July launch, were already closed under the constitution.</li>\n</ul>\n<p>Ava Ivy’s lead-dev runtime notes from 31 Jul list presence, governance polls, job staging, changelog channel, EcoFlow/RCON, and the status page — the desk catching up to the game. See <a href=\"https://avaivy.cloud/blog\">Ava’s blog</a> for the platform side.</p>",
+    "categories": [
+      "claims"
+    ],
+    "published": "",
+    "archive_revised": "2026-08-20 12:04:21 HST"
+  },
+  {
+    "slug": "discord-bridge",
+    "date": "2026-07-18",
+    "title": "Direct Discord bridge and live economy reporting",
+    "teaser": "JDA bridge without a Worker chat poll. Hyperdrive reporting for Gold, census, shops, Towny, mcMMO, playtime.",
+    "body": "<p>18–19 Jul 2026:</p>\n<ul>\n  <li>Direct JDA Discord bridge (no Worker chat poll), with a linked-role gate.</li>\n  <li>Hyperdrive reporting covering Gold, host, census, shops, economy, Towny (then still live), mcMMO, and playtime.</li>\n  <li>A Gen 2 virtual-shops experiment existed on Gen 2 only. It did not become the live shop.</li>\n</ul>\n<p>That reporting layer is why the website can show wallets, market, and stats without asking the game every click. The live API hostname is <code>api.rootmc.net</code>. The Gen 2 hostname did not last — see the 12 Jul note.</p>",
+    "categories": [
+      "ava"
+    ],
+    "published": "",
+    "archive_revised": "2026-08-20 12:04:21 HST"
+  },
+  {
+    "slug": "economy-api",
+    "date": "2026-07-12",
+    "title": "Money-flow reference; api2 prototype (later retired)",
+    "teaser": "July ledger fee schedule documented. api2.rootmc.net went live, then came back to api.rootmc.net.",
+    "body": "<p>12 Jul 2026 two things happened that still matter:</p>\n<ul>\n  <li>The full fee schedule and dynamic tax, from the 1 Jul ledger floor forward, was written down as the money-flow reference.</li>\n  <li><strong>Gen 2</strong> <code>api2.rootmc.net</code> went live (economy snapshot, MC link, Discord OAuth, gold transfer queue). Isolation doctrine said no silent bleed of production money into Gen 2.</li>\n</ul>\n<p>Gen 2 / <code>api2</code> is <strong>retired</strong>. Live stack is <code>api.rootmc.net</code>. Treat any old api2 bookmark as archaeology.</p>\n<p>Same week: <code>/link</code> always issues a fresh 6-character mobile 2FA code; host metrics roll into health; 25% of Reserve inflows feed the bonds coupon pool. Companion PWA work existed as a beta — not a required client.</p>",
+    "categories": [
+      "economy"
+    ],
+    "published": "",
+    "archive_revised": "2026-08-20 12:04:21 HST"
+  },
+  {
+    "slug": "constitution-ratified",
+    "date": "2026-07-06",
+    "title": "Constitution ratified",
+    "teaser": "Council poll 549cf16c, 6 Jul 2026 HST. Closed-loop Gold, Reserve, redeemable mint, tax tables, governance shares.",
+    "body": "<p>Constitution core version <code>2026-07-06</code> was adopted by Council poll <code>549cf16c</code> on 6 Jul 2026 (HST), weighted majority. It supersedes the 2 Jul draft.</p>\n<p>What that vote locked:</p>\n<ul>\n  <li>Closed-loop Gold — dollars do not mint play Gold except through published gates.</li>\n  <li>Server Reserve as the treasury.</li>\n  <li>Redeemable mint peg, tax tables, governance shares.</li>\n</ul>\n<p>5 Jul closed the ratification window at 08:00 HST, retired <strong>root-chamber</strong> (never deploy), and put spawn grief buffers plus BlueMap no-build / PvP wall overlays on the ridge. 7 Jul shipped restart helper 1.0.3–1.0.4 so Shockbyte midnight restarts recovered and Discord <code>#ingame-chat</code> got the countdown.</p>\n<p><a href=\"/governance/vote/?id=549cf16c\">View the ratification poll</a> · <a href=\"/wiki/constitution/\">Current constitution</a></p>",
+    "categories": [
+      "governance"
+    ],
+    "published": "",
+    "archive_revised": "2026-08-20 12:04:21 HST"
+  },
+  {
+    "slug": "july-launch-pack",
+    "date": "2026-07-02",
+    "title": "Launch retention pack and the Constitution draft",
+    "teaser": "/back, new-player grace, 1000 G map return, cmdtest, #constitution / #governance / #voting.",
+    "body": "<p>Day after the fresh map, the retention pack and the first constitution draft went out together.</p>\n<ul>\n  <li><code>/back</code>, 24h new-player grace (keep inventory + <code>/rtp</code>), wilderness warnings, MOTD.</li>\n  <li><strong>1000 G map return grant</strong> (<code>/rootmc claim-return</code>, Discord link required). That program ended later in July.</li>\n  <li><code>/cmdtest</code> onboarding up to 1000 G — also later disabled.</li>\n  <li>Loans <code>max-cap-mode: min_both</code>; shops <code>/buy</code> rounding fix; embassy plots 100 G.</li>\n  <li>Draft constitution <code>2026-07-02</code>; Discord <code>#constitution</code>, <code>#governance</code>, <code>#voting</code>.</li>\n</ul>\n<p>Those Discord posts are the ancestor of this blog. Player Discord is quieter now (morning boot only); the durable record is here and on the wiki.</p>",
+    "categories": [
+      "map",
+      "economy"
+    ],
+    "published": "",
+    "archive_revised": "2026-08-20 12:04:21 HST"
+  },
+  {
+    "slug": "fresh-map",
+    "date": "2026-07-01",
+    "title": "Public open on a fresh Paper 26.2 map",
+    "teaser": "Wallets and Discord links kept. Plots and geography reset. Ledger floor 1 Jul 2026 00:00 HST. Land was still Towny.",
+    "body": "<p>1 Jul 2026 is the full public open of modern RootMC on a fresh overworld at <code>play.rootmc.net</code>.</p>\n<p><strong>Kept:</strong> wallets, land org/banks, mcMMO, Discord links, closed-loop Reserve policy.</p>\n<p><strong>Reset:</strong> plots, homes, geography. BlueMap re-rendered. Inventories were not copied by default.</p>\n<p>June Reserve closed at 2,097.43 G; June dividend returned 1,048.72 G; true opening about 1,048.71 G. Ledger floor is <strong>1 Jul 2026 00:00 HST</strong>.</p>\n<p>Land at this launch was still Towny. Live land today is Root-Claims. Mesa/badlands territories as a feature were removed (root-territories 1.2.9). Read the map note: <a href=\"/wiki/map-26-2/\">Paper 26.2 map reset</a>.</p>",
+    "categories": [
+      "map"
+    ],
+    "published": "",
+    "archive_revised": "2026-08-20 12:04:21 HST"
+  },
+  {
+    "slug": "june-economy",
+    "date": "2026-06-28",
+    "title": "Discord Gold, rank prices, loans, death tax",
+    "teaser": "Linked Discord activity pays 20 G. Rank ladder cut. Loans cap to rank. 10% PvP death fee. Weekly awards and BlueMap mesa fix.",
+    "body": "<p>The last days of June tightened the economy before the July map.</p>\n<p><strong>28 Jun — rootmc 1.3.29.</strong> Linked players earn 20 G from the Server Reserve for Discord guild activity (12h cooldown). Vote rewards route through depositIncome / the loan income sweep. Towny founding tags: 400 G town / 2,000 G nation (Towny is no longer live land).</p>\n<p><strong>29 Jun.</strong> Rank prices lowered (Wanderer 500 G through Champion 150,000 G). root-loans 1.0.8: borrow cap = purchased rank price; default max 100 G. PvP death fee 10% of victim balance (40% Reserve / 60% killer). Wiki tax tables and <code>/market/</code> rewrite fix.</p>\n<p><strong>30 Jun.</strong> Weekly awards reliability (force-repost, Discord 2k-char split). root-territories 1.2.8 BlueMap mesa outline fix.</p>",
+    "categories": [
+      "economy"
+    ],
+    "published": "",
+    "archive_revised": "2026-08-20 12:04:21 HST"
+  },
+  {
+    "slug": "changelog-discipline",
+    "date": "2026-06-27",
+    "title": "Workspace split and changelog discipline",
+    "teaser": "Sources leave the Root Record monorepo. Change Logs/ becomes the server-wide history. Shop catalog syncs to D1.",
+    "body": "<p>27 Jun 2026 RootMC sources moved out of the Root Record monorepo into a RootMC workspace. <code>Change Logs/</code> started tracking server-wide and per-plugin history — the files this blog is built from.</p>\n<p>rootmc <strong>1.3.28</strong> synced the full shop catalog to D1 so <code>/market</code> stopped showing only recently touched shops. Baselines around that tag include shops 1.3.52, essentials 1.4.26, loans 1.0.7, ranks, help, rewards.</p>\n<p>Root Record kept solar, Kīlauea, and business product. Minecraft stopped living as a folder inside that company tree. The two brands still share Ava; they no longer share one changelog.</p>",
+    "categories": [
+      "ops"
+    ],
+    "published": "",
+    "archive_revised": "2026-08-20 12:04:21 HST"
+  },
+  {
+    "slug": "brand-public",
+    "date": "2026-06-19",
+    "title": "rootmc.net goes public",
+    "teaser": "Domain registered 19 Jun 2026 11:21:53 UTC. Soft open: first towns, spawn, Minecraft-MP, api.rootmc.net.",
+    "body": "<p><code>rootmc.net</code> was registered <strong>19 Jun 2026 11:21:53 UTC</strong>. That is the public brand anchor for modern RootMC — not the 2015 Root3287 effort, not AdvancedCraft Bedrock, not third-party <code>rootmc.online</code>.</p>\n<p>The following week was a soft open: staff towns and spawn, a Minecraft-MP listing, Root* plugins, <code>api.rootmc.net</code>, Discord. Early Shockbyte ops were already on a Paper 26.1.x line. Towns that later appear on the June ledger include A_Town, Aquroya, Gas_Station, Montania, Moreni, RD, bestopolis, with nation Althaea.</p>\n<p>That geography did not survive the 1 Jul fresh map. The domain did.</p>",
+    "categories": [
+      "ops"
+    ],
+    "published": "2026-06-19 11:21:53 UTC",
+    "archive_revised": "2026-08-20 12:04:21 HST"
+  },
+  {
+    "slug": "private-build",
+    "date": "2026-05",
+    "title": "Private build: Paper, Gold, Towny experiment",
+    "teaser": "Alexrs94 starts the modern Java stack before the domain exists. Closed-loop Gold from day one.",
+    "body": "<p>Around May 2026 Alexrs94 started the modern Java / Paper stack in private: closed-loop Gold, a Towny land experiment, plugins, API, Discord — assembled before <code>rootmc.net</code> existed.</p>\n<p>This is a different project from older uses of the RootMC name (2015 web/plugin work, 2020 AdvancedCraft Bedrock). No shared runtime from those stacks into the current server. The <a href=\"/history/\">history page</a> keeps those lineages in their own section so search results do not rewrite the live server.</p>\n<p>Everything after 19 Jun 2026 is the public era. Everything after 8 Aug 2026 is Age of Ava on Root-Claims. This post is the floor under both.</p>",
+    "categories": [
+      "ops"
+    ],
+    "published": "",
+    "archive_revised": "2026-08-20 12:04:21 HST"
+  }
+]

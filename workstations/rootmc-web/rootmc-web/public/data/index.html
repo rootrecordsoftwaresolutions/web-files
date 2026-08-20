@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Data — RootMC</title>
+  <meta name="description" content="Per-server live data from LIVE_DB (Hyperdrive MySQL mirrors) — live RootMC and connected hosts.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <meta name="theme-color" content="#0a0e14">
+  <link rel="canonical" href="https://rootmc.net/data/">
+  <link rel="stylesheet" href="/styles/rootmc.css?v=20260819ivy">
+  <link rel="stylesheet" href="/styles/data-hub.css?v=20260812ava">
+</head>
+<body>
+  <header class="rmc-header">
+    <div class="container rmc-header-inner">
+      <a class="rmc-brand" href="/">
+        <span class="rmc-brand-mark" aria-hidden="true">◈</span>
+        RootMC
+        <span class="rmc-brand-tag">Network</span>
+      </a>
+      <nav class="rmc-nav" aria-label="Main" data-site-nav="player" data-site-nav-current="data"></nav>
+      <button class="rmc-nav-toggle" type="button" aria-label="Open menu" data-nav-toggle>
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <main class="container data-hub-main">
+    <p class="wiki-breadcrumb"><a href="/">Home</a> / Data</p>
+    <h1 class="wiki-page-title">Data</h1>
+    <p class="page-lead">Live Gold and host telemetry for <strong>play.rootmc.net</strong>. Status: <a href="https://rootrecord.info/ava/status">Ava status</a>. Previous site archive: <a href="/old/">/old/</a>.</p>
+
+    <nav class="economy-scope-nav" aria-label="Data scopes" style="margin-top:1.5rem">
+      <a class="economy-scope-card" href="/economy/">
+        <span class="economy-scope-mark" aria-hidden="true">G</span>
+        <span class="economy-scope-label">Economy</span>
+        <span class="economy-scope-desc">Live Gold wallets, claim banks, Server Reserve — play.rootmc.net.</span>
+      </a>
+      <a class="economy-scope-card" href="https://ava.rootmc.net/minecraft">
+        <span class="economy-scope-mark economy-scope-mark--official" aria-hidden="true">▶</span>
+        <span class="economy-scope-label">Minecraft</span>
+        <span class="economy-scope-desc">play.rootmc.net ping, players, and world pulse.</span>
+      </a>
+      <a class="economy-scope-card" href="https://rootrecord.info/ava/status">
+        <span class="economy-scope-mark economy-scope-mark--all" aria-hidden="true">☀</span>
+        <span class="economy-scope-label">Ava status</span>
+        <span class="economy-scope-desc">Solar, battery, CPU, and Current Gaming Bonus.</span>
+      </a>
+      <a class="economy-scope-card" href="/wiki/">
+        <span class="economy-scope-mark economy-scope-mark--claims" aria-hidden="true">W</span>
+        <span class="economy-scope-label">Wiki</span>
+        <span class="economy-scope-desc">Player guide, economy rules, and how Gold works.</span>
+      </a>
+    </nav>
+  </main>
+
+  <footer class="rmc-footer">
+    <div class="container rmc-footer-meta">
+      <p>RootMC · Data · LIVE_DB</p>
+    </div>
+  </footer>
+  <script src="/scripts/site-nav.js?v=20260812ava" defer></script>
+<script src="https://rootrecord.info/ava/assets/disruption-banner.js" defer></script>
+</body>
+</html>
