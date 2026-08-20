@@ -10,7 +10,7 @@
       "ops"
     ],
     "published": "",
-    "archive_revised": "2026-08-20 12:04:21 HST"
+    "archive_revised": "2026-08-20 12:12:22 HST"
   },
   {
     "slug": "ledger-reset-utc",
@@ -23,7 +23,7 @@
       "ops"
     ],
     "published": "2026-08-10 01:56:00 UTC",
-    "archive_revised": "2026-08-20 12:04:21 HST"
+    "archive_revised": "2026-08-20 12:12:22 HST"
   },
   {
     "slug": "vote-shards-reserve",
@@ -35,7 +35,7 @@
       "economy"
     ],
     "published": "",
-    "archive_revised": "2026-08-20 12:04:21 HST"
+    "archive_revised": "2026-08-20 12:12:22 HST"
   },
   {
     "slug": "live-boot-hst",
@@ -48,7 +48,7 @@
       "map"
     ],
     "published": "2026-08-08 11:40:52 HST",
-    "archive_revised": "2026-08-20 12:04:21 HST"
+    "archive_revised": "2026-08-20 12:12:22 HST"
   },
   {
     "slug": "ava-hire-essentials",
@@ -60,7 +60,7 @@
       "ava"
     ],
     "published": "",
-    "archive_revised": "2026-08-20 12:04:21 HST"
+    "archive_revised": "2026-08-20 12:12:22 HST"
   },
   {
     "slug": "age-of-ava",
@@ -73,7 +73,7 @@
       "claims"
     ],
     "published": "",
-    "archive_revised": "2026-08-20 12:04:21 HST"
+    "archive_revised": "2026-08-20 12:12:22 HST"
   },
   {
     "slug": "ava-ivy-skin",
@@ -85,7 +85,7 @@
       "ava"
     ],
     "published": "",
-    "archive_revised": "2026-08-20 12:04:21 HST"
+    "archive_revised": "2026-08-20 12:12:22 HST"
   },
   {
     "slug": "mysql-cutover",
@@ -97,7 +97,7 @@
       "ops"
     ],
     "published": "2026-08-05 06:48:13 (file stamp, TZ unlabeled)",
-    "archive_revised": "2026-08-20 12:04:21 HST"
+    "archive_revised": "2026-08-20 12:12:22 HST"
   },
   {
     "slug": "singular-host",
@@ -109,7 +109,7 @@
       "ops"
     ],
     "published": "",
-    "archive_revised": "2026-08-20 12:04:21 HST"
+    "archive_revised": "2026-08-20 12:12:22 HST"
   },
   {
     "slug": "ava-lead-dev",
@@ -121,7 +121,7 @@
       "ava"
     ],
     "published": "",
-    "archive_revised": "2026-08-20 12:04:21 HST"
+    "archive_revised": "2026-08-20 12:12:22 HST"
   },
   {
     "slug": "claims-plugin-catalog",
@@ -133,7 +133,7 @@
       "claims"
     ],
     "published": "",
-    "archive_revised": "2026-08-20 12:04:21 HST"
+    "archive_revised": "2026-08-20 12:12:22 HST"
   },
   {
     "slug": "discord-bridge",
@@ -145,7 +145,7 @@
       "ava"
     ],
     "published": "",
-    "archive_revised": "2026-08-20 12:04:21 HST"
+    "archive_revised": "2026-08-20 12:12:22 HST"
   },
   {
     "slug": "economy-api",
@@ -157,7 +157,7 @@
       "economy"
     ],
     "published": "",
-    "archive_revised": "2026-08-20 12:04:21 HST"
+    "archive_revised": "2026-08-20 12:12:22 HST"
   },
   {
     "slug": "constitution-ratified",
@@ -169,7 +169,7 @@
       "governance"
     ],
     "published": "",
-    "archive_revised": "2026-08-20 12:04:21 HST"
+    "archive_revised": "2026-08-20 12:12:22 HST"
   },
   {
     "slug": "july-launch-pack",
@@ -182,7 +182,7 @@
       "economy"
     ],
     "published": "",
-    "archive_revised": "2026-08-20 12:04:21 HST"
+    "archive_revised": "2026-08-20 12:12:22 HST"
   },
   {
     "slug": "fresh-map",
@@ -194,7 +194,7 @@
       "map"
     ],
     "published": "",
-    "archive_revised": "2026-08-20 12:04:21 HST"
+    "archive_revised": "2026-08-20 12:12:22 HST"
   },
   {
     "slug": "june-economy",
@@ -206,7 +206,7 @@
       "economy"
     ],
     "published": "",
-    "archive_revised": "2026-08-20 12:04:21 HST"
+    "archive_revised": "2026-08-20 12:12:22 HST"
   },
   {
     "slug": "changelog-discipline",
@@ -218,7 +218,7 @@
       "ops"
     ],
     "published": "",
-    "archive_revised": "2026-08-20 12:04:21 HST"
+    "archive_revised": "2026-08-20 12:12:22 HST"
   },
   {
     "slug": "brand-public",
@@ -230,7 +230,7 @@
       "ops"
     ],
     "published": "2026-06-19 11:21:53 UTC",
-    "archive_revised": "2026-08-20 12:04:21 HST"
+    "archive_revised": "2026-08-20 12:12:22 HST"
   },
   {
     "slug": "private-build",
@@ -242,6 +242,6 @@
       "ops"
     ],
     "published": "",
-    "archive_revised": "2026-08-20 12:04:21 HST"
+    "archive_revised": "2026-08-20 12:12:22 HST"
   }
 ]
