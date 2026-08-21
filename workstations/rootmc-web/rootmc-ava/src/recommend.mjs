@@ -225,7 +225,7 @@ export function isCreepDemand(q) {
   }
 
   return (
-    /nudes?|onlyfans|\bdtf\b|be\s+sexy\s+for\s+me|send\s+(pics?|nudes?)|rate\s+my\s+(dick|cock)/i.test(
+    /nudes?|onlyfans|\bdtf\b|be\s+sexy\s+for\s+me|send\s+(pics?|nudes?)|rate\s+my\s+(|)/i.test(
       s,
     ) ||
     /\b(hook\s*-?\s*up)\b.{0,30}\b(with\s+me|tonight|irl|sex|sexy)\b/i.test(s) ||
@@ -233,7 +233,7 @@ export function isCreepDemand(q) {
     /\b(suck\s+my|sit\s+on\s+my|show\s+me\s+your|send\s+feet|roleplay\s+sex|erp\b)\b/i.test(
       s,
     ) ||
-    /\b(slut|whore|rape)\b/i.test(s)
+    /\b(||rape)\b/i.test(s)
   );
 }
 

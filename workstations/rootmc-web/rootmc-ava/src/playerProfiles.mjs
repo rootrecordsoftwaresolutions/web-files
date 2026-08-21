@@ -145,7 +145,7 @@ export function observePlayerLine({
     );
   }
   if (
-    /stfu|idiot|trash|kill yourself|kys|fuck you|fuck off|clanker|worthless|shut up|dumb bot|useless bot/.test(
+    /stfu|idiot|trash|kill yourself|kys| you| off|clanker|worthless|shut up|dumb bot|useless bot/.test(
       q,
     )
   ) {

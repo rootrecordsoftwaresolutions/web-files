@@ -35,7 +35,7 @@ export function isWakeCommand(content) {
 export function heuristicRecommend(question) {
   const q = String(question || "").toLowerCase();
   if (/frisky|dtf|sexy|smash|date\s+me|hook\s*up|nudes?|onlyfans/i.test(q)) {
-    return scrubPublicReply("Fuck off.");
+    return scrubPublicReply(" off.");
   }
   return scrubPublicReply(
     "I'm a bit offline on the deep-dig side — ask again when the Root Server's up, or leave notes in my handoff folder.",
@@ -55,7 +55,7 @@ export async function recommend({ question, context = "", env }) {
   }
 
   if (/frisky|dtf|sexy|smash|date\s+me|hook\s*up|nudes?|onlyfans|(come|get)\s+over\s+here/i.test(q)) {
-    return scrubPublicReply("Fuck off.");
+    return scrubPublicReply(" off.");
   }
 
   if (!cursorApiKey(env || {})) {

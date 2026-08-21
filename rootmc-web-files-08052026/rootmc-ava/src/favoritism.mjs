@@ -41,7 +41,7 @@ function isProtectedOperator(authorId) {
 }
 
 const RUDE_RE =
-  /\b(stfu|shut\s*up|idiot|trash|kys|kill\s*yourself|worthless|clanker|fuck\s*you|fuck\s*off|hate\s*you|dumb\s*bot|useless\s*bot|shut\s*the\s*fuck)\b/i;
+  /\b(stfu|shut\s*up|idiot|trash|kys|kill\s*yourself|worthless|clanker|\s*you|\s*off|hate\s*you|dumb\s*bot|useless\s*bot|shut\s*the\s*)\b/i;
 
 /** Affection / presence — short context that needs a real voice, not "mm?". */
 export function isAffectionOrPresence(question = "", rawContent = "") {

@@ -27,10 +27,10 @@ export function isDisrespectTowardAva(text = "") {
     if (!/\b(clanker|bot\s*trash|shut\s*up\s*ava)\b/i.test(t)) return false;
   }
   return (
-    /\b(ava|ivy)\b.{0,40}\b(cringe|trash|useless|stupid|dumb|idiot|shut\s*up|stfu|kys|kill\s*yourself|worthless|clanker|fuck\s*you|hate\s*you)\b/i.test(
+    /\b(ava|ivy)\b.{0,40}\b(cringe|trash|useless|stupid|dumb|idiot|shut\s*up|stfu|kys|kill\s*yourself|worthless|clanker|\s*you|hate\s*you)\b/i.test(
       t,
     ) ||
-    /\b(cringe|trash|useless|stupid|dumb|idiot|shut\s*up|stfu|clanker|fuck\s*you)\b.{0,40}\b(ava|ivy)\b/i.test(
+    /\b(cringe|trash|useless|stupid|dumb|idiot|shut\s*up|stfu|clanker|\s*you)\b.{0,40}\b(ava|ivy)\b/i.test(
       t,
     ) ||
     /\b(shut\s*up|stfu)\s+(ava|ivy)\b/i.test(t) ||
